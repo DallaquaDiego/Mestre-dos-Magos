@@ -1,10 +1,10 @@
-import 'package:mestre_dos_magos/core/ui/components/custom_drawer/componenets/page_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'componenets/custom_drawer_header.dart';
 import 'componenets/navigation_alert_dialog.dart';
 import '../../../../stores/page_store.dart';
 import '../../theme/custom_colors.dart';
+import 'componenets/page_section.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({Key? key}) : super(key: key);
@@ -35,21 +35,27 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       elevation: 0,
       backgroundColor: CustomColors.papyrus,
-      child: ScrollConfiguration(
-        behavior: const ScrollBehavior(),
-        child: GlowingOverscrollIndicator(
-          axisDirection: AxisDirection.down,
-          color: CustomColors.coconut,
-          child: ListView(
-            children: [
-              const CustomDrawerHeader(
-                name: 'Diego',
-                office: 'Mestre dos Magos',
-              ),
-              PageSection(navigateToPage: navigateToPage),
-            ],
+      child: Column(
+        children: [
+          const Expanded(
+            child: CustomDrawerHeader(),
           ),
-        ),
+          Expanded(
+            child: ScrollConfiguration(
+              behavior: const ScrollBehavior(),
+              child: GlowingOverscrollIndicator(
+                axisDirection: AxisDirection.down,
+                color: CustomColors.coconut,
+                child: ListView(
+                  padding: EdgeInsets.zero, // Remove default padding
+                  children: [
+                    PageSection(navigateToPage: navigateToPage),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

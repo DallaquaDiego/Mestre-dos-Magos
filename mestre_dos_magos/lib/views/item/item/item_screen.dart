@@ -1,7 +1,7 @@
-import 'package:mestre_dos_magos/views/class/create_class/create_class_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mestre_dos_magos/views/item/create_item/create_item_screen.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import '../../../../core/ui/components/custom_drawer/custom_drawer.dart';
 import '../../../../core/ui/components/error_listing.dart';
@@ -58,11 +58,11 @@ class ItemScreen extends StatelessWidget {
         backgroundColor: CustomColors.coconut,
         foregroundColor: CustomColors.alabaster,
         onPressed: () {
-          /*Navigator.of(context).push(
+          Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => const CreateClassScreen(),
+              builder: (_) => const CreateItemScreen(),
             ),
-          );*/
+          );
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),

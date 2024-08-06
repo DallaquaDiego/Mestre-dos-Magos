@@ -1,6 +1,6 @@
-import 'package:mestre_dos_magos/views/class/create_class/create_class_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mestre_dos_magos/views/item/create_item/create_item_screen.dart';
 
 import '../../../../core/ui/theme/custom_colors.dart';
 import '../../../../models/item.dart';
@@ -61,11 +61,11 @@ class ItemTile extends StatelessWidget {
         ),
         trailing: IconButton(
           onPressed: () {
-            /*Navigator.of(context).push(
+            Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => CreateClassScreen(classe: classe),
+                builder: (context) => CreateItemScreen(item: item),
               )
-            );*/
+            );
           },
           icon: const Icon(
             Icons.edit,
