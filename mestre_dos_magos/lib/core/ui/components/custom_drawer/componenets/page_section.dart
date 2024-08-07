@@ -49,27 +49,43 @@ class PageSection extends StatelessWidget {
             },
           ),
           PageTile(
-            title: 'Magias',
-            iconData: Icons.auto_awesome,
+            title: 'Traços Raciais',
+            iconData: Icons.fingerprint,
             highlighted: pageStore.page == 4,
             onTap: () {
               navigateToPage(pageIndex: 4, context: context);
             },
           ),
           PageTile(
-            title: 'Itens',
-            iconData: Icons.build,
+            title: 'Magias',
+            iconData: Icons.auto_awesome,
             highlighted: pageStore.page == 5,
             onTap: () {
               navigateToPage(pageIndex: 5, context: context);
             },
           ),
           PageTile(
-            title: 'Configurações',
-            iconData: Icons.settings,
+            title: 'Itens',
+            iconData: Icons.build,
             highlighted: pageStore.page == 6,
             onTap: () {
-              navigateToPage(pageIndex:6, context: context);
+              navigateToPage(pageIndex: 6, context: context);
+            },
+          ),
+          PageTile(
+            title: 'Categoria dos Itens',
+            iconData: Icons.category,
+            highlighted: pageStore.page == 7,
+            onTap: () {
+              navigateToPage(pageIndex: 7, context: context);
+            },
+          ),
+          PageTile(
+            title: 'Configurações',
+            iconData: Icons.settings,
+            highlighted: pageStore.page == 8,
+            onTap: () {
+              navigateToPage(pageIndex:8, context: context);
             },
           ),
         ],

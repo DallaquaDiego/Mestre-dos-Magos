@@ -54,6 +54,10 @@ class SpellRepository {
     query.setLimit(limit);
     query.orderByAscending('name');
 
+    if (filterSearchStore != null && filterSearchStore.search.isNotEmpty) {
+      query.whereContains('name', filterSearchStore.search);
+    }
+
     try {
       final response = await query.query();
       //print(response.results);

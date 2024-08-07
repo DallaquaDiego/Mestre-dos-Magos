@@ -52,9 +52,13 @@ class SubRaceRepository {
     query.setLimit(limit);
     query.orderByAscending('name');
 
+    if (filterSearchStore != null && filterSearchStore.search.isNotEmpty) {
+      query.whereContains('name', filterSearchStore.search);
+    }
+
     try {
       final response = await query.query();
-      print('GET Sub-Races : ${response.results}');
+      //print('GET Sub-Races : ${response.results}');
 
       if (response.success && response.results != null) {
         return response.results!.map((sbrc) => SubRace.fromParse(sbrc)).toList();
