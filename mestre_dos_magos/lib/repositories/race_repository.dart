@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:mestre_dos_magos/models/race.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
+import '../stores/filter_search_store.dart';
+
 class RaceRepository {
   Future<ParseObject?> createRace(Race race) async {
     try {
@@ -45,19 +47,25 @@ class RaceRepository {
     }
   }
 
-  Future<List<Race>> getAllRaces() async {
+  Future<List<Race>> getAllRaces({int? page, int limit = 15, FilterSearchStore? filterSearchStore}) async {
+    final query = QueryBuilder(ParseObject('Race'));
+
+    query.includeObject(['racial_traits']);
+    query.setLimit(limit);
+    query.orderByAscending('name');
+
     try {
-      final query = QueryBuilder(ParseObject('Race'));
       final response = await query.query();
+      print('GET Races : ${response.results}');
 
       if (response.success && response.results != null) {
-        return response.results!.map((at) => Race.fromParse(at)).toList();
+        return response.results!.map((rc) => Race.fromParse(rc)).toList();
       } else {
         return [];
       }
     } catch (e, s) {
-      log('Repository: Erro ao Buscar Raça!', error: e.toString(), stackTrace: s);
-      return Future.error('Erro ao Buscar Raça');
+      log('Repository: Erro ao Buscar Raças!', error: e.toString(), stackTrace: s);
+      return Future.error('Erro ao Buscar Raças');
     }
   }
 }

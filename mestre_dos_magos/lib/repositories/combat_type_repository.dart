@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
-import '../models/combat_type.dart';
+import '../../models/combat_type.dart';
 import '../stores/filter_search_store.dart';
 
 class CombatTypeRepository {

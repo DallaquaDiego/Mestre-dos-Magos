@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
-import '../models/item_category.dart';
+import '../../models/item_category.dart';
 import '../stores/filter_search_store.dart';
 
 class ItemCategoryRepository {

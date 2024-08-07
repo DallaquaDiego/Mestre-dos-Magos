@@ -27,7 +27,7 @@ class ItemTile extends StatelessWidget {
             ),
             const SizedBox(height: 1),
             Text(
-              'Categoria: ${item.itemCategory!.name}',
+              'Categoria: ${item.item_category!.name}',
               style: const TextStyle(
                 color: CustomColors.coconut,
                 fontWeight: FontWeight.w400,

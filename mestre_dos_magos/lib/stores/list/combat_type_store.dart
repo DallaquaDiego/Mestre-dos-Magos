@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:mestre_dos_magos/models/combat_type.dart';
+import 'package:mestre_dos_magos/repositories/combat_type_repository.dart';
 import 'package:mestre_dos_magos/stores/filter_search_store.dart';
-import 'package:mobx/mobx.dart';
 
-import '../models/item.dart';
-import '../repositories/item_repository.dart';
+import 'package:mobx/mobx.dart';
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -12,16 +12,16 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 dart run build_runner watch -d
 */
 
-part 'item_store.g.dart';
+part 'combat_type_store.g.dart';
 
-class ItemStore = _ItemStore with _$ItemStore;
+class CombatTypeStore = _CombatTypeStore with _$CombatTypeStore;
 
-abstract class _ItemStore with Store {
-  _ItemStore() {
+abstract class _CombatTypeStore with Store {
+  _CombatTypeStore() {
     refreshData();
 
     autorun((_) async {
-      await loadData(page: _page, filterSearchStore: filterStore);
+      await loadData(filterSearchStore: filterStore);
     });
   }
 
@@ -40,20 +40,20 @@ abstract class _ItemStore with Store {
   }
 
   @readonly
-  ObservableList<Item> _listItem = ObservableList();
+  ObservableList<CombatType> _listCombatType = ObservableList();
 
 
   @readonly
-  ObservableList<Item> _listSearch = ObservableList();
+  ObservableList<CombatType> _listSearch = ObservableList();
 
   @action
   void runFilter(String value){
-    List<Item> result = [];
+    List<CombatType> result = [];
 
     if(value.isEmpty){
-      result = _listItem;
+      result = _listCombatType;
     }else{
-      result = _listItem.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
+      result = _listCombatType.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
     }
 
     _listSearch.clear();
@@ -63,7 +63,7 @@ abstract class _ItemStore with Store {
   }
 
   @action
-  void setListSearch(List<Item> newItems){
+  void setListSearch(List<CombatType> newItems){
     _listSearch.addAll(newItems);
   }
 
@@ -93,10 +93,10 @@ abstract class _ItemStore with Store {
   void setLastPage(bool value) => _lastPage = value;
 
   @computed
-  int get itemCount => _lastPage ? _listItem.length : _listItem.length + 1;
+  int get itemCount => _lastPage ? _listCombatType.length : _listCombatType.length + 1;
 
   @computed
-  bool get showProgress => _loading && _listItem.isEmpty;
+  bool get showProgress => _loading && _listCombatType.isEmpty;
 
   @action
   void loadNextPage() {
@@ -111,30 +111,30 @@ abstract class _ItemStore with Store {
 
   void resetPage() {
     _page = 1;
-    _listItem.clear();
+    _listCombatType.clear();
     _lastPage = false;
   }
 
   @action
-  void addNewItems(List<Item> newItems) {
+  void addNewItems(List<CombatType> newItems) {
     if (newItems.length < 15) _lastPage = true;
-    _listItem.addAll(newItems);
+    _listCombatType.addAll(newItems);
   }
 
   @action
-  Future<void> loadData({int? page, required FilterSearchStore filterSearchStore}) async {
+  Future<void> loadData({required FilterSearchStore filterSearchStore}) async {
     setError(null);
     setLoading(true);
 
-    if (_page == 1) _listItem.clear();
+    if (_page == 1) _listCombatType.clear();
 
     try {
-      final result = await ItemRepository().getAllItems(page: _page, filterSearchStore: filterSearchStore);
+      final result = await CombatTypeRepository().getAllCombatTypes(filterSearchStore: filterSearchStore);
       addNewItems(result);
       setListSearch(result);
     } catch (e, s) {
-      log('Store: Erro ao Carregar Itens!', error: e.toString(), stackTrace: s);
-      return Future.error('Erro ao Carregar Itens');
+        log('Store: Erro ao Carregar Tipos de Combate!', error: e.toString(), stackTrace: s);
+      return Future.error('Erro ao Carregar Tipos de Combate');
     }
 
     setLoading(false);

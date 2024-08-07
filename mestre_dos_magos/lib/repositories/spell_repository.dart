@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:mestre_dos_magos/models/spell.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
+import '../stores/filter_search_store.dart';
+
 class SpellRepository {
   Future<ParseObject?> createSpell(Spell spell) async {
     try {
@@ -45,10 +47,16 @@ class SpellRepository {
     }
   }
 
-  Future<List<Spell>> getAllSpells() async {
+  Future<List<Spell>> getAllSpells({int? page, int limit = 15, FilterSearchStore? filterSearchStore}) async {
+    final query = QueryBuilder(ParseObject('Spell'));
+
+    query.includeObject(['category']);
+    query.setLimit(limit);
+    query.orderByAscending('name');
+
     try {
-      final query = QueryBuilder(ParseObject('Spell'));
       final response = await query.query();
+      //print(response.results);
 
       if (response.success && response.results != null) {
         return response.results!.map((at) => Spell.fromParse(at)).toList();

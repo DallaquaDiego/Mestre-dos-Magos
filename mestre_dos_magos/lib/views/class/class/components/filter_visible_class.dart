@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../core/ui/theme/custom_colors.dart';
-import '../../../../stores/class_store.dart';
+import '../../../../stores/list/class_store.dart';
 import '../../../../stores/filter_search_store.dart';
 
 class FilterVisibleClass extends StatefulWidget {
@@ -30,7 +30,7 @@ class _FilterVisibleClassState extends State<FilterVisibleClass> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              'Pesquise por texto',
+              'Pesquise pelo Nome da Classe',
               style: TextStyle(
                 color: CustomColors.coconut,
                 fontWeight: FontWeight.bold,

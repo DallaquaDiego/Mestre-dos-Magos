@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../../core/ui/theme/custom_colors.dart';
 import '../../../../stores/filter_search_store.dart';
-import '../../../../stores/item_store.dart';
+import '../../../../stores/list/item_store.dart';
 
 class FilterVisibleItem extends StatefulWidget {
   FilterVisibleItem({super.key, required this.filterStore});
@@ -30,7 +30,7 @@ class _FilterVisibleItemState extends State<FilterVisibleItem> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              'Pesquise por texto',
+              'Pesquise pelo Nome do Item',
               style: TextStyle(
                 color: CustomColors.coconut,
                 fontWeight: FontWeight.bold,

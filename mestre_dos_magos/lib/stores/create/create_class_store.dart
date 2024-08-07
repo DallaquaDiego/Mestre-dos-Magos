@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:mestre_dos_magos/models/class.dart';
 import 'package:mobx/mobx.dart';
 
-import '../models/combat_type.dart';
-import '../repositories/class_repository.dart';
+import '../../models/combat_type.dart';
+import '../../repositories/class_repository.dart';
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch

@@ -9,8 +9,8 @@ import '../../../../core/ui/components/list_divider.dart';
 import '../../../../core/ui/theme/custom_colors.dart';
 import '../../../core/ui/components/empty_result.dart';
 import '../../../core/ui/components/flutter_icon_with_badge.dart';
-import '../../../stores/filter_search_store.dart';
-import '../../../stores/item_store.dart';
+import '../../../../stores/filter_search_store.dart';
+import '../../../stores/list/item_store.dart';
 import 'components/filter_visible_item.dart';
 import 'components/item_tile.dart';
 

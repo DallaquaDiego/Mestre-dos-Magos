@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mestre_dos_magos/models/item.dart';
-import 'package:mestre_dos_magos/stores/create_item_store.dart';
+import 'package:mestre_dos_magos/stores/create/create_item_store.dart';
 import '../../../../core/ui/components/body_container.dart';
 import '../../../../core/ui/components/navigation_panel.dart';
 import '../../../../core/ui/theme/custom_colors.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../stores/page_store.dart';
+import '../../../stores/page_store.dart';
 import '../../../core/ui/components/custom_app_bar.dart';
 import '../../../core/ui/components/custom_field.dart';
 import '../../../core/ui/components/custom_form_field.dart';
-import '../../../stores/item_store.dart';
+import '../../../stores/list/item_store.dart';
 
 class CreateItemScreen extends StatefulWidget {
   const CreateItemScreen({Key? key, this.item}) : super(key: key);
@@ -72,7 +72,7 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: editing ? 'Editar item' : 'Cadastrar item',
+        title: editing ? 'Editar Item' : 'Cadastrar Item',
         onBackButtonPressed: backToPreviousScreen,
       ),
       body: BodyContainer(

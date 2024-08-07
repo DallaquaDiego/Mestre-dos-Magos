@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../../models/item_category.dart';
-import '../../../../stores/item_category_store.dart';
+import '../../../../stores/list/item_category_store.dart';
 import '../../theme/custom_colors.dart';
 import '../list_empty.dart';
 
@@ -10,7 +11,7 @@ import '../list_empty.dart';
 class DialogItemCategory extends StatelessWidget {
   DialogItemCategory({Key? key, this.selectedItemCategory}) : super(key: key);
 
-  final ItemCategoryStore itemCategoryStore = ItemCategoryStore();
+  final itemCategoryStore = GetIt.I<ItemCategoryStore>();
   final ItemCategory? selectedItemCategory;
 
   final divider = const Divider(height: 0);
@@ -96,7 +97,7 @@ class DialogItemCategory extends StatelessWidget {
               if (itemCategoryStore.listItemCategory.isEmpty) {
                 return const Expanded(
                   child: ListEmpty(
-                    texto: "Nenhum Tipo de Combate Cadastrado.",
+                    texto: "Nenhuma Categoria Cadastrada.",
                   ),
                 );
               }

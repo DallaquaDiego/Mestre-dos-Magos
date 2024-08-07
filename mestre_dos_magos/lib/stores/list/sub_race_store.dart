@@ -1,10 +1,12 @@
 import 'dart:developer';
 
-import 'package:mestre_dos_magos/stores/filter_search_store.dart';
 import 'package:mobx/mobx.dart';
 
-import '../models/class.dart';
-import '../repositories/class_repository.dart';
+import '../../models/sub_race.dart';
+import '../../repositories/sub_race_repository.dart';
+import 'package:mestre_dos_magos/stores/filter_search_store.dart';
+
+
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -12,12 +14,12 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 dart run build_runner watch -d
 */
 
-part 'class_store.g.dart';
+part 'sub_race_store.g.dart';
 
-class ClassStore = _ClassStore with _$ClassStore;
+class SubRaceStore = _SubRaceStore with _$SubRaceStore;
 
-abstract class _ClassStore with Store {
-  _ClassStore() {
+abstract class _SubRaceStore with Store {
+  _SubRaceStore() {
     refreshData();
 
     autorun((_) async {
@@ -40,31 +42,30 @@ abstract class _ClassStore with Store {
   }
 
   @readonly
-  ObservableList<Class> _listClass = ObservableList();
+  ObservableList<SubRace> _listSubRace = ObservableList();
 
 
   @readonly
-  ObservableList<Class> _listSearch = ObservableList();
+  ObservableList<SubRace> _listSearch = ObservableList();
 
   @action
   void runFilter(String value){
-    List<Class> result = [];
+    List<SubRace> result = [];
 
     if(value.isEmpty){
-      result = _listClass;
+      result = _listSubRace;
     }else{
-      result = _listClass.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
+      result = _listSubRace.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
     }
 
     _listSearch.clear();
 
     _listSearch.addAll(result);
-
   }
 
   @action
-  void setListSearch(List<Class> newItems){
-    _listSearch.addAll(newItems);
+  void setListSearch(List<SubRace> newSubRaces){
+    _listSearch.addAll(newSubRaces);
   }
 
   @readonly
@@ -93,10 +94,10 @@ abstract class _ClassStore with Store {
   void setLastPage(bool value) => _lastPage = value;
 
   @computed
-  int get itemCount => _lastPage ? _listClass.length : _listClass.length + 1;
+  int get itemCount => _lastPage ? _listSubRace.length : _listSubRace.length + 1;
 
   @computed
-  bool get showProgress => _loading && _listClass.isEmpty;
+  bool get showProgress => _loading && _listSubRace.isEmpty;
 
   @action
   void loadNextPage() {
@@ -111,14 +112,14 @@ abstract class _ClassStore with Store {
 
   void resetPage() {
     _page = 1;
-    _listClass.clear();
+    _listSubRace.clear();
     _lastPage = false;
   }
 
   @action
-  void addNewItems(List<Class> newItems) {
-    if (newItems.length < 15) _lastPage = true;
-    _listClass.addAll(newItems);
+  void addNewSubRaces(List<SubRace> newSubRaces) {
+    if (newSubRaces.length < 15) _lastPage = true;
+    _listSubRace.addAll(newSubRaces);
   }
 
   @action
@@ -126,15 +127,15 @@ abstract class _ClassStore with Store {
     setError(null);
     setLoading(true);
 
-    if (_page == 1) _listClass.clear();
+    if (_page == 1) _listSubRace.clear();
 
     try {
-      final result = await ClassRepository().getAllClasses(page: _page, filterSearchStore: filterSearchStore);
-      addNewItems(result);
+      final result = await SubRaceRepository().getAllSubRaces(page: page, filterSearchStore: filterSearchStore);
+      addNewSubRaces(result);
       setListSearch(result);
     } catch (e, s) {
-      log('Store: Erro ao Carregar Classes!', error: e.toString(), stackTrace: s);
-      return Future.error('Erro ao Carregar Classes');
+      log('Store: Erro ao Carregar Sub-Raças!', error: e.toString(), stackTrace: s);
+      return Future.error('Erro ao Carregar Sub-Raças');
     }
 
     setLoading(false);

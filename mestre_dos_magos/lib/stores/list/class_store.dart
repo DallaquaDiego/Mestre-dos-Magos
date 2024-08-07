@@ -1,12 +1,11 @@
 import 'dart:developer';
 
-import 'package:mestre_dos_magos/models/combat_type.dart';
-import 'package:mestre_dos_magos/repositories/combat_type_repository.dart';
 import 'package:mestre_dos_magos/stores/filter_search_store.dart';
+
 import 'package:mobx/mobx.dart';
 
-import '../models/item_category.dart';
-import '../repositories/item_category_repository.dart';
+import '../../models/class.dart';
+import '../../repositories/class_repository.dart';
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -14,16 +13,16 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 dart run build_runner watch -d
 */
 
-part 'item_category_store.g.dart';
+part 'class_store.g.dart';
 
-class ItemCategoryStore = _ItemCategoryStore with _$ItemCategoryStore;
+class ClassStore = _ClassStore with _$ClassStore;
 
-abstract class _ItemCategoryStore with Store {
-  _ItemCategoryStore() {
+abstract class _ClassStore with Store {
+  _ClassStore() {
     refreshData();
 
     autorun((_) async {
-      await loadData(filterSearchStore: filterStore);
+      await loadData(page: _page, filterSearchStore: filterStore);
     });
   }
 
@@ -42,20 +41,20 @@ abstract class _ItemCategoryStore with Store {
   }
 
   @readonly
-  ObservableList<ItemCategory> _listItemCategory = ObservableList();
+  ObservableList<Class> _listClass = ObservableList();
 
 
   @readonly
-  ObservableList<ItemCategory> _listSearch = ObservableList();
+  ObservableList<Class> _listSearch = ObservableList();
 
   @action
   void runFilter(String value){
-    List<ItemCategory> result = [];
+    List<Class> result = [];
 
     if(value.isEmpty){
-      result = _listItemCategory;
+      result = _listClass;
     }else{
-      result = _listItemCategory.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
+      result = _listClass.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
     }
 
     _listSearch.clear();
@@ -65,7 +64,7 @@ abstract class _ItemCategoryStore with Store {
   }
 
   @action
-  void setListSearch(List<ItemCategory> newItems){
+  void setListSearch(List<Class> newItems){
     _listSearch.addAll(newItems);
   }
 
@@ -95,10 +94,10 @@ abstract class _ItemCategoryStore with Store {
   void setLastPage(bool value) => _lastPage = value;
 
   @computed
-  int get itemCount => _lastPage ? _listItemCategory.length : _listItemCategory.length + 1;
+  int get itemCount => _lastPage ? _listClass.length : _listClass.length + 1;
 
   @computed
-  bool get showProgress => _loading && _listItemCategory.isEmpty;
+  bool get showProgress => _loading && _listClass.isEmpty;
 
   @action
   void loadNextPage() {
@@ -113,30 +112,30 @@ abstract class _ItemCategoryStore with Store {
 
   void resetPage() {
     _page = 1;
-    _listItemCategory.clear();
+    _listClass.clear();
     _lastPage = false;
   }
 
   @action
-  void addNewItems(List<ItemCategory> newItems) {
+  void addNewItems(List<Class> newItems) {
     if (newItems.length < 15) _lastPage = true;
-    _listItemCategory.addAll(newItems);
+    _listClass.addAll(newItems);
   }
 
   @action
-  Future<void> loadData({required FilterSearchStore filterSearchStore}) async {
+  Future<void> loadData({int? page, required FilterSearchStore filterSearchStore}) async {
     setError(null);
     setLoading(true);
 
-    if (_page == 1) _listItemCategory.clear();
+    if (_page == 1) _listClass.clear();
 
     try {
-      final result = await ItemCategoryRepository().getAllItemCategories(filterSearchStore: filterSearchStore);
+      final result = await ClassRepository().getAllClasses(page: _page, filterSearchStore: filterSearchStore);
       addNewItems(result);
       setListSearch(result);
     } catch (e, s) {
-        log('Store: Erro ao Carregar Tipos de Combate!', error: e.toString(), stackTrace: s);
-      return Future.error('Erro ao Carregar Tipos de Combate');
+      log('Store: Erro ao Carregar Classes!', error: e.toString(), stackTrace: s);
+      return Future.error('Erro ao Carregar Classes');
     }
 
     setLoading(false);

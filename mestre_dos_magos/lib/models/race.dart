@@ -1,4 +1,4 @@
-import 'package:mestre_dos_magos/models/attributes.dart';
+import 'package:mestre_dos_magos/models/racial_trait.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 class Race {
@@ -6,26 +6,26 @@ class Race {
     this.id,
     this.name,
     this.description,
-    this.attributeBonus,
+    this.racial_traits,
   });
 
   String? id;
   String? name;
   String? description;
-  Attributes? attributeBonus;
- 
+  List<RacialTrait>? racial_traits;
+
 
   @override
   String toString() {
-    return 'Race{id: $id, name: $name, description: $description, attributeBonus: $attributeBonus}';
+    return 'Race{id: $id, name: $name, description: $description, racial_traits: $racial_traits}';
   }
 
   ParseObject toParseObject() {
     final parseObject = ParseObject('Race')
       ..objectId = id
-      ..set('name', name)
-      ..set('description', description)
-      ..set('attribute_bonus', attributeBonus?.toParseObject());
+      ..set('name', name!)
+      ..set('description', description!)
+      ..set('racial_traits', racial_traits!.map((racialT) => racialT.toParseObject()).toList());
     return parseObject;
   }
 
@@ -34,9 +34,19 @@ class Race {
       id: parseObject.objectId,
       name: parseObject.get<String>('name'),
       description: parseObject.get<String>('description'),
-      attributeBonus: parseObject.containsKey('attribute_bonus') && parseObject.get('attribute_bonus') != null
-          ? Attributes.fromParse(parseObject.get<ParseObject>('attribute_bonus')!)
-          : null,
+      racial_traits: parseObject.containsKey('racial_traits')
+          ? _parseRacialTraits(parseObject.get<List<dynamic>>('racial_traits')!)
+          : [],
     );
+  }
+
+  static List<RacialTrait> _parseRacialTraits(List<dynamic> traits) {
+    // Verifica se os traits são objetos completos ou apenas IDs
+    if (traits.isEmpty || traits.first is ParseObject) {
+      return traits.map((trait) => RacialTrait.fromParse(trait as ParseObject)).toList();
+    } else {
+      // Se são apenas IDs, busque os objetos completos
+      return traits.map((id) => RacialTrait(id: id as String)).toList();
+    }
   }
 }

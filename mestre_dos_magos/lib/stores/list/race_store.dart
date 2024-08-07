@@ -1,9 +1,12 @@
 import 'dart:developer';
 
-import 'package:mestre_dos_magos/models/combat_type.dart';
-import 'package:mestre_dos_magos/repositories/combat_type_repository.dart';
-import 'package:mestre_dos_magos/stores/filter_search_store.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../models/race.dart';
+import '../../repositories/race_repository.dart';
+import 'package:mestre_dos_magos/stores/filter_search_store.dart';
+
+
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -11,16 +14,16 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 dart run build_runner watch -d
 */
 
-part 'combat_type_store.g.dart';
+part 'race_store.g.dart';
 
-class CombatTypeStore = _CombatTypeStore with _$CombatTypeStore;
+class RaceStore = _RaceStore with _$RaceStore;
 
-abstract class _CombatTypeStore with Store {
-  _CombatTypeStore() {
+abstract class _RaceStore with Store {
+  _RaceStore() {
     refreshData();
 
     autorun((_) async {
-      await loadData(filterSearchStore: filterStore);
+      await loadData(page: _page, filterSearchStore: filterStore);
     });
   }
 
@@ -39,31 +42,30 @@ abstract class _CombatTypeStore with Store {
   }
 
   @readonly
-  ObservableList<CombatType> _listCombatType = ObservableList();
+  ObservableList<Race> _listRace = ObservableList();
 
 
   @readonly
-  ObservableList<CombatType> _listSearch = ObservableList();
+  ObservableList<Race> _listSearch = ObservableList();
 
   @action
   void runFilter(String value){
-    List<CombatType> result = [];
+    List<Race> result = [];
 
     if(value.isEmpty){
-      result = _listCombatType;
+      result = _listRace;
     }else{
-      result = _listCombatType.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
+      result = _listRace.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
     }
 
     _listSearch.clear();
 
     _listSearch.addAll(result);
-
   }
 
   @action
-  void setListSearch(List<CombatType> newItems){
-    _listSearch.addAll(newItems);
+  void setListSearch(List<Race> newRaces){
+    _listSearch.addAll(newRaces);
   }
 
   @readonly
@@ -92,10 +94,10 @@ abstract class _CombatTypeStore with Store {
   void setLastPage(bool value) => _lastPage = value;
 
   @computed
-  int get itemCount => _lastPage ? _listCombatType.length : _listCombatType.length + 1;
+  int get itemCount => _lastPage ? _listRace.length : _listRace.length + 1;
 
   @computed
-  bool get showProgress => _loading && _listCombatType.isEmpty;
+  bool get showProgress => _loading && _listRace.isEmpty;
 
   @action
   void loadNextPage() {
@@ -110,30 +112,30 @@ abstract class _CombatTypeStore with Store {
 
   void resetPage() {
     _page = 1;
-    _listCombatType.clear();
+    _listRace.clear();
     _lastPage = false;
   }
 
   @action
-  void addNewItems(List<CombatType> newItems) {
-    if (newItems.length < 15) _lastPage = true;
-    _listCombatType.addAll(newItems);
+  void addNewRaces(List<Race> newRaces) {
+    if (newRaces.length < 15) _lastPage = true;
+    _listRace.addAll(newRaces);
   }
 
   @action
-  Future<void> loadData({required FilterSearchStore filterSearchStore}) async {
+  Future<void> loadData({int? page, required FilterSearchStore filterSearchStore}) async {
     setError(null);
     setLoading(true);
 
-    if (_page == 1) _listCombatType.clear();
+    if (_page == 1) _listRace.clear();
 
     try {
-      final result = await CombatTypeRepository().getAllCombatTypes(filterSearchStore: filterSearchStore);
-      addNewItems(result);
+      final result = await RaceRepository().getAllRaces(page: page, filterSearchStore: filterSearchStore);
+      addNewRaces(result);
       setListSearch(result);
     } catch (e, s) {
-        log('Store: Erro ao Carregar Tipos de Combate!', error: e.toString(), stackTrace: s);
-      return Future.error('Erro ao Carregar Tipos de Combate');
+      log('Store: Erro ao Carregar Raças!', error: e.toString(), stackTrace: s);
+      return Future.error('Erro ao Carregar Raças');
     }
 
     setLoading(false);

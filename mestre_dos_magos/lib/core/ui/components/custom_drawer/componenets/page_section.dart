@@ -34,34 +34,42 @@ class PageSection extends StatelessWidget {
           ),
           PageTile(
             title: 'Raças',
-            iconData: Icons.person,
+            iconData: Icons.group,
             highlighted: pageStore.page == 2,
             onTap: () {
               navigateToPage(pageIndex: 2, context: context);
             },
           ),
           PageTile(
-            title: 'Magias',
-            iconData: Icons.flash_on,
+            title: 'Sub-Raças',
+            iconData: Icons.groups,
             highlighted: pageStore.page == 3,
             onTap: () {
               navigateToPage(pageIndex: 3, context: context);
             },
           ),
           PageTile(
-            title: 'Itens',
-            iconData: Icons.inventory,
+            title: 'Magias',
+            iconData: Icons.auto_awesome,
             highlighted: pageStore.page == 4,
             onTap: () {
               navigateToPage(pageIndex: 4, context: context);
             },
           ),
           PageTile(
-            title: 'Configurações',
-            iconData: Icons.settings,
+            title: 'Itens',
+            iconData: Icons.build,
             highlighted: pageStore.page == 5,
             onTap: () {
               navigateToPage(pageIndex: 5, context: context);
+            },
+          ),
+          PageTile(
+            title: 'Configurações',
+            iconData: Icons.settings,
+            highlighted: pageStore.page == 6,
+            onTap: () {
+              navigateToPage(pageIndex:6, context: context);
             },
           ),
         ],

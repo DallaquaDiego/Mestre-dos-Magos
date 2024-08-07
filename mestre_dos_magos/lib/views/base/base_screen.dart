@@ -4,12 +4,15 @@ import 'package:mestre_dos_magos/views/class/class/class_screen.dart';
 import 'package:mestre_dos_magos/views/item/item/item_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mestre_dos_magos/views/race/race/race_screen.dart';
+import 'package:mestre_dos_magos/views/spell/spell/spell_screen.dart';
 import '../../core/ui/components/body_container.dart';
 import '../../core/ui/components/custom_drawer/custom_drawer.dart';
 import '../../core/ui/components/navigation_panel.dart';
 import '../../core/ui/theme/custom_colors.dart';
 import 'package:mobx/mobx.dart';
 import '../../stores/page_store.dart';
+import '../sub_race/sub_race/sub_race_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);
@@ -72,8 +75,9 @@ class _BaseScreenState extends State<BaseScreen> {
                     children: [
                       TestPage(title: 'Mesa'),
                       ClassScreen(),
-                      TestPage(title: 'Raças'),
-                      TestPage(title: 'Magias'),
+                      RaceScreen(),
+                      SubRaceScreen(),
+                      SpellScreen(),
                       ItemScreen(),
                       TestPage(title: 'Configurações'),
                     ],

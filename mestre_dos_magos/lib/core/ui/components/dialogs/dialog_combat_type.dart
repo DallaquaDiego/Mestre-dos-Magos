@@ -1,4 +1,5 @@
-import 'package:mestre_dos_magos/stores/combat_type_store.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mestre_dos_magos/stores/list/combat_type_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -10,7 +11,7 @@ import '../list_empty.dart';
 class DialogCombatType extends StatelessWidget {
   DialogCombatType({Key? key, this.selectedCombatType}) : super(key: key);
 
-  final CombatTypeStore combatTypeStore = CombatTypeStore();
+  final combatTypeStore = GetIt.I<CombatTypeStore>();
   final CombatType? selectedCombatType;
 
   final divider = const Divider(height: 0);

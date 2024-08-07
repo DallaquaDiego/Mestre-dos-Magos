@@ -1,13 +1,8 @@
 import 'dart:developer';
-
-import 'package:mestre_dos_magos/models/class.dart';
 import 'package:mestre_dos_magos/models/item.dart';
 import 'package:mobx/mobx.dart';
-
-import '../models/combat_type.dart';
-import '../models/item_category.dart';
-import '../repositories/class_repository.dart';
-import '../repositories/item_repository.dart';
+import '../../models/item_category.dart';
+import '../../repositories/item_repository.dart';
 
 /*Comando que precisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -23,7 +18,7 @@ abstract class _CreateItemStore with Store {
   _CreateItemStore(this.item) {
     _name = item?.name ?? '';
     _description = item?.description ?? '';
-    _item_category = item?.itemCategory;
+    _item_category = item?.item_category;
     _price = item?.price.toString() ?? '';
     _damage = item?.damage ?? '';
     _effect = item?.effect ?? '';
@@ -180,7 +175,7 @@ abstract class _CreateItemStore with Store {
       price: int.parse(_price),
       damage: _damage,
       effect: _effect,
-      itemCategory: _item_category!,
+      item_category: _item_category!,
     );
 
     try {
@@ -204,7 +199,7 @@ abstract class _CreateItemStore with Store {
     item!.price = int.parse(_price);
     item!.damage = _damage;
     item!.effect = _effect;
-    item!.itemCategory = _item_category!;
+    item!.item_category = _item_category!;
 
     try {
       await ItemRepository().updateItem(item!);

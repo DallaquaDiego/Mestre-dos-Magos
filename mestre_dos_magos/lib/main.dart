@@ -1,5 +1,5 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:mestre_dos_magos/back4app.dart';
+import 'package:mestre_dos_magos/core/global/back4app.dart';
 import 'package:mestre_dos_magos/views/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';

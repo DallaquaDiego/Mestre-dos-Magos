@@ -9,7 +9,7 @@ class Item {
     this.damage,
     this.price,
     this.effect,
-    this.itemCategory,
+    this.item_category,
   });
 
   String? id;
@@ -18,11 +18,11 @@ class Item {
   String? damage;
   int? price;
   String? effect;
-  ItemCategory? itemCategory;
+  ItemCategory? item_category;
 
   @override
   String toString() {
-    return 'Item{id: $id, name: $name, description: $description, damage: $damage, price: $price, effect:$effect, itemCategory: $itemCategory}';
+    return 'Item{id: $id, name: $name, description: $description, damage: $damage, price: $price, effect:$effect, item_category: $item_category}';
   }
 
   ParseObject toParseObject() {
@@ -31,7 +31,7 @@ class Item {
       ..set('name', name!)
       ..set('description', description!)
       ..set('price', price!)
-      ..set('category', itemCategory!.toParseObject())
+      ..set('category', item_category!.toParseObject())
       ..set('effect', effect)
       ..set('damage', damage);
     return parseObject;
@@ -45,7 +45,7 @@ class Item {
       price: parseObject.get<int>('price'),
       damage: parseObject.get<String>('damage'),
       effect: parseObject.get<String>('effect'),
-      itemCategory: parseObject.containsKey('category') && parseObject.get<ParseObject>('category') != null
+      item_category: parseObject.containsKey('category') && parseObject.get<ParseObject>('category') != null
           ? ItemCategory.fromParse(parseObject.get<ParseObject>('category')!)
           : null,
     );

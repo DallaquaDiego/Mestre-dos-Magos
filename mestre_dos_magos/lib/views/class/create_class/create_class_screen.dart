@@ -9,13 +9,13 @@ import '../../../../core/ui/components/navigation_panel.dart';
 import '../../../../core/ui/theme/custom_colors.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../stores/page_store.dart';
+import '../../../stores/page_store.dart';
 import '../../../core/ui/components/custom_app_bar.dart';
 import '../../../core/ui/components/custom_field.dart';
 import '../../../core/ui/components/custom_form_field.dart';
 import '../../../models/class.dart';
-import '../../../stores/class_store.dart';
-import '../../../stores/create_class_store.dart';
+import '../../../stores/list/class_store.dart';
+import '../../../stores/create/create_class_store.dart';
 
 class CreateClassScreen extends StatefulWidget {
   const CreateClassScreen({Key? key, this.classe}) : super(key: key);
