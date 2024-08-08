@@ -12,7 +12,7 @@ class TitleTextForm extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
-        color: CustomColors.coconut,
+        color: CustomColors.grape_juice,
         fontWeight: FontWeight.bold,
       ),
     );

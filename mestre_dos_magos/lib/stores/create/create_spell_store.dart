@@ -20,6 +20,7 @@ abstract class _CreateSpellStore with Store {
     _description = spell?.description ?? '';
     _isTrick = spell?.isTrick ?? false;
     _spell_level = spell?.spell_level.toString() ?? '';
+    _duration = spell?.duration ?? '';
     _damage = spell?.damage ?? '';
     _effect_on_foe = spell?.effect_on_foe ?? '';
     _effect_on_ally = spell?.effect_on_ally ?? '';
@@ -101,6 +102,27 @@ abstract class _CreateSpellStore with Store {
       return null;
     } else {
       return 'Campo Obrigatório';
+    }
+  }
+
+  @readonly
+  String _duration = '';
+
+  @action
+  void setDuration(String value) => _duration = value;
+
+  @computed
+  bool get durationValid => _duration.length >= 3;
+
+  String? get durationError {
+    if (!showErrors || durationValid) {
+      return null;
+    } else if (_duration.isEmpty) {
+      return 'Campo Obrigatório';
+    } else if (!durationValid) {
+      return 'Duração muito curta';
+    } else {
+      return ('Duração inválida');
     }
   }
 
@@ -218,6 +240,7 @@ abstract class _CreateSpellStore with Store {
       isTrick: _isTrick,
       spell_level: int.parse(_spell_level),
       spell_category: _spell_category!,
+      duration: _duration,
       damage: _damage,
       effect_on_foe: _effect_on_foe,
       effect_on_ally: _effect_on_ally,
@@ -244,6 +267,7 @@ abstract class _CreateSpellStore with Store {
     spell!.isTrick = _isTrick;
     spell!.spell_level = int.parse(_spell_level);
     spell!.spell_category = _spell_category!;
+    spell!.duration = _duration;
     spell!.damage = _damage;
     spell!.effect_on_foe = _effect_on_foe;
     spell!.effect_on_ally = _effect_on_ally;

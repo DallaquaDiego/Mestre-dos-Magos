@@ -21,7 +21,7 @@ class RaceTile extends StatelessWidget {
             Text(
               race.name!,
               style: const TextStyle(
-                color: CustomColors.coconut,
+                color: CustomColors.amethyst,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -29,7 +29,7 @@ class RaceTile extends StatelessWidget {
             Text(
               'Traços da Raça: ${race.racial_traits?.map((trait) => trait.name).join(', ') ?? ''}',
               style: const TextStyle(
-                color: CustomColors.coconut,
+                color: CustomColors.amethyst,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -45,7 +45,7 @@ class RaceTile extends StatelessWidget {
           },
           icon: const Icon(
             Icons.edit,
-            color: CustomColors.coconut,
+            color: CustomColors.amethyst,
           ),
         ),
       ),

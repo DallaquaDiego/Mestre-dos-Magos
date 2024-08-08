@@ -37,6 +37,13 @@ mixin _$CreateSpellStore on _CreateSpellStore, Store {
       (_$spellLevelValidComputed ??= Computed<bool>(() => super.spellLevelValid,
               name: '_CreateSpellStore.spellLevelValid'))
           .value;
+  Computed<bool>? _$durationValidComputed;
+
+  @override
+  bool get durationValid =>
+      (_$durationValidComputed ??= Computed<bool>(() => super.durationValid,
+              name: '_CreateSpellStore.durationValid'))
+          .value;
   Computed<bool>? _$damageValidComputed;
 
   @override
@@ -149,6 +156,24 @@ mixin _$CreateSpellStore on _CreateSpellStore, Store {
   set _spell_level(String value) {
     _$_spell_levelAtom.reportWrite(value, super._spell_level, () {
       super._spell_level = value;
+    });
+  }
+
+  late final _$_durationAtom =
+      Atom(name: '_CreateSpellStore._duration', context: context);
+
+  String get duration {
+    _$_durationAtom.reportRead();
+    return super._duration;
+  }
+
+  @override
+  String get _duration => duration;
+
+  @override
+  set _duration(String value) {
+    _$_durationAtom.reportWrite(value, super._duration, () {
+      super._duration = value;
     });
   }
 
@@ -357,6 +382,17 @@ mixin _$CreateSpellStore on _CreateSpellStore, Store {
   }
 
   @override
+  void setDuration(String value) {
+    final _$actionInfo = _$_CreateSpellStoreActionController.startAction(
+        name: '_CreateSpellStore.setDuration');
+    try {
+      return super.setDuration(value);
+    } finally {
+      _$_CreateSpellStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setDamage(String value) {
     final _$actionInfo = _$_CreateSpellStoreActionController.startAction(
         name: '_CreateSpellStore.setDamage');
@@ -453,6 +489,7 @@ nameValid: ${nameValid},
 descriptionValid: ${descriptionValid},
 isTrickValid: ${isTrickValid},
 spellLevelValid: ${spellLevelValid},
+durationValid: ${durationValid},
 damageValid: ${damageValid},
 effectOnFoeValid: ${effectOnFoeValid},
 effectOnAllyValid: ${effectOnAllyValid},

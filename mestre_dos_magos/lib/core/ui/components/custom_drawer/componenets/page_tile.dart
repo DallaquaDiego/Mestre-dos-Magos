@@ -19,10 +19,10 @@ class PageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      tileColor: highlighted ? CustomColors.papyrus : null,
+      tileColor: highlighted ? CustomColors.mystical_lilac : null,
       titleTextStyle: const TextStyle(
         fontSize: 15,
-        color: CustomColors.coconut,
+        color: CustomColors.grape_juice,
         fontWeight: FontWeight.w600,
         fontFamily: 'Nunito',
       ),
@@ -30,11 +30,11 @@ class PageTile extends StatelessWidget {
       trailing: Icon(
         highlighted ? Icons.arrow_back_ios : Icons.arrow_forward_ios,
         size: 18,
-        color: CustomColors.coconut,
+        color: CustomColors.grape_juice,
       ),
       leading: Icon(
         iconData,
-        color: CustomColors.coconut,
+        color: CustomColors.grape_juice,
       ),
       onTap: onTap,
     );

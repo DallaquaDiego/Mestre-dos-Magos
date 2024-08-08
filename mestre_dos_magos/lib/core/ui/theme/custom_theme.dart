@@ -11,11 +11,11 @@ abstract class CustomTheme {
       centerTitle: true,
       elevation: 0,
       iconTheme: IconThemeData(
-        color: CustomColors.coconut,
+        color: CustomColors.grape_juice,
       ),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: CustomColors.coconut,
+      backgroundColor: CustomColors.grape_juice,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),

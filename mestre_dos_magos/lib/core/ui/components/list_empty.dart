@@ -20,7 +20,7 @@ class ListEmpty extends StatelessWidget {
         texto,
         textAlign: TextAlign.center,
         style: const TextStyle(
-          color: CustomColors.coconut,
+          color: CustomColors.grape_juice,
           fontWeight: FontWeight.w600,
           fontSize: 17,
         ),

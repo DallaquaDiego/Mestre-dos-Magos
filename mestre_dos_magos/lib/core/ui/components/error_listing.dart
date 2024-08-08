@@ -44,7 +44,7 @@ class ErrorListing extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  backgroundColor: CustomColors.coconut,
+                  backgroundColor: CustomColors.grape_juice,
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                 ),
                 child: const Text(

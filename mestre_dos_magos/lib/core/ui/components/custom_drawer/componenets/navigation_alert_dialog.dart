@@ -30,7 +30,7 @@ class NavigationAlertDialog extends StatelessWidget {
           child: const Text(
             'Continuar',
             style: TextStyle(
-              color: CustomColors.coconut,
+              color: CustomColors.grape_juice,
               fontWeight: FontWeight.bold,
             ),
           ),

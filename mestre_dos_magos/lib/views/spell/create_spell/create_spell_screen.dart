@@ -87,7 +87,7 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                       behavior: const ScrollBehavior(),
                       child: GlowingOverscrollIndicator(
                         axisDirection: AxisDirection.down,
-                        color: CustomColors.coconut,
+                        color: CustomColors.grape_juice,
                         child: SingleChildScrollView(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           child: Column(
@@ -124,31 +124,15 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                                 ),
                               ),
 
-                              const SizedBox(height: 6),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Truque',
-                                    style: TextStyle(
-                                      color: CustomColors.coconut,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  Observer(
-                                    builder: (context) => Checkbox(
-                                      value: createSpellStore.isTrick,
-                                      onChanged: (newValue) {
-                                        createSpellStore.setIsTrick(newValue ?? false);
-                                      },
-                                    ),
-                                  ),
-                                ],
+                              TitleTextForm(title: 'Duração da Magia'),
+                              Observer(
+                                builder: (context) => CustomFormField(
+                                  initialvalue: createSpellStore.duration,
+                                  onChanged: createSpellStore.setDuration,
+                                  error: createSpellStore.durationError,
+                                  secret: false,
+                                ),
                               ),
-
-                              const SizedBox(height: 12),
 
                               TitleTextForm(title: 'Dano da Magia'),
                               Observer(
@@ -203,6 +187,27 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                                   ),
                                 ),
                               ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Truque',
+                                    style: TextStyle(
+                                      color: CustomColors.grape_juice,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Observer(
+                                    builder: (context) => Checkbox(
+                                      value: createSpellStore.isTrick,
+                                      onChanged: (newValue) {
+                                        createSpellStore.setIsTrick(newValue ?? false);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -211,13 +216,14 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                    child: Row(
+                    child: editing ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           flex: 3,
                           child: PatternedButton(
-                            color: Colors.red,
+                            color: CustomColors.mystical_lilac,
+                            textColor: CustomColors.grape_juice,
                             text: 'Excluir',
                             largura: screenSize.width * 0.3,
                             function: editing ? () async {
@@ -225,16 +231,16 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                             } : null,
                           ),
                         ),
-                        const Spacer(),
+                        SizedBox(width: 16),
                         Expanded(
                           flex: 6,
                           child: Observer(
                             builder: (context) => GestureDetector(
                               onTap: () => createSpellStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.coconut,
+                                color: CustomColors.grape_juice,
                                 text: 'Salvar',
-                                largura: screenSize.width * 0.6,
+                                largura: screenSize.width * 0.65,
                                 function: createSpellStore.isFormValid ? () async {
                                   if (editing) {
                                     await createSpellStore.editPressed();
@@ -247,6 +253,25 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                           ),
                         ),
                       ],
+                    ) : Expanded(
+                      flex: 6,
+                      child: Observer(
+                        builder: (context) => GestureDetector(
+                          onTap: () => createSpellStore.invalidSendPressed(),
+                          child: PatternedButton(
+                            color: CustomColors.grape_juice,
+                            text: 'Salvar',
+                            largura: screenSize.width * 0.95,
+                            function: createSpellStore.isFormValid ? () async {
+                              if (editing) {
+                                await createSpellStore.editPressed();
+                              } else {
+                                await createSpellStore.createPressed();
+                              }
+                            } : null,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],

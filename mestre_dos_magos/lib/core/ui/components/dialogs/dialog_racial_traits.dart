@@ -52,7 +52,7 @@ class DialogRacialTraits extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
-                          color: CustomColors.coconut,
+                          color: CustomColors.grape_juice,
                         ),
                       ),
                     ),
@@ -62,7 +62,7 @@ class DialogRacialTraits extends StatelessWidget {
                         icon: const Icon(
                           Icons.close,
                           size: 25,
-                          color: CustomColors.coconut,
+                          color: CustomColors.grape_juice,
                         ),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
@@ -81,7 +81,7 @@ class DialogRacialTraits extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: 1,
-                          color: CustomColors.coconut,
+                          color: CustomColors.grape_juice,
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -93,7 +93,7 @@ class DialogRacialTraits extends StatelessWidget {
                             border: InputBorder.none,
                             suffixIcon: Icon(
                               Icons.search,
-                              color: CustomColors.coconut,
+                              color: CustomColors.grape_juice,
                             ),
                           ),
                         ),
@@ -108,7 +108,7 @@ class DialogRacialTraits extends StatelessWidget {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(
-                          color: CustomColors.coconut,
+                          color: CustomColors.grape_juice,
                         ),
                       ),
                     );
@@ -138,7 +138,7 @@ class DialogRacialTraits extends StatelessWidget {
                                       height: 50,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        color: _selectedRacialTraits.any((selectedCompanyUser) => selectedCompanyUser.id == racialTrait.id) ? CustomColors.coconut.withAlpha(50) : null,
+                                        color: _selectedRacialTraits.any((selectedCompanyUser) => selectedCompanyUser.id == racialTrait.id) ? CustomColors.grape_juice.withAlpha(50) : null,
                                         border: racialTraitStore.listRacialTrait.length - 1 == index ? Border(
                                           bottom: BorderSide(
                                             color: Colors.grey.shade200,
@@ -155,8 +155,8 @@ class DialogRacialTraits extends StatelessWidget {
                               racialTraitStore.loadNextPage();
                               return Center(
                                 child: LinearProgressIndicator(
-                                  color: CustomColors.coconut,
-                                  backgroundColor: CustomColors.coconut.withAlpha(100),
+                                  color: CustomColors.grape_juice,
+                                  backgroundColor: CustomColors.grape_juice.withAlpha(100),
                                 ),
                               );
                             },
@@ -169,7 +169,7 @@ class DialogRacialTraits extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: CustomColors.coconut,
+                              backgroundColor: CustomColors.grape_juice,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),

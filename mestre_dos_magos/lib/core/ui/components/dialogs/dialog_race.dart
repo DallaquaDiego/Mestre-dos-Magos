@@ -32,7 +32,7 @@ class DialogRace extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.coconut,
+                      color: CustomColors.grape_juice,
                     ),
                   ),
                 ),
@@ -42,7 +42,7 @@ class DialogRace extends StatelessWidget {
                     icon: const Icon(
                       Icons.close,
                       size: 25,
-                      color: CustomColors.coconut,
+                      color: CustomColors.grape_juice,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -61,7 +61,7 @@ class DialogRace extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: CustomColors.coconut,
+                    color: CustomColors.grape_juice,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -73,7 +73,7 @@ class DialogRace extends StatelessWidget {
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.search,
-                        color: CustomColors.coconut,
+                        color: CustomColors.grape_juice,
                       ),
                     ),
                   ),
@@ -87,7 +87,7 @@ class DialogRace extends StatelessWidget {
                 return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: CustomColors.coconut,
+                      color: CustomColors.grape_juice,
                     ),
                   ),
                 );
@@ -114,7 +114,7 @@ class DialogRace extends StatelessWidget {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
-                          color: race.id == selectedRace?.id ? CustomColors.coconut.withAlpha(50) : null,
+                          color: race.id == selectedRace?.id ? CustomColors.grape_juice.withAlpha(50) : null,
                           border: raceStore.listRace.length - 1 == index
                               ? Border(
                             bottom: BorderSide(

@@ -21,7 +21,7 @@ class SubRaceTile extends StatelessWidget {
             Text(
               subRace.name!,
               style: const TextStyle(
-                color: CustomColors.coconut,
+                color: CustomColors.amethyst,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -29,15 +29,15 @@ class SubRaceTile extends StatelessWidget {
             Text(
               'Raça Primária: ${subRace.parent_race!.name}',
               style: const TextStyle(
-                color: CustomColors.coconut,
+                color: CustomColors.amethyst,
                 fontWeight: FontWeight.w400,
               ),
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 1),
             Text(
               'Traços da Raça: ${subRace.racial_traits?.map((trait) => trait.name).join(', ') ?? ''}',
               style: const TextStyle(
-                color: CustomColors.coconut,
+                color: CustomColors.amethyst,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -53,7 +53,7 @@ class SubRaceTile extends StatelessWidget {
           },
           icon: const Icon(
             Icons.edit,
-            color: CustomColors.coconut,
+            color: CustomColors.amethyst,
           ),
         ),
       ),

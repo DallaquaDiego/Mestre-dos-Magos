@@ -26,10 +26,14 @@ class RacialTraitScreen extends StatelessWidget {
     final smallerThanTablet = ResponsiveWrapper.of(context).isSmallerThan(TABLET);
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Traços Raciais',
-          style: TextStyle(
-            color: CustomColors.alabaster,
+        backgroundColor: CustomColors.mystical_lilac,
+        iconTheme: const IconThemeData(color: CustomColors.grape_juice),
+        title: const Center(
+          child: Text(
+            'Traços Raciais',
+            style: TextStyle(
+              color: CustomColors.grape_juice,
+            ),
           ),
         ),
         actions: [
@@ -44,18 +48,14 @@ class RacialTraitScreen extends StatelessWidget {
             },
           ),
         ],
-        backgroundColor: CustomColors.coconut,
-        iconTheme: const IconThemeData(
-          color: CustomColors.alabaster, // Altere esta cor conforme necessário
-        ),
       ),
-      backgroundColor: CustomColors.papyrus,
+      backgroundColor: CustomColors.mystical_lilac,
       drawer: smallerThanTablet ? CustomDrawer() : null,
       floatingActionButton: FloatingActionButton.extended(
         tooltip: "Cadastrar Novo Traço Racial",
         label: const Text("Novo Traço Racial"),
         heroTag: 'Novo Traço Racial',
-        backgroundColor: CustomColors.coconut,
+        backgroundColor: CustomColors.grape_juice,
         foregroundColor: CustomColors.alabaster,
         onPressed: () {
           Navigator.of(context).push(
@@ -69,7 +69,7 @@ class RacialTraitScreen extends StatelessWidget {
         ),
       ),
       body: RefreshIndicator(
-        color: CustomColors.coconut,
+        color: CustomColors.grape_juice,
         onRefresh: () async {
           await racialTraitStore.refreshData();
         },
@@ -86,7 +86,7 @@ class RacialTraitScreen extends StatelessWidget {
             if (racialTraitStore.showProgress) {
               return const Center(
                 child: CircularProgressIndicator(
-                  color: CustomColors.coconut,
+                  color: CustomColors.grape_juice,
                 ),
               );
             }
@@ -115,24 +115,19 @@ class RacialTraitScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           if (index < racialTraitStore.listRacialTrait.length) {
                             final racialTrait = racialTraitStore.listRacialTrait[index];
-                            return index == 0 ? Column (
+                            return Column(
                               children: [
-                                const ListDivider(),
+                                if (index == 0) const ListDivider(),
                                 RacialTraitTile(racialTrait: racialTrait),
-                                const ListDivider(),
-                              ],
-                            ) : Column (
-                              children: [
-                                RacialTraitTile(racialTrait: racialTrait),
-                                const ListDivider(),
+                                if (index == racialTraitStore.listRacialTrait.length - 1) const ListDivider(),
                               ],
                             );
                           }
                           racialTraitStore.loadNextPage();
                           return Center(
                             child: LinearProgressIndicator(
-                              color: CustomColors.coconut,
-                              backgroundColor: CustomColors.coconut.withAlpha(100),
+                              color: CustomColors.grape_juice,
+                              backgroundColor: CustomColors.grape_juice.withAlpha(100),
                             ),
                           );
                         },

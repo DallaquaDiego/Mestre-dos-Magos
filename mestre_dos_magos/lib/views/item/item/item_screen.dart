@@ -26,10 +26,14 @@ class ItemScreen extends StatelessWidget {
     final smallerThanTablet = ResponsiveWrapper.of(context).isSmallerThan(TABLET);
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Itens',
-          style: TextStyle(
-            color: CustomColors.alabaster,
+        backgroundColor: CustomColors.mystical_lilac,
+        iconTheme: const IconThemeData(color: CustomColors.grape_juice),
+        title: const Center(
+          child: Text(
+            'Itens',
+            style: TextStyle(
+              color: CustomColors.grape_juice,
+            ),
           ),
         ),
         actions: [
@@ -44,18 +48,14 @@ class ItemScreen extends StatelessWidget {
             },
           ),
         ],
-        backgroundColor: CustomColors.coconut,
-        iconTheme: const IconThemeData(
-          color: CustomColors.alabaster, // Altere esta cor conforme necessário
-        ),
       ),
-      backgroundColor: CustomColors.papyrus,
+      backgroundColor: CustomColors.mystical_lilac,
       drawer: smallerThanTablet ? CustomDrawer() : null,
       floatingActionButton: FloatingActionButton.extended(
         tooltip: "Cadastrar Novo Item",
         label: const Text("Novo Item"),
         heroTag: 'Novo Item',
-        backgroundColor: CustomColors.coconut,
+        backgroundColor: CustomColors.grape_juice,
         foregroundColor: CustomColors.alabaster,
         onPressed: () {
           Navigator.of(context).push(
@@ -69,7 +69,7 @@ class ItemScreen extends StatelessWidget {
         ),
       ),
       body: RefreshIndicator(
-        color: CustomColors.coconut,
+        color: CustomColors.grape_juice,
         onRefresh: () async {
           await itemStore.refreshData();
         },
@@ -86,7 +86,7 @@ class ItemScreen extends StatelessWidget {
             if (itemStore.showProgress) {
               return const Center(
                 child: CircularProgressIndicator(
-                  color: CustomColors.coconut,
+                  color: CustomColors.grape_juice,
                 ),
               );
             }
@@ -115,24 +115,19 @@ class ItemScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           if (index < itemStore.listItem.length) {
                             final item = itemStore.listItem[index];
-                            return index == 0 ? Column (
+                            return Column(
                               children: [
-                                const ListDivider(),
+                                if (index == 0) const ListDivider(),
                                 ItemTile(item: item),
-                                const ListDivider(),
-                              ],
-                            ) : Column (
-                              children: [
-                                ItemTile(item: item),
-                                const ListDivider(),
+                                if (index == itemStore.listItem.length - 1) const ListDivider(),
                               ],
                             );
                           }
                           itemStore.loadNextPage();
                           return Center(
                             child: LinearProgressIndicator(
-                              color: CustomColors.coconut,
-                              backgroundColor: CustomColors.coconut.withAlpha(100),
+                              color: CustomColors.grape_juice,
+                              backgroundColor: CustomColors.grape_juice.withAlpha(100),
                             ),
                           );
                         },

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
+      debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: (context, widget) {
         final responsive = ResponsiveWrapper.builder(
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           minWidth: 400,
           defaultName: MOBILE,
           defaultScale: true,
-          background: Container(color: CustomColors.papyrus),
+          background: Container(color: CustomColors.mystical_lilac),
           breakpoints: [
             const ResponsiveBreakpoint.resize(450, name: MOBILE),
             const ResponsiveBreakpoint.resize(800, name: TABLET),

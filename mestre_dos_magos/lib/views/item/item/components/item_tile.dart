@@ -21,42 +21,46 @@ class ItemTile extends StatelessWidget {
             Text(
               item.name!,
               style: const TextStyle(
-                color: CustomColors.coconut,
+                color: CustomColors.amethyst,
                 fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 1),
-            Text(
-              'Categoria: ${item.item_category!.name}',
-              style: const TextStyle(
-                color: CustomColors.coconut,
-                fontWeight: FontWeight.w400,
               ),
             ),
             const SizedBox(height: 2),
             Text(
+              'Categoria: ${item.item_category!.name}',
+              style: const TextStyle(
+                color: CustomColors.amethyst,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            const SizedBox(height: 1),
+            Text(
               'Preço: ${item.price} po',
               style: const TextStyle(
-                color: CustomColors.coconut,
+                color: CustomColors.amethyst,
                 fontWeight: FontWeight.w400,
               ),
             ),
-            const SizedBox(height: 1),
-            Text(
-              item.effect != null && item.effect != '' ? 'Efeitos: ${item.effect!}' : 'Efeitos: Nenhum',
-              style: const TextStyle(
-                color: CustomColors.coconut,
-                fontWeight: FontWeight.w400,
+            if(item.effect != null && item.effect != '')...{
+              const SizedBox(height: 1),
+              Text(
+                'Efeitos: ${item.effect!}',
+                style: const TextStyle(
+                  color: CustomColors.amethyst,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-            const SizedBox(height: 1),
-            Text(
-              item.damage != null && item.damage != ''? 'Dano: ${item.damage!}' : 'Dano: Nenhum',
-              style: const TextStyle(
-                color: CustomColors.coconut,
-                fontWeight: FontWeight.w400,
+            },
+            if(item.damage != null && item.damage != '')...{
+              const SizedBox(height: 1),
+              Text(
+                'Dano: ${item.damage!}',
+                style: const TextStyle(
+                  color: CustomColors.amethyst,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
+            },
           ],
         ),
         trailing: IconButton(
@@ -69,7 +73,7 @@ class ItemTile extends StatelessWidget {
           },
           icon: const Icon(
             Icons.edit,
-            color: CustomColors.coconut,
+            color: CustomColors.amethyst,
           ),
         ),
       ),

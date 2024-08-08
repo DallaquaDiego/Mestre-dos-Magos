@@ -33,7 +33,7 @@ class DialogItemCategory extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.coconut,
+                      color: CustomColors.grape_juice,
                     ),
                   ),
                 ),
@@ -43,7 +43,7 @@ class DialogItemCategory extends StatelessWidget {
                     icon: const Icon(
                       Icons.close,
                       size: 25,
-                      color: CustomColors.coconut,
+                      color: CustomColors.grape_juice,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -62,7 +62,7 @@ class DialogItemCategory extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: CustomColors.coconut,
+                    color: CustomColors.grape_juice,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -74,7 +74,7 @@ class DialogItemCategory extends StatelessWidget {
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.search,
-                        color: CustomColors.coconut,
+                        color: CustomColors.grape_juice,
                       ),
                     ),
                   ),
@@ -88,7 +88,7 @@ class DialogItemCategory extends StatelessWidget {
                 return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: CustomColors.coconut,
+                      color: CustomColors.grape_juice,
                     ),
                   ),
                 );
@@ -115,7 +115,7 @@ class DialogItemCategory extends StatelessWidget {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
-                          color: itemCategory.id == selectedItemCategory?.id ? CustomColors.coconut.withAlpha(50) : null,
+                          color: itemCategory.id == selectedItemCategory?.id ? CustomColors.grape_juice.withAlpha(50) : null,
                           border: itemCategoryStore.listItemCategory.length - 1 == index
                               ? Border(
                             bottom: BorderSide(

@@ -6,13 +6,14 @@ import '../theme/custom_colors.dart';
 
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({Key? key, required this.title, this.actions, this.onBackButtonPressed})
+  const CustomAppBar({Key? key, required this.title, this.actions, this.color, this.onBackButtonPressed})
       : preferredSize = const Size(double.infinity, CustomSizes.customAppBarHeight),
         super(key: key);
 
   final String title;
   final List<Widget>? actions;
   final VoidCallback? onBackButtonPressed;
+  final Color? color;
 
   @override
   final Size preferredSize;
@@ -20,10 +21,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final smallerThanTablet = ResponsiveWrapper.of(context).isSmallerThan(TABLET);
-    final iconColor = smallerThanTablet ? CustomColors.coconut : Colors.white;
+    final iconColor = smallerThanTablet ? CustomColors.grape_juice : CustomColors.alabaster;
 
     return AppBar(
-      backgroundColor: smallerThanTablet ? CustomColors.papyrus : CustomColors.coconut,
+      backgroundColor: smallerThanTablet ? CustomColors.mystical_lilac : CustomColors.grape_juice,
       elevation: smallerThanTablet ? 0 : 1,
       automaticallyImplyLeading: false,
       iconTheme: IconThemeData(color: iconColor),
@@ -33,33 +34,32 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         child: Row(
           children: [
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: IconButton(
-                  onPressed: onBackButtonPressed ?? () => Navigator.of(context).pop(),
-                  icon: const Icon(
-                    Icons.arrow_back,
+            if(onBackButtonPressed != null)
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: onBackButtonPressed ?? () => Navigator.of(context).pop(),
+                    icon: const Icon(
+                      Icons.arrow_back,
+                    ),
                   ),
                 ),
               ),
-            ),
             Center(
               child: Text(
                 title,
                 style: TextStyle(
-                  color: smallerThanTablet ? CustomColors.coconut : CustomColors.papyrus,
+                  color: smallerThanTablet ? CustomColors.grape_juice : CustomColors.alabaster,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
             Expanded(
-              child: actions != null
-                  ? Row(
+              child: actions != null ? Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: actions!,
-              )
-                  : Container(),
+              ) : Container(),
             ),
           ],
         ),

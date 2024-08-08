@@ -88,7 +88,7 @@ class _CreateSubRaceScreenState extends State<CreateSubRaceScreen> {
                       behavior: const ScrollBehavior(),
                       child: GlowingOverscrollIndicator(
                         axisDirection: AxisDirection.down,
-                        color: CustomColors.coconut,
+                        color: CustomColors.grape_juice,
                         child: SingleChildScrollView(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           child: Column(
@@ -180,9 +180,9 @@ class _CreateSubRaceScreenState extends State<CreateSubRaceScreen> {
                                                   padding: const EdgeInsets.only(left: 10),
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                    color: CustomColors.coconut,
+                                                    color: CustomColors.grape_juice,
                                                     borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(color: CustomColors.coconut),
+                                                    border: Border.all(color: CustomColors.grape_juice),
                                                   ),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.min,
@@ -221,13 +221,14 @@ class _CreateSubRaceScreenState extends State<CreateSubRaceScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                    child: Row(
+                    child: editing ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           flex: 3,
                           child: PatternedButton(
-                            color: Colors.red,
+                            color: CustomColors.mystical_lilac,
+                            textColor: CustomColors.grape_juice,
                             text: 'Excluir',
                             largura: screenSize.width * 0.3,
                             function: editing ? () async {
@@ -235,16 +236,16 @@ class _CreateSubRaceScreenState extends State<CreateSubRaceScreen> {
                             } : null,
                           ),
                         ),
-                        const Spacer(),
+                        SizedBox(width: 16),
                         Expanded(
                           flex: 6,
                           child: Observer(
                             builder: (context) => GestureDetector(
                               onTap: () => createSubRaceStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.coconut,
+                                color: CustomColors.grape_juice,
                                 text: 'Salvar',
-                                largura: screenSize.width * 0.6,
+                                largura: screenSize.width * 0.65,
                                 function: createSubRaceStore.isFormValid ? () async {
                                   if (editing) {
                                     await createSubRaceStore.editPressed();
@@ -257,6 +258,25 @@ class _CreateSubRaceScreenState extends State<CreateSubRaceScreen> {
                           ),
                         ),
                       ],
+                    ) : Expanded(
+                      flex: 6,
+                      child: Observer(
+                        builder: (context) => GestureDetector(
+                          onTap: () => createSubRaceStore.invalidSendPressed(),
+                          child: PatternedButton(
+                            color: CustomColors.grape_juice,
+                            text: 'Salvar',
+                            largura: screenSize.width * 0.95,
+                            function: createSubRaceStore.isFormValid ? () async {
+                              if (editing) {
+                                await createSubRaceStore.editPressed();
+                              } else {
+                                await createSubRaceStore.createPressed();
+                              }
+                            } : null,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],

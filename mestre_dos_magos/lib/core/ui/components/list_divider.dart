@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mestre_dos_magos/core/ui/theme/custom_colors.dart';
 
 class ListDivider extends StatelessWidget {
   const ListDivider({Key? key}) : super(key: key);
@@ -6,8 +7,8 @@ class ListDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Divider(
-      color: Colors.brown.shade100,
-      thickness: 2,
+      color: CustomColors.amethyst.withOpacity(0.4),
+      thickness: 1,
       height: 0,
     );
   }

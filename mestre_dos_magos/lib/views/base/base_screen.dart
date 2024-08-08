@@ -41,20 +41,20 @@ class _BaseScreenState extends State<BaseScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: CustomColors.papyrus,
+        backgroundColor: CustomColors.mystical_lilac,
         title: Text(
           title,
           style: const TextStyle(
-            color: CustomColors.coconut,
+            color: CustomColors.grape_juice,
           ),
         ),
         iconTheme: const IconThemeData().copyWith(
-          color: CustomColors.coconut,
+          color: CustomColors.grape_juice,
         ),
       ),
       extendBodyBehindAppBar: true,
       drawer: CustomDrawer(),
-      backgroundColor: CustomColors.papyrus,
+      backgroundColor: CustomColors.mystical_lilac,
       body: Container(),
     );
   }

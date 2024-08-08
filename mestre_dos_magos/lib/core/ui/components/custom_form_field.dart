@@ -42,7 +42,7 @@ class CustomFormField extends StatefulWidget {
 class _CustomFormFieldState extends State<CustomFormField> {
   final border = const UnderlineInputBorder(
     borderSide: BorderSide(
-      color: CustomColors.coconut,
+      color: CustomColors.grape_juice,
       width: 2,
     ),
   );
@@ -58,7 +58,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
         controller: widget.controller,
-        cursorColor: CustomColors.coconut,
+        cursorColor: CustomColors.grape_juice,
         keyboardType: widget.typeKeyboard,
         key: widget.keyy,
         initialValue: widget.initialvalue,
@@ -71,16 +71,14 @@ class _CustomFormFieldState extends State<CustomFormField> {
           suffixText: widget.suffixText,
           focusedBorder: border,
           errorText: widget.error,
-          suffixIcon: widget.secret
-              ? IconButton(
+          suffixIcon: widget.secret ? IconButton(
             onPressed: () {
               widget.set_visible!();
             },
             icon: Icon(
               widget.visible ? Icons.visibility_off : Icons.visibility,
             ),
-          )
-              : null,
+          ) : null,
           //isDense: true,
         ),
       ),

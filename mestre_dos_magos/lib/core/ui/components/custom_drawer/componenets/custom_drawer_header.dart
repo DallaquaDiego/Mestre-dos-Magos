@@ -31,7 +31,7 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
               children: [
                 Positioned.fill(
                   child: Image.asset(
-                    'images/purple_octopus_minimalist.png',
+                    'images/logo/purple_octopus_minimalist.png',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -46,7 +46,7 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontFamily: 'Nunito',
-                            color: CustomColors.coconut,
+                            color: CustomColors.grape_juice,
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
                           ),

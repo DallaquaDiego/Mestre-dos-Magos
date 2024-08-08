@@ -32,7 +32,7 @@ class _FilterVisibleSpellState extends State<FilterVisibleSpell> {
             const Text(
               'Pesquise pelo Nome da Magia',
               style: TextStyle(
-                color: CustomColors.coconut,
+                color: CustomColors.grape_juice,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -44,7 +44,7 @@ class _FilterVisibleSpellState extends State<FilterVisibleSpell> {
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Container(
                   child: TextFormField(
-                    cursorColor: CustomColors.coconut,
+                    cursorColor: CustomColors.grape_juice,
                     keyboardType: TextInputType.text,
                     initialValue: widget.filterStore.search,
                     onChanged: widget.filterStore.setSearch,
@@ -52,22 +52,22 @@ class _FilterVisibleSpellState extends State<FilterVisibleSpell> {
                     decoration: InputDecoration(
                       focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: CustomColors.coconut,
+                            color: CustomColors.grape_juice,
                             width: 1,
                           )),
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(
-                          color: CustomColors.coconut,
+                          color: CustomColors.grape_juice,
                         ),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      focusColor: CustomColors.coconut,
+                      focusColor: CustomColors.grape_juice,
                       errorText: null,
                       suffixIcon: IconButton(
                         onPressed: () {},
                         icon: Icon(
                           Icons.text_fields_rounded,
-                          color: CustomColors.coconut,
+                          color: CustomColors.grape_juice,
                         ),
                       ),
                     ),
@@ -133,7 +133,7 @@ class _FilterVisibleSpellState extends State<FilterVisibleSpell> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      backgroundColor: CustomColors.coconut,
+                      backgroundColor: CustomColors.grape_juice,
                     ),
                     onPressed: widget.filterStore.isFormValid ? () async {
                       filterStoreGet.setVisibleSearchFalse();

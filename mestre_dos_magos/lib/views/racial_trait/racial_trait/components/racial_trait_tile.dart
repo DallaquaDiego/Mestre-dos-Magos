@@ -17,7 +17,7 @@ class RacialTraitTile extends StatelessWidget {
       title: Text(
         racialTrait.name!,
         style: const TextStyle(
-          color: CustomColors.coconut,
+          color: CustomColors.amethyst,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -31,7 +31,7 @@ class RacialTraitTile extends StatelessWidget {
         },
         icon: const Icon(
           Icons.edit,
-          color: CustomColors.coconut,
+          color: CustomColors.amethyst,
         ),
       ),
     );

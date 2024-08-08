@@ -87,7 +87,7 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
                       behavior: const ScrollBehavior(),
                       child: GlowingOverscrollIndicator(
                         axisDirection: AxisDirection.down,
-                        color: CustomColors.coconut,
+                        color: CustomColors.grape_juice,
                         child: SingleChildScrollView(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           child: Column(
@@ -175,13 +175,14 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                    child: Row(
+                    child: editing ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           flex: 3,
                           child: PatternedButton(
-                            color: Colors.red,
+                            color: CustomColors.mystical_lilac,
+                            textColor: CustomColors.grape_juice,
                             text: 'Excluir',
                             largura: screenSize.width * 0.3,
                             function: editing ? () async {
@@ -189,16 +190,16 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
                             } : null,
                           ),
                         ),
-                        const Spacer(),
+                        SizedBox(width: 16),
                         Expanded(
                           flex: 6,
                           child: Observer(
                             builder: (context) => GestureDetector(
                               onTap: () => createItemStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.coconut,
+                                color: CustomColors.grape_juice,
                                 text: 'Salvar',
-                                largura: screenSize.width * 0.6,
+                                largura: screenSize.width * 0.65,
                                 function: createItemStore.isFormValid ? () async {
                                   if (editing) {
                                     await createItemStore.editPressed();
@@ -211,6 +212,25 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
                           ),
                         ),
                       ],
+                    ) : Expanded(
+                      flex: 6,
+                      child: Observer(
+                        builder: (context) => GestureDetector(
+                          onTap: () => createItemStore.invalidSendPressed(),
+                          child: PatternedButton(
+                            color: CustomColors.grape_juice,
+                            text: 'Salvar',
+                            largura: screenSize.width * 0.95,
+                            function: createItemStore.isFormValid ? () async {
+                              if (editing) {
+                                await createItemStore.editPressed();
+                              } else {
+                                await createItemStore.createPressed();
+                              }
+                            } : null,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
