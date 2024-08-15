@@ -160,9 +160,10 @@ mixin _$ItemCategoryStore on _ItemCategoryStore, Store {
       AsyncAction('_ItemCategoryStore.loadData', context: context);
 
   @override
-  Future<void> loadData({required FilterSearchStore filterSearchStore}) {
-    return _$loadDataAsyncAction
-        .run(() => super.loadData(filterSearchStore: filterSearchStore));
+  Future<void> loadData(
+      {int? page, required FilterSearchStore filterSearchStore}) {
+    return _$loadDataAsyncAction.run(
+        () => super.loadData(page: page, filterSearchStore: filterSearchStore));
   }
 
   late final _$_ItemCategoryStoreActionController =

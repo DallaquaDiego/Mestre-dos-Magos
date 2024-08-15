@@ -9,6 +9,7 @@ class PatternedButton extends StatelessWidget {
     required this.text,
     required this.function,
     this.textColor,
+    this.borderRadius
   });
 
   final double? largura;
@@ -16,6 +17,7 @@ class PatternedButton extends StatelessWidget {
   final Color? textColor;
   final String text;
   final Function()? function;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,14 @@ class PatternedButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(borderRadius ?? 12),
           ),
           backgroundColor: color,
           padding: const EdgeInsets.symmetric(horizontal: 8),
+          elevation: 8,
+          shadowColor: CustomColors.midnight
         ),
+
         onPressed: function,
         child: Text(
           text,

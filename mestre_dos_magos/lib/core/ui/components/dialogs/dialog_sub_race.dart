@@ -7,7 +7,6 @@ import '../../../../stores/list/sub_race_store.dart';
 import '../../theme/custom_colors.dart';
 import '../list_empty.dart';
 
-
 class DialogSubRace extends StatelessWidget {
   DialogSubRace({Key? key, this.selectedSubRace}) : super(key: key);
 
@@ -106,28 +105,39 @@ class DialogSubRace extends StatelessWidget {
                 child: ListView.separated(
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    final subRace = subRaceStore.listSearch[index];
+                    if (index < subRaceStore.listSearch.length) {
+                      final subRace = subRaceStore.listSearch[index];
 
-                    return InkWell(
-                      onTap: () => Navigator.of(context).pop(SubRace),
-                      child: Container(
-                        height: 50,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          color: subRace.id == selectedSubRace?.id ? CustomColors.grape_juice.withAlpha(50) : null,
-                          border: subRaceStore.listSubRace.length - 1 == index
-                              ? Border(
-                            bottom: BorderSide(
-                              color: Colors.grey.shade200,
-                            ),
-                          )
-                              : null,
+                      return InkWell(
+                        onTap: () => Navigator.of(context).pop(subRace),
+                        child: Container(
+                          height: 50,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            color: subRace.id == selectedSubRace?.id
+                                ? CustomColors.grape_juice.withAlpha(50)
+                                : null,
+                            border: subRaceStore.listSearch.length - 1 == index
+                                ? Border(
+                              bottom: BorderSide(
+                                color: Colors.grey.shade200,
+                              ),
+                            )
+                                : null,
+                          ),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            subRace.name!,
+                          ),
                         ),
-                        child: Text(
-                          textAlign: TextAlign.center,
-                          subRace.name!,
-                        ),
+                      );
+                    }
+                    subRaceStore.loadNextPage();
+                    return Center(
+                      child: LinearProgressIndicator(
+                        color: CustomColors.grape_juice,
+                        backgroundColor: CustomColors.grape_juice.withAlpha(100),
                       ),
                     );
                   },
@@ -136,7 +146,7 @@ class DialogSubRace extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
         ],
       ),
     );

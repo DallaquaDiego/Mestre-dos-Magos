@@ -48,9 +48,14 @@ class SubRaceRepository {
   Future<List<SubRace>> getAllSubRaces({int? page, int limit = 15, FilterSearchStore? filterSearchStore}) async {
     final query = QueryBuilder(ParseObject('SubRace'));
 
-    query.includeObject(['parent_race', 'racial_traits']);
-    query.setLimit(limit);
+    query.includeObject(['parent_race', 'parent_race.racial_trait', 'sub_racial_trait']);
     query.orderByAscending('name');
+
+    if (page != null && page > 0) {
+      final int skip = (page - 1) * limit;
+      query.setAmountToSkip(skip);
+      query.setLimit(limit);
+    }
 
     if (filterSearchStore != null && filterSearchStore.search.isNotEmpty) {
       query.whereContains('name', filterSearchStore.search);

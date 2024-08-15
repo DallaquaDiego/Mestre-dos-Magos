@@ -1,4 +1,3 @@
-import 'package:mestre_dos_magos/core/ui/components/dialogs/dialog_racial_traits.dart';
 import 'package:mestre_dos_magos/core/ui/components/patterned_buttom.dart';
 import 'package:mestre_dos_magos/core/ui/components/title_text_form.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +13,8 @@ import '../../../stores/create/create_racial_trait_store.dart';
 import '../../../stores/list/racial_trait_store.dart';
 import '../../../stores/page_store.dart';
 import '../../../core/ui/components/custom_app_bar.dart';
-import '../../../core/ui/components/custom_field.dart';
 import '../../../core/ui/components/custom_form_field.dart';
-import '../../../models/race.dart';
-import '../../../stores/create/create_race_store.dart';
-import '../../../stores/list/race_store.dart';
+import '../racial_trait/racial_trait_screen.dart';
 
 class CreateRacialTraitScreen extends StatefulWidget {
   const CreateRacialTraitScreen({Key? key, this.racialTrait}) : super(key: key);
@@ -65,17 +61,20 @@ class _CreateRacialTraitScreenState extends State<CreateRacialTraitScreen> {
 
   void backToPreviousScreen() {
     pageStore.setBlockPagination(false);
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => RacialTraitScreen(),
+      ),
+    );
   }
 
-  //Marcação da Tela
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: editing ? 'Editar Raça' : 'Cadastrar Raça',
+        title: editing ? 'Editar Traço Racial' : 'Cadastrar Traço Racial',
         onBackButtonPressed: backToPreviousScreen,
       ),
       body: BodyContainer(
@@ -161,25 +160,29 @@ class _CreateRacialTraitScreenState extends State<CreateRacialTraitScreen> {
                           ),
                         ),
                       ],
-                    ) : Expanded(
-                      flex: 6,
-                      child: Observer(
-                        builder: (context) => GestureDetector(
-                          onTap: () => createRacialTraitStore.invalidSendPressed(),
-                          child: PatternedButton(
-                            color: CustomColors.grape_juice,
-                            text: 'Salvar',
-                            largura: screenSize.width * 0.95,
-                            function: createRacialTraitStore.isFormValid ? () async {
-                              if (editing) {
-                                await createRacialTraitStore.editPressed();
-                              } else {
-                                await createRacialTraitStore.createPressed();
-                              }
-                            } : null,
+                    ) : Row(
+                      children: [
+                        Expanded(
+                          flex: 6,
+                          child: Observer(
+                            builder: (context) => GestureDetector(
+                              onTap: () => createRacialTraitStore.invalidSendPressed(),
+                              child: PatternedButton(
+                                color: CustomColors.grape_juice,
+                                text: 'Salvar',
+                                largura: screenSize.width * 0.95,
+                                function: createRacialTraitStore.isFormValid ? () async {
+                                  if (editing) {
+                                    await createRacialTraitStore.editPressed();
+                                  } else {
+                                    await createRacialTraitStore.createPressed();
+                                  }
+                                } : null,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],

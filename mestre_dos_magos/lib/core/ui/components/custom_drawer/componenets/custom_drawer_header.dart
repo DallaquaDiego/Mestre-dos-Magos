@@ -32,7 +32,7 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
                 Positioned.fill(
                   child: Image.asset(
                     'images/logo/purple_octopus_minimalist.png',
-                    fit: BoxFit.cover,
+                    height: 350,
                   ),
                 ),
                 Align(

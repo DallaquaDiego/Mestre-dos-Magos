@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mestre_dos_magos/models/race.dart';
 import '../../../../core/ui/theme/custom_colors.dart';
 import '../../create_race/create_race_screen.dart';
+import '../../race_details/race_details_screen.dart';
 
 
 class RaceTile extends StatelessWidget {
@@ -15,25 +16,34 @@ class RaceTile extends StatelessWidget {
     return IntrinsicHeight(
       child: CupertinoListTile(
         padding: const EdgeInsets.symmetric(vertical: 8),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              race.name!,
-              style: const TextStyle(
-                color: CustomColors.amethyst,
-                fontWeight: FontWeight.w600,
+        title: GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => RaceDetailsScreen(race: race),
               ),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              'Traços da Raça: ${race.racial_traits?.map((trait) => trait.name).join(', ') ?? ''}',
-              style: const TextStyle(
-                color: CustomColors.amethyst,
-                fontWeight: FontWeight.w400,
+            );
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                race.name!,
+                style: const TextStyle(
+                  color: CustomColors.amethyst,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 2),
+              Text(
+                'Traços da Raça: ${race.racial_trait?.map((trait) => trait.name).join(', ') ?? ''}',
+                style: const TextStyle(
+                  color: CustomColors.amethyst,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
         ),
         trailing: IconButton(
           onPressed: () {

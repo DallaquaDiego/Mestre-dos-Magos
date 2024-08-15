@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:mobx/mobx.dart';
 
 import '../../models/racial_trait.dart';
-import '../../repositories/racial_traits_repository.dart';
+import '../../repositories/racial_trait_repository.dart';
 import 'package:mestre_dos_magos/stores/filter_search_store.dart';
 
 

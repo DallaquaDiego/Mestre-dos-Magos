@@ -37,6 +37,22 @@ mixin _$CreateClassStore on _CreateClassStore, Store {
       (_$hpPerLevelValidComputed ??= Computed<bool>(() => super.hpPerLevelValid,
               name: '_CreateClassStore.hpPerLevelValid'))
           .value;
+  Computed<bool>? _$resistanceProficiencyValidComputed;
+
+  @override
+  bool get resistanceProficiencyValid =>
+      (_$resistanceProficiencyValidComputed ??= Computed<bool>(
+              () => super.resistanceProficiencyValid,
+              name: '_CreateClassStore.resistanceProficiencyValid'))
+          .value;
+  Computed<bool>? _$weaponAndArmorProficiencyValidComputed;
+
+  @override
+  bool get weaponAndArmorProficiencyValid =>
+      (_$weaponAndArmorProficiencyValidComputed ??= Computed<bool>(
+              () => super.weaponAndArmorProficiencyValid,
+              name: '_CreateClassStore.weaponAndArmorProficiencyValid'))
+          .value;
   Computed<bool>? _$combatTypeValidComputed;
 
   @override
@@ -128,6 +144,45 @@ mixin _$CreateClassStore on _CreateClassStore, Store {
   set _hp_per_level(String value) {
     _$_hp_per_levelAtom.reportWrite(value, super._hp_per_level, () {
       super._hp_per_level = value;
+    });
+  }
+
+  late final _$_resistance_proficiencyAtom =
+      Atom(name: '_CreateClassStore._resistance_proficiency', context: context);
+
+  String get resistance_proficiency {
+    _$_resistance_proficiencyAtom.reportRead();
+    return super._resistance_proficiency;
+  }
+
+  @override
+  String get _resistance_proficiency => resistance_proficiency;
+
+  @override
+  set _resistance_proficiency(String value) {
+    _$_resistance_proficiencyAtom
+        .reportWrite(value, super._resistance_proficiency, () {
+      super._resistance_proficiency = value;
+    });
+  }
+
+  late final _$_weapon_and_armor_proficiencyAtom = Atom(
+      name: '_CreateClassStore._weapon_and_armor_proficiency',
+      context: context);
+
+  String get weapon_and_armor_proficiency {
+    _$_weapon_and_armor_proficiencyAtom.reportRead();
+    return super._weapon_and_armor_proficiency;
+  }
+
+  @override
+  String get _weapon_and_armor_proficiency => weapon_and_armor_proficiency;
+
+  @override
+  set _weapon_and_armor_proficiency(String value) {
+    _$_weapon_and_armor_proficiencyAtom
+        .reportWrite(value, super._weapon_and_armor_proficiency, () {
+      super._weapon_and_armor_proficiency = value;
     });
   }
 
@@ -282,6 +337,28 @@ mixin _$CreateClassStore on _CreateClassStore, Store {
   }
 
   @override
+  void setResistanceProficiency(String value) {
+    final _$actionInfo = _$_CreateClassStoreActionController.startAction(
+        name: '_CreateClassStore.setResistanceProficiency');
+    try {
+      return super.setResistanceProficiency(value);
+    } finally {
+      _$_CreateClassStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setWeaponAndArmorProficiency(String value) {
+    final _$actionInfo = _$_CreateClassStoreActionController.startAction(
+        name: '_CreateClassStore.setWeaponAndArmorProficiency');
+    try {
+      return super.setWeaponAndArmorProficiency(value);
+    } finally {
+      _$_CreateClassStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setCombatType(CombatType value) {
     final _$actionInfo = _$_CreateClassStoreActionController.startAction(
         name: '_CreateClassStore.setCombatType');
@@ -345,6 +422,8 @@ nameValid: ${nameValid},
 descriptionValid: ${descriptionValid},
 primaryAttributesValid: ${primaryAttributesValid},
 hpPerLevelValid: ${hpPerLevelValid},
+resistanceProficiencyValid: ${resistanceProficiencyValid},
+weaponAndArmorProficiencyValid: ${weaponAndArmorProficiencyValid},
 combatTypeValid: ${combatTypeValid},
 isFormValid: ${isFormValid},
 createPressed: ${createPressed}

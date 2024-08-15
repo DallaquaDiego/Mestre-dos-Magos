@@ -53,6 +53,12 @@ class ItemCategoryRepository {
     query.setLimit(limit);
     query.orderByAscending('name');
 
+    if (page != null && page > 0) {
+      final int skip = (page - 1) * limit;
+      query.setAmountToSkip(skip);
+      query.setLimit(limit);
+    }
+
     if (filterSearchStore != null && filterSearchStore.search.isNotEmpty) {
       query.whereContains('name', filterSearchStore.search);
     }

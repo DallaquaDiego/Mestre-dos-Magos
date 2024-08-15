@@ -14,11 +14,11 @@ class RacialTrait {
 
   @override
   String toString() {
-    return 'RacialTrait{id: $id, description: $description}';
+    return 'RacialTrait{id: $id, name: $name, description: $description}';
   }
 
   ParseObject toParseObject() {
-    final parseObject = ParseObject('RacialTraits')
+    final parseObject = ParseObject('RacialTrait')
       ..objectId = id
       ..set('name', name!)
       ..set('description', description!);

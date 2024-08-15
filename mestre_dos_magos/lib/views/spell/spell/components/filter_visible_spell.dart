@@ -87,7 +87,7 @@ class _FilterVisibleSpellState extends State<FilterVisibleSpell> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        backgroundColor: Colors.red,
+                        backgroundColor: CustomColors.mystical_lilac,
                       ),
                       onPressed: () async {
                         filterStoreGet.clearFilters();
@@ -102,7 +102,7 @@ class _FilterVisibleSpellState extends State<FilterVisibleSpell> {
                           //fontFamily: ,
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
-                          color: CustomColors.alabaster,
+                          color: CustomColors.grape_juice,
 
                           shadows: [
                             Shadow(

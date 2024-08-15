@@ -4,6 +4,9 @@ import 'package:mestre_dos_magos/views/class/class/class_screen.dart';
 import 'package:mestre_dos_magos/views/item/item/item_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mestre_dos_magos/views/item_category/item_category/item_category_screen.dart';
+import 'package:mestre_dos_magos/views/monster/monster/monster_screen.dart';
+import 'package:mestre_dos_magos/views/player/player/player_screen.dart';
 import 'package:mestre_dos_magos/views/race/race/race_screen.dart';
 import 'package:mestre_dos_magos/views/racial_trait/racial_trait/racial_trait_screen.dart';
 import 'package:mestre_dos_magos/views/spell/spell/spell_screen.dart';
@@ -75,14 +78,15 @@ class _BaseScreenState extends State<BaseScreen> {
                     controller: pageController,
                     children: [
                       TestPage(title: 'Mesa'),
+                      PlayerScreen(),
+                      MonsterScreen(),
                       ClassScreen(),
                       RaceScreen(),
                       SubRaceScreen(),
                       RacialTraitScreen(),
                       SpellScreen(),
                       ItemScreen(),
-                      TestPage(title: 'Categoria dos Itens'),
-                      TestPage(title: 'Configurações'),
+                      ItemCategoryScreen(),
                     ],
                   ),
                 ),

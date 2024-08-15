@@ -9,9 +9,10 @@ import 'componenets/page_section.dart';
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({Key? key}) : super(key: key);
 
-  final pageStore = GetIt.I.get<PageStore>();
+  final pageStore = GetIt.I<PageStore>();
 
   void navigateToPage({required int pageIndex, required BuildContext context}) {
+
     if (pageStore.blockPagination) {
       showDialog(
         context: context,
@@ -47,7 +48,7 @@ class CustomDrawer extends StatelessWidget {
                 axisDirection: AxisDirection.down,
                 color: CustomColors.grape_juice,
                 child: ListView(
-                  padding: EdgeInsets.zero, // Remove default padding
+                  padding: EdgeInsets.zero,
                   children: [
                     PageSection(navigateToPage: navigateToPage),
                   ],

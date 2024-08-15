@@ -105,9 +105,7 @@ class ClassScreen extends StatelessWidget {
                       ),
                     ),
                   } else ...{
-                    const SizedBox(
-                      height: 16,
-                    ),
+                    const SizedBox(height: 16),
                     Expanded(
                       child: ListView.separated(
                         physics: const AlwaysScrollableScrollPhysics(),

@@ -16,6 +16,7 @@ import '../../../core/ui/components/custom_form_field.dart';
 import '../../../models/race.dart';
 import '../../../stores/create/create_race_store.dart';
 import '../../../stores/list/race_store.dart';
+import '../race/race_screen.dart';
 
 class CreateRaceScreen extends StatefulWidget {
   const CreateRaceScreen({Key? key, this.race}) : super(key: key);
@@ -62,7 +63,11 @@ class _CreateRaceScreenState extends State<CreateRaceScreen> {
 
   void backToPreviousScreen() {
     pageStore.setBlockPagination(false);
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => RaceScreen(),
+      ),
+    );
   }
 
   //Marcação da Tela
@@ -233,25 +238,29 @@ class _CreateRaceScreenState extends State<CreateRaceScreen> {
                           ),
                         ),
                       ],
-                    ) : Expanded(
-                      flex: 6,
-                      child: Observer(
-                        builder: (context) => GestureDetector(
-                          onTap: () => createRaceStore.invalidSendPressed(),
-                          child: PatternedButton(
-                            color: CustomColors.grape_juice,
-                            text: 'Salvar',
-                            largura: screenSize.width * 0.95,
-                            function: createRaceStore.isFormValid ? () async {
-                              if (editing) {
-                                await createRaceStore.editPressed();
-                              } else {
-                                await createRaceStore.createPressed();
-                              }
-                            } : null,
+                    ) : Row(
+                      children: [
+                        Expanded(
+                          flex: 6,
+                          child: Observer(
+                            builder: (context) => GestureDetector(
+                              onTap: () => createRaceStore.invalidSendPressed(),
+                              child: PatternedButton(
+                                color: CustomColors.grape_juice,
+                                text: 'Salvar',
+                                largura: screenSize.width * 0.95,
+                                function: createRaceStore.isFormValid ? () async {
+                                  if (editing) {
+                                    await createRaceStore.editPressed();
+                                  } else {
+                                    await createRaceStore.createPressed();
+                                  }
+                                } : null,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],

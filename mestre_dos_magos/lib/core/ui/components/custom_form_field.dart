@@ -17,6 +17,7 @@ class CustomFormField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final void Function(String)? onFieldSubmitted;
   final TextEditingController? controller;
+  final TextAlign? textAlign;
 
   CustomFormField({
     Key? key,
@@ -33,6 +34,7 @@ class CustomFormField extends StatefulWidget {
     this.textInputAction,
     this.onFieldSubmitted,
     this.controller,
+    this.textAlign,
   }) : super(key: key);
 
   @override
@@ -43,7 +45,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
   final border = const UnderlineInputBorder(
     borderSide: BorderSide(
       color: CustomColors.grape_juice,
-      width: 2,
+      width: 1,
     ),
   );
 
@@ -57,6 +59,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        textAlign: widget.textAlign ?? TextAlign.start,
         controller: widget.controller,
         cursorColor: CustomColors.grape_juice,
         keyboardType: widget.typeKeyboard,
@@ -69,7 +72,9 @@ class _CustomFormFieldState extends State<CustomFormField> {
         onFieldSubmitted: widget.onFieldSubmitted,
         decoration: InputDecoration(
           suffixText: widget.suffixText,
-          focusedBorder: border,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: CustomColors.amethyst.withOpacity(0.7), width: 1),
+          ),
           errorText: widget.error,
           suffixIcon: widget.secret ? IconButton(
             onPressed: () {
@@ -79,7 +84,6 @@ class _CustomFormFieldState extends State<CustomFormField> {
               widget.visible ? Icons.visibility_off : Icons.visibility,
             ),
           ) : null,
-          //isDense: true,
         ),
       ),
     );

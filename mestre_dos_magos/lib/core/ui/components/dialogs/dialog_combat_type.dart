@@ -116,13 +116,11 @@ class DialogCombatType extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           color: combatType.id == selectedCombatType?.id ? CustomColors.grape_juice.withAlpha(50) : null,
-                          border: combatTypeStore.listCombatType.length - 1 == index
-                              ? Border(
+                          border: combatTypeStore.listCombatType.length - 1 == index ? Border(
                             bottom: BorderSide(
                               color: Colors.grey.shade200,
                             ),
-                          )
-                              : null,
+                          ) : null,
                         ),
                         child: Text(
                           textAlign: TextAlign.center,

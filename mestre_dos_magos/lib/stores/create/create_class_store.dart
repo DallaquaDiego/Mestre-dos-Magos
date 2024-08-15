@@ -23,6 +23,8 @@ abstract class _CreateClassStore with Store {
     _combat_type = classe?.combat_type;
     _hp_per_level = classe?.hp_per_level ?? '';
     _primary_attributes = classe?.primary_attributes ?? '';
+    _resistance_proficiency = classe?.resistance_proficiency ?? '';
+    _weapon_and_armor_proficiency = classe?.weapon_and_armor_proficiency ?? '';
   }
 
   late Class? classe;
@@ -108,6 +110,44 @@ abstract class _CreateClassStore with Store {
   }
 
   @readonly
+  String _resistance_proficiency = '';
+
+  @action
+  void setResistanceProficiency(String value) => _resistance_proficiency = value;
+
+  @computed
+  bool get resistanceProficiencyValid => _resistance_proficiency.length >= 3;
+
+  String? get resistanceProficiencyError {
+    if (!showErrors || resistanceProficiencyValid) {
+      return null;
+    } else if (_resistance_proficiency.isEmpty) {
+      return 'Campo obrigatório';
+    } else {
+      return ('Proficiências inválidas');
+    }
+  }
+
+  @readonly
+  String _weapon_and_armor_proficiency = '';
+
+  @action
+  void setWeaponAndArmorProficiency(String value) => _weapon_and_armor_proficiency = value;
+
+  @computed
+  bool get weaponAndArmorProficiencyValid => _weapon_and_armor_proficiency.length >= 3;
+
+  String? get weaponAndArmorProficiencyError {
+    if (!showErrors || weaponAndArmorProficiencyValid) {
+      return null;
+    } else if (_weapon_and_armor_proficiency.isEmpty) {
+      return 'Campo obrigatório';
+    } else {
+      return ('Proficiências inválidas');
+    }
+  }
+
+  @readonly
   CombatType? _combat_type;
 
   @action
@@ -168,8 +208,10 @@ abstract class _CreateClassStore with Store {
       name: _name,
       description: _description,
       hp_per_level: _hp_per_level,
-      combat_type: _combat_type!,
       primary_attributes: _primary_attributes,
+      resistance_proficiency:  _resistance_proficiency,
+      weapon_and_armor_proficiency:  _weapon_and_armor_proficiency,
+      combat_type: _combat_type!,
     );
 
     try {
@@ -192,6 +234,8 @@ abstract class _CreateClassStore with Store {
     classe!.description = _description;
     classe!.hp_per_level = _hp_per_level;
     classe!.primary_attributes = _primary_attributes;
+    classe!.resistance_proficiency = _resistance_proficiency;
+    classe!.weapon_and_armor_proficiency = _weapon_and_armor_proficiency;
     classe!.combat_type = _combat_type!;
 
     try {

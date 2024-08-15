@@ -7,7 +7,6 @@ import '../../../../stores/list/item_category_store.dart';
 import '../../theme/custom_colors.dart';
 import '../list_empty.dart';
 
-
 class DialogItemCategory extends StatelessWidget {
   DialogItemCategory({Key? key, this.selectedItemCategory}) : super(key: key);
 
@@ -54,8 +53,7 @@ class DialogItemCategory extends StatelessWidget {
           divider,
           Observer(builder: (_) {
             return Padding(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: Container(
                 height: 63,
                 alignment: Alignment.center,
@@ -106,33 +104,44 @@ class DialogItemCategory extends StatelessWidget {
                 child: ListView.separated(
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    final itemCategory = itemCategoryStore.listSearch[index];
+                    if (index < itemCategoryStore.listItemCategory.length) {
+                      final itemCategory = itemCategoryStore.listSearch[index];
 
-                    return InkWell(
-                      onTap: () => Navigator.of(context).pop(itemCategory),
-                      child: Container(
-                        height: 50,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          color: itemCategory.id == selectedItemCategory?.id ? CustomColors.grape_juice.withAlpha(50) : null,
-                          border: itemCategoryStore.listItemCategory.length - 1 == index
-                              ? Border(
-                            bottom: BorderSide(
-                              color: Colors.grey.shade200,
-                            ),
-                          )
-                              : null,
+                      return InkWell(
+                        onTap: () => Navigator.of(context).pop(itemCategory),
+                        child: Container(
+                          height: 50,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            color: itemCategory.id == selectedItemCategory?.id
+                                ? CustomColors.grape_juice.withAlpha(50)
+                                : null,
+                            border: itemCategoryStore.listItemCategory.length - 1 == index
+                                ? Border(
+                              bottom: BorderSide(
+                                color: Colors.grey.shade200,
+                              ),
+                            )
+                                : null,
+                          ),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            itemCategory.name!,
+                          ),
                         ),
-                        child: Text(
-                          textAlign: TextAlign.center,
-                          itemCategory.name!,
-                        ),
+                      );
+                    }
+                    itemCategoryStore.loadNextPage();
+                    return Center(
+                      child: LinearProgressIndicator(
+                        color: CustomColors.grape_juice,
+                        backgroundColor: CustomColors.grape_juice.withAlpha(100),
                       ),
                     );
                   },
                   separatorBuilder: (context, index) => divider,
-                  itemCount: itemCategoryStore.listSearch.length,
+                  itemCount: itemCategoryStore.itemCount,
                 ),
               );
             },

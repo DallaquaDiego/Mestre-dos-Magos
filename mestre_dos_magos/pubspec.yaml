@@ -43,6 +43,7 @@ dependencies:
   responsive_framework: ^0.1.9
   badges: ^3.1.2
   device_preview: ^1.1.0
+  fluttertoast: ^8.2.5
 
 dev_dependencies:
   flutter_test:
@@ -71,7 +72,9 @@ flutter:
   assets:
     - images/
     - images/logo/
-    - images/magic_school/
+    - images/classes/
+    - images/races/
+    - images/monsters/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/custom_colors.dart';
+
 class CustomField extends StatelessWidget {
   const CustomField({
     Key? key,
@@ -29,7 +31,7 @@ class CustomField extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: borderColor,
+                color: CustomColors.grape_juice.withOpacity(0.5),
                 width: 1,
               ),
             ),

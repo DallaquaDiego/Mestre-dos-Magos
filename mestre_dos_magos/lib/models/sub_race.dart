@@ -8,18 +8,18 @@ class SubRace {
     this.name,
     this.description,
     this.parent_race,
-    this.racial_traits,
+    this.racial_trait,
   });
 
   String? id;
   String? name;
   String? description;
   Race? parent_race;
-  List<RacialTrait>? racial_traits;
+  List<RacialTrait>? racial_trait;
 
   @override
   String toString() {
-    return 'SubRace{id: $id, name: $name, description: $description, parent_race: $parent_race, racial_traits: $racial_traits}';
+    return 'SubRace{id: $id, name: $name, description: $description, parent_race: $parent_race, racial_trait: $racial_trait}';
   }
 
   ParseObject toParseObject() {
@@ -28,7 +28,7 @@ class SubRace {
       ..set('name', name!)
       ..set('description', description!)
       ..set('parent_race', parent_race!.toParseObject())
-      ..set('racial_traits', racial_traits!.map((racialT) => racialT.toParseObject()).toList());
+      ..set('sub_racial_trait', racial_trait!.map((racialT) => racialT.toParseObject()).toList());
     return parseObject;
   }
 
@@ -40,19 +40,21 @@ class SubRace {
       parent_race: parseObject.containsKey('parent_race') && parseObject.get<ParseObject>('parent_race') != null
           ? Race.fromParse(parseObject.get<ParseObject>('parent_race')!)
           : null,
-      racial_traits: parseObject.containsKey('racial_traits')
-          ? _parseRacialTraits(parseObject.get<List<dynamic>>('racial_traits')!)
+      racial_trait: parseObject.get<List<dynamic>>('sub_racial_trait') != null
+          ? _parseSubRacialTraits(parseObject.get<List<dynamic>>('sub_racial_trait')!)
           : [],
     );
   }
 
-  static List<RacialTrait> _parseRacialTraits(List<dynamic> traits) {
-    // Verifica se os traits são objetos completos ou apenas IDs
-    if (traits.isEmpty || traits.first is ParseObject) {
-      return traits.map((trait) => RacialTrait.fromParse(trait as ParseObject)).toList();
-    } else {
-      // Se são apenas IDs, busque os objetos completos
-      return traits.map((id) => RacialTrait(id: id as String)).toList();
-    }
+  static List<RacialTrait> _parseSubRacialTraits(List<dynamic> traits) {
+    return traits.map((trait) {
+      if (trait is ParseObject) {
+        return RacialTrait.fromParse(trait);
+      } else if (trait is String) {
+        return RacialTrait(id: trait);
+      } else {
+        throw Exception("Unexpected type in racial traits list: ${trait.runtimeType}");
+      }
+    }).toList();
   }
 }

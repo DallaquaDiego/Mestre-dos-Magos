@@ -50,9 +50,15 @@ class RaceRepository {
   Future<List<Race>> getAllRaces({int? page, int limit = 15, FilterSearchStore? filterSearchStore}) async {
     final query = QueryBuilder(ParseObject('Race'));
 
-    query.includeObject(['racial_traits']);
+    query.includeObject(['racial_trait']);
     query.setLimit(limit);
     query.orderByAscending('name');
+
+    if (page != null && page > 0) {
+      final int skip = (page - 1) * limit;
+      query.setAmountToSkip(skip);
+      query.setLimit(limit);
+    }
 
     if (filterSearchStore != null && filterSearchStore.search.isNotEmpty) {
       query.whereContains('name', filterSearchStore.search);
@@ -60,7 +66,7 @@ class RaceRepository {
 
     try {
       final response = await query.query();
-      print('GET Races : ${response.results}');
+      //print('GET Races : ${response.results}');
 
       if (response.success && response.results != null) {
         return response.results!.map((rc) => Race.fromParse(rc)).toList();

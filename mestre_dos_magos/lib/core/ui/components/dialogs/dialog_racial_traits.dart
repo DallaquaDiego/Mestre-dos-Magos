@@ -135,19 +135,26 @@ class DialogRacialTraits extends StatelessWidget {
                                   },
                                   child: Observer(
                                     builder: (context) => Container(
-                                      height: 50,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        color: _selectedRacialTraits.any((selectedCompanyUser) => selectedCompanyUser.id == racialTrait.id) ? CustomColors.grape_juice.withAlpha(50) : null,
-                                        border: racialTraitStore.listRacialTrait.length - 1 == index ? Border(
+                                        color: _selectedRacialTraits.any((selectedRacialTrait) => selectedRacialTrait.id == racialTrait.id)
+                                            ? CustomColors.grape_juice.withAlpha(50)
+                                            : null,
+                                        border: racialTraitStore.listRacialTrait.length - 1 == index
+                                            ? Border(
                                           bottom: BorderSide(
                                             color: Colors.grey.shade200,
                                           ),
-                                        ) : null,
+                                        )
+                                            : null,
                                       ),
-                                      child: Text(
-                                        racialTrait.name!,
-                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                                        child: Text(
+                                          '${racialTrait.name!.toUpperCase()}\n${racialTrait.description}',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )
                                     ),
                                   ),
                                 );
@@ -161,7 +168,7 @@ class DialogRacialTraits extends StatelessWidget {
                               );
                             },
                             separatorBuilder: (context, index) => divider,
-                            itemCount: racialTraitStore.listSearch.length,
+                            itemCount: racialTraitStore.itemCount,
                           ),
                         ),
                         SizedBox(
@@ -182,9 +189,7 @@ class DialogRacialTraits extends StatelessWidget {
                             },
                             child: const Text(
                               'Salvar',
-                              style: TextStyle(
-                                color: CustomColors.alabaster
-                              ),
+                              style: TextStyle(color: CustomColors.alabaster),
                             ),
                           ),
                         ),

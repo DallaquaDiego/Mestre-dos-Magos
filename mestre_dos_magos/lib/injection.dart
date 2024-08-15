@@ -4,6 +4,11 @@ import 'package:mestre_dos_magos/stores/filter_search_store.dart';
 import 'package:mestre_dos_magos/stores/list/combat_type_store.dart';
 import 'package:mestre_dos_magos/stores/list/item_category_store.dart';
 import 'package:mestre_dos_magos/stores/list/item_store.dart';
+import 'package:mestre_dos_magos/stores/list/monster_action_store.dart';
+import 'package:mestre_dos_magos/stores/list/monster_legendary_action_store.dart';
+import 'package:mestre_dos_magos/stores/list/monster_skill_store.dart';
+import 'package:mestre_dos_magos/stores/list/monster_store.dart';
+import 'package:mestre_dos_magos/stores/list/player_store.dart';
 import 'package:mestre_dos_magos/stores/list/spell_category_store.dart';
 import 'package:mestre_dos_magos/stores/list/sub_race_store.dart';
 import 'package:mestre_dos_magos/stores/page_store.dart';
@@ -25,4 +30,9 @@ void configureDependencies() {
   GetIt.I.registerSingleton(CombatTypeStore());
   GetIt.I.registerSingleton(ItemCategoryStore());
   GetIt.I.registerSingleton(SpellCategoryStore());
+  GetIt.I.registerSingleton(PlayerStore());
+  GetIt.I.registerSingleton(MonsterStore());
+  GetIt.I.registerSingleton(MonsterSkillStore());
+  GetIt.I.registerSingleton(MonsterActionStore());
+  GetIt.I.registerSingleton(MonsterLegendaryActionStore());
 }

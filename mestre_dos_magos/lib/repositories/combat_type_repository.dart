@@ -4,9 +4,15 @@ import '../../models/combat_type.dart';
 import '../stores/filter_search_store.dart';
 
 class CombatTypeRepository {
-  Future<List<CombatType>> getAllCombatTypes({int? page, FilterSearchStore? filterSearchStore}) async {
-
+  Future<List<CombatType>> getAllCombatTypes({int? page, int limit = 15, FilterSearchStore? filterSearchStore}) async {
     final query = QueryBuilder(ParseObject('CombatType'));
+    query.orderByAscending('name');
+
+    if (page != null && page > 0) {
+      final int skip = (page - 1) * limit;
+      query.setAmountToSkip(skip);
+      query.setLimit(limit);
+    }
 
     if (filterSearchStore!.search != '') {
       query.whereContains('name', filterSearchStore.search);

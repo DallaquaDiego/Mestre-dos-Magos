@@ -16,6 +16,7 @@ import '../../../core/ui/components/custom_app_bar.dart';
 import '../../../core/ui/components/custom_field.dart';
 import '../../../core/ui/components/custom_form_field.dart';
 import '../../../stores/list/item_store.dart';
+import '../item/item_screen.dart';
 
 class CreateItemScreen extends StatefulWidget {
   const CreateItemScreen({Key? key, this.item}) : super(key: key);
@@ -62,7 +63,11 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
 
   void backToPreviousScreen() {
     pageStore.setBlockPagination(false);
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ItemScreen(),
+      ),
+    );
   }
 
   //Marcação da Tela
@@ -94,7 +99,7 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               const SizedBox(height: 15),
-                              TitleTextForm(title: 'Nome do item'),
+                              TitleTextForm(title: 'Nome do Item'),
                               Observer(
                                 builder: (context) => CustomFormField(
                                   initialvalue: createItemStore.name,
@@ -104,7 +109,7 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
                                 ),
                               ),
 
-                              TitleTextForm(title: 'Descrição do item'),
+                              TitleTextForm(title: 'Descrição do Item'),
                               Observer(
                                 builder: (context) => CustomFormField(
                                   initialvalue: createItemStore.description,
@@ -212,25 +217,29 @@ class _CreateItemScreenState extends State<CreateItemScreen> {
                           ),
                         ),
                       ],
-                    ) : Expanded(
-                      flex: 6,
-                      child: Observer(
-                        builder: (context) => GestureDetector(
-                          onTap: () => createItemStore.invalidSendPressed(),
-                          child: PatternedButton(
-                            color: CustomColors.grape_juice,
-                            text: 'Salvar',
-                            largura: screenSize.width * 0.95,
-                            function: createItemStore.isFormValid ? () async {
-                              if (editing) {
-                                await createItemStore.editPressed();
-                              } else {
-                                await createItemStore.createPressed();
-                              }
-                            } : null,
+                    ) : Row(
+                      children: [
+                        Expanded(
+                          flex: 6,
+                          child: Observer(
+                            builder: (context) => GestureDetector(
+                              onTap: () => createItemStore.invalidSendPressed(),
+                              child: PatternedButton(
+                                color: CustomColors.grape_juice,
+                                text: 'Salvar',
+                                largura: screenSize.width * 0.95,
+                                function: createItemStore.isFormValid ? () async {
+                                  if (editing) {
+                                    await createItemStore.editPressed();
+                                  } else {
+                                    await createItemStore.createPressed();
+                                  }
+                                } : null,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],

@@ -17,6 +17,7 @@ import '../../../stores/page_store.dart';
 import '../../../core/ui/components/custom_app_bar.dart';
 import '../../../core/ui/components/custom_field.dart';
 import '../../../core/ui/components/custom_form_field.dart';
+import '../sub_race/sub_race_screen.dart';
 
 class CreateSubRaceScreen extends StatefulWidget {
   const CreateSubRaceScreen({Key? key, this.subRace}) : super(key: key);
@@ -63,7 +64,11 @@ class _CreateSubRaceScreenState extends State<CreateSubRaceScreen> {
 
   void backToPreviousScreen() {
     pageStore.setBlockPagination(false);
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SubRaceScreen(),
+      ),
+    );
   }
 
   //Marcação da Tela
@@ -131,7 +136,7 @@ class _CreateSubRaceScreenState extends State<CreateSubRaceScreen> {
                                         createSubRaceStore.setParentRace(result);
                                       }
                                     },
-                                    title: createSubRaceStore.parent_race?.name ?? "Selecione a Categoria",
+                                    title: createSubRaceStore.parent_race?.name ?? "Selecione a Raça Principal",
                                     borderColor: createSubRaceStore.parentRaceError != null ? Colors.red.shade700 : Colors.grey.shade400,
                                     error: createSubRaceStore.parentRaceError,
                                     clearOnPressed: null,
@@ -258,25 +263,29 @@ class _CreateSubRaceScreenState extends State<CreateSubRaceScreen> {
                           ),
                         ),
                       ],
-                    ) : Expanded(
-                      flex: 6,
-                      child: Observer(
-                        builder: (context) => GestureDetector(
-                          onTap: () => createSubRaceStore.invalidSendPressed(),
-                          child: PatternedButton(
-                            color: CustomColors.grape_juice,
-                            text: 'Salvar',
-                            largura: screenSize.width * 0.95,
-                            function: createSubRaceStore.isFormValid ? () async {
-                              if (editing) {
-                                await createSubRaceStore.editPressed();
-                              } else {
-                                await createSubRaceStore.createPressed();
-                              }
-                            } : null,
+                    ) : Row(
+                      children: [
+                        Expanded(
+                          flex: 6,
+                          child: Observer(
+                            builder: (context) => GestureDetector(
+                              onTap: () => createSubRaceStore.invalidSendPressed(),
+                              child: PatternedButton(
+                                color: CustomColors.grape_juice,
+                                text: 'Salvar',
+                                largura: screenSize.width * 0.95,
+                                function: createSubRaceStore.isFormValid ? () async {
+                                  if (editing) {
+                                    await createSubRaceStore.editPressed();
+                                  } else {
+                                    await createSubRaceStore.createPressed();
+                                  }
+                                } : null,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],

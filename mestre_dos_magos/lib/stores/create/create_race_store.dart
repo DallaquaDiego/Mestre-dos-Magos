@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:mestre_dos_magos/models/race.dart';
 import 'package:mestre_dos_magos/models/racial_trait.dart';
-import 'package:mestre_dos_magos/repositories/racial_traits_repository.dart';
+import 'package:mestre_dos_magos/repositories/racial_trait_repository.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../repositories/race_repository.dart';
@@ -25,7 +25,7 @@ abstract class _CreateRaceStore with Store {
     findRacialTraits().then((_) {
       _selectedRacialTraits = ObservableList<RacialTrait>.of(
         _listRacialTrait.where((racialTrait) =>
-        race?.racial_traits?.any((selectedRacialTrait) => selectedRacialTrait.id == racialTrait.id) ?? false),
+        race?.racial_trait?.any((selectedRacialTrait) => selectedRacialTrait.id == racialTrait.id) ?? false),
       );
     });
   }
@@ -143,7 +143,7 @@ abstract class _CreateRaceStore with Store {
     race = Race(
       name: _name,
       description: _description,
-      racial_traits: _selectedRacialTraits,
+      racial_trait: _selectedRacialTraits,
     );
 
     try {
@@ -153,7 +153,8 @@ abstract class _CreateRaceStore with Store {
       log('Store: Erro ao Criar Raça!', error: e.toString(), stackTrace: s);
       setError(e.toString());
     }
-setLoading(false);
+
+    setLoading(false);
   }
 
   @action
@@ -163,7 +164,7 @@ setLoading(false);
 
     race!.name = _name;
     race!.description = _description;
-    race!.racial_traits = _selectedRacialTraits;
+    race!.racial_trait = _selectedRacialTraits;
 
     try {
       await RaceRepository().updateRace(race!);

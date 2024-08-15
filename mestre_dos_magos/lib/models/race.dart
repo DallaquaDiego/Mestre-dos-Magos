@@ -6,18 +6,18 @@ class Race {
     this.id,
     this.name,
     this.description,
-    this.racial_traits,
+    this.racial_trait,
   });
 
   String? id;
   String? name;
   String? description;
-  List<RacialTrait>? racial_traits;
+  List<RacialTrait>? racial_trait;
 
 
   @override
   String toString() {
-    return 'Race{id: $id, name: $name, description: $description, racial_traits: $racial_traits}';
+    return 'Race{id: $id, name: $name, description: $description, racial_trait: $racial_trait}';
   }
 
   ParseObject toParseObject() {
@@ -25,7 +25,7 @@ class Race {
       ..objectId = id
       ..set('name', name!)
       ..set('description', description!)
-      ..set('racial_traits', racial_traits!.map((racialT) => racialT.toParseObject()).toList());
+      ..set('racial_trait', racial_trait!.map((racialT) => racialT.toParseObject()).toList());
     return parseObject;
   }
 
@@ -34,19 +34,21 @@ class Race {
       id: parseObject.objectId,
       name: parseObject.get<String>('name'),
       description: parseObject.get<String>('description'),
-      racial_traits: parseObject.containsKey('racial_traits')
-          ? _parseRacialTraits(parseObject.get<List<dynamic>>('racial_traits')!)
+      racial_trait: parseObject.get<List<dynamic>>('racial_trait') != null
+          ? _parseRacialTrait(parseObject.get<List<dynamic>>('racial_trait')!)
           : [],
     );
   }
 
-  static List<RacialTrait> _parseRacialTraits(List<dynamic> traits) {
-    // Verifica se os traits são objetos completos ou apenas IDs
-    if (traits.isEmpty || traits.first is ParseObject) {
-      return traits.map((trait) => RacialTrait.fromParse(trait as ParseObject)).toList();
-    } else {
-      // Se são apenas IDs, busque os objetos completos
-      return traits.map((id) => RacialTrait(id: id as String)).toList();
-    }
+  static List<RacialTrait> _parseRacialTrait(List<dynamic> traits) {
+    return traits.map((trait) {
+      if (trait is ParseObject) {
+        return RacialTrait.fromParse(trait);
+      } else if (trait is String) {
+        return RacialTrait(id: trait);
+      } else {
+        throw Exception("Unexpected type in racial traits list: ${trait.runtimeType}");
+      }
+    }).toList();
   }
 }

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:mestre_dos_magos/models/race.dart';
 import 'package:mestre_dos_magos/models/racial_trait.dart';
-import 'package:mestre_dos_magos/repositories/racial_traits_repository.dart';
+import 'package:mestre_dos_magos/repositories/racial_trait_repository.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../models/sub_race.dart';
@@ -28,7 +28,7 @@ abstract class _CreateSubRaceStore with Store {
     findRacialTraits().then((_) {
       _selectedRacialTraits = ObservableList<RacialTrait>.of(
         _listRacialTrait.where((racialTrait) =>
-        subRace?.racial_traits?.any((selectedRacialTrait) => selectedRacialTrait.id == racialTrait.id) ?? false),
+        subRace?.racial_trait?.any((selectedRacialTrait) => selectedRacialTrait.id == racialTrait.id) ?? false),
       );
     });
   }
@@ -166,7 +166,7 @@ abstract class _CreateSubRaceStore with Store {
       name: _name,
       description: _description,
       parent_race: _parent_race,
-      racial_traits: _selectedRacialTraits,
+      racial_trait: _selectedRacialTraits,
     );
 
     try {
@@ -188,7 +188,7 @@ abstract class _CreateSubRaceStore with Store {
     subRace!.name = _name;
     subRace!.description = _description;
     subRace!.parent_race = _parent_race;
-    subRace!.racial_traits = _selectedRacialTraits;
+    subRace!.racial_trait = _selectedRacialTraits;
 
     try {
       await SubRaceRepository().updateSubRace(subRace!);

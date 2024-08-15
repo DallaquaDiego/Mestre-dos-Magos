@@ -1,11 +1,12 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:mestre_dos_magos/core/global/back4app.dart';
-import 'package:mestre_dos_magos/views/base/base_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:mestre_dos_magos/views/base/base_screen.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
 
 import 'core/ui/theme/custom_colors.dart';
+import 'core/ui/theme/custom_theme.dart';
 import 'injection.dart';
 
 void main() async {
@@ -41,10 +42,7 @@ class MyApp extends StatelessWidget {
       },
 
       title: 'Mestre dos Magos',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: CustomTheme.defaultTheme,
       home: const BaseScreen(),
     );
   }

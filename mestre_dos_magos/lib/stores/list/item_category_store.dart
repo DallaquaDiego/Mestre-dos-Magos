@@ -23,7 +23,7 @@ abstract class _ItemCategoryStore with Store {
     refreshData();
 
     autorun((_) async {
-      await loadData(filterSearchStore: filterStore);
+      await loadData(page: _page, filterSearchStore: filterStore);
     });
   }
 
@@ -124,19 +124,19 @@ abstract class _ItemCategoryStore with Store {
   }
 
   @action
-  Future<void> loadData({required FilterSearchStore filterSearchStore}) async {
+  Future<void> loadData({int? page, required FilterSearchStore filterSearchStore}) async {
     setError(null);
     setLoading(true);
 
     if (_page == 1) _listItemCategory.clear();
 
     try {
-      final result = await ItemCategoryRepository().getAllItemCategories(filterSearchStore: filterSearchStore);
+      final result = await ItemCategoryRepository().getAllItemCategories(page: page, filterSearchStore: filterSearchStore);
       addNewItems(result);
       setListSearch(result);
     } catch (e, s) {
-        log('Store: Erro ao Carregar Tipos de Combate!', error: e.toString(), stackTrace: s);
-      return Future.error('Erro ao Carregar Tipos de Combate');
+        log('Store: Erro ao Carregar Categorias!', error: e.toString(), stackTrace: s);
+      return Future.error('Erro ao Carregar Categorias');
     }
 
     setLoading(false);

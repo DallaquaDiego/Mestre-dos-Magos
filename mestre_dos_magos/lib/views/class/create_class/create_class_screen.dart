@@ -16,6 +16,7 @@ import '../../../core/ui/components/custom_form_field.dart';
 import '../../../models/class.dart';
 import '../../../stores/list/class_store.dart';
 import '../../../stores/create/create_class_store.dart';
+import '../class/class_screen.dart';
 
 class CreateClassScreen extends StatefulWidget {
   const CreateClassScreen({Key? key, this.classe}) : super(key: key);
@@ -62,7 +63,11 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
 
   void backToPreviousScreen() {
     pageStore.setBlockPagination(false);
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ClassScreen(),
+      ),
+    );
   }
 
   //Marcação da Tela
@@ -130,6 +135,26 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
                                   initialvalue: createClassStore.primary_attributes,
                                   onChanged: createClassStore.setPrimaryAttributes,
                                   error: createClassStore.primaryAttributesError,
+                                  secret: false,
+                                ),
+                              ),
+
+                              TitleTextForm(title: 'Proficiências em Resistência'),
+                              Observer(
+                                builder: (context) => CustomFormField(
+                                  initialvalue: createClassStore.resistance_proficiency,
+                                  onChanged: createClassStore.setResistanceProficiency,
+                                  error: createClassStore.resistanceProficiencyError,
+                                  secret: false,
+                                ),
+                              ),
+
+                              TitleTextForm(title: 'Proficiências em Armas e Armaduras'),
+                              Observer(
+                                builder: (context) => CustomFormField(
+                                  initialvalue: createClassStore.weapon_and_armor_proficiency,
+                                  onChanged: createClassStore.setWeaponAndArmorProficiency,
+                                  error: createClassStore.weaponAndArmorProficiencyError,
                                   secret: false,
                                 ),
                               ),
@@ -202,25 +227,29 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
                           ),
                         ),
                       ],
-                    ) : Expanded(
-                      flex: 6,
-                      child: Observer(
-                        builder: (context) => GestureDetector(
-                          onTap: () => createClassStore.invalidSendPressed(),
-                          child: PatternedButton(
-                            color: CustomColors.grape_juice,
-                            text: 'Salvar',
-                            largura: screenSize.width * 0.95,
-                            function: createClassStore.isFormValid ? () async {
-                              if (editing) {
-                                await createClassStore.editPressed();
-                              } else {
-                                await createClassStore.createPressed();
-                              }
-                            } : null,
+                    ) : Row(
+                      children: [
+                        Expanded(
+                          flex: 6,
+                          child: Observer(
+                            builder: (context) => GestureDetector(
+                              onTap: () => createClassStore.invalidSendPressed(),
+                              child: PatternedButton(
+                                color: CustomColors.grape_juice,
+                                text: 'Salvar',
+                                largura: screenSize.width * 0.95,
+                                function: createClassStore.isFormValid ? () async {
+                                  if (editing) {
+                                    await createClassStore.editPressed();
+                                  } else {
+                                    await createClassStore.createPressed();
+                                  }
+                                } : null,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],

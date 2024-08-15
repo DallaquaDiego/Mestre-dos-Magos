@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:mestre_dos_magos/models/racial_trait.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../repositories/racial_traits_repository.dart';
+import '../../repositories/racial_trait_repository.dart';
 
 /*Comando que precisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -19,7 +19,6 @@ abstract class _CreateRacialTraitStore with Store {
   _CreateRacialTraitStore(this.racialTrait) {
     _name = racialTrait?.name ?? '';
     _description = racialTrait?.description ?? '';
-
   }
 
   late RacialTrait? racialTrait;

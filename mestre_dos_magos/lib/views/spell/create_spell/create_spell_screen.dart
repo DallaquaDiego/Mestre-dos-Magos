@@ -16,6 +16,7 @@ import '../../../core/ui/components/dialogs/dialog_spell_category.dart';
 import '../../../models/spell.dart';
 import '../../../stores/create/create_spell_store.dart';
 import '../../../stores/list/spell_store.dart';
+import '../spell/spell_screen.dart';
 
 class CreateSpellScreen extends StatefulWidget {
   const CreateSpellScreen({Key? key, this.spell}) : super(key: key);
@@ -62,7 +63,11 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
 
   void backToPreviousScreen() {
     pageStore.setBlockPagination(false);
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SpellScreen(),
+      ),
+    );
   }
 
   //Marcação da Tela
@@ -197,7 +202,7 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Observer(
                                     builder: (context) => Checkbox(
                                       value: createSpellStore.isTrick,
@@ -231,7 +236,7 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                             } : null,
                           ),
                         ),
-                        SizedBox(width: 16),
+                        const SizedBox(width: 16),
                         Expanded(
                           flex: 6,
                           child: Observer(
@@ -253,25 +258,29 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                           ),
                         ),
                       ],
-                    ) : Expanded(
-                      flex: 6,
-                      child: Observer(
-                        builder: (context) => GestureDetector(
-                          onTap: () => createSpellStore.invalidSendPressed(),
-                          child: PatternedButton(
-                            color: CustomColors.grape_juice,
-                            text: 'Salvar',
-                            largura: screenSize.width * 0.95,
-                            function: createSpellStore.isFormValid ? () async {
-                              if (editing) {
-                                await createSpellStore.editPressed();
-                              } else {
-                                await createSpellStore.createPressed();
-                              }
-                            } : null,
+                    ) : Row(
+                      children: [
+                        Expanded(
+                          flex: 6,
+                          child: Observer(
+                            builder: (context) => GestureDetector(
+                              onTap: () => createSpellStore.invalidSendPressed(),
+                              child: PatternedButton(
+                                color: CustomColors.grape_juice,
+                                text: 'Salvar',
+                                largura: screenSize.width * 0.95,
+                                function: createSpellStore.isFormValid ? () async {
+                                  if (editing) {
+                                    await createSpellStore.editPressed();
+                                  } else {
+                                    await createSpellStore.createPressed();
+                                  }
+                                } : null,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],
