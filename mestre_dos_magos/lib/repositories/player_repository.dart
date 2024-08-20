@@ -49,7 +49,7 @@ class PlayerRepository {
   Future<List<Player>> getAllPlayers({int? page, int limit = 15, FilterSearchStore? filterSearchStore}) async {
     final query = QueryBuilder(ParseObject('Player'));
 
-    query.includeObject(['class', 'race', 'race.racial_trait', 'sub_race', 'sub_race.sub_racial_trait', 'itens', 'spells']);
+    query.includeObject(['class', 'class.combat_type', 'race', 'race.racial_trait', 'sub_race', 'sub_race.sub_racial_trait', 'itens', 'spells']);
     query.orderByAscending('name');
 
     if (page != null && page > 0) {

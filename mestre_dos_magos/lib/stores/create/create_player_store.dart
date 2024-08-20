@@ -27,6 +27,7 @@ abstract class _CreatePlayerStore with Store {
     _name = player?.name ?? '';
     _age = player?.age.toString() ?? '';
     _hp = player?.hp.toString() ?? '';
+    _current_hp = player?.current_hp.toString() ?? '';
     _level = player?.level.toString() ?? '';
     _cd = player?.cd.toString() ?? '';
     _ca = player?.ca.toString() ?? '';
@@ -111,6 +112,25 @@ abstract class _CreatePlayerStore with Store {
       return null;
     } else if (!hpValid){
       return 'HP Inválido';
+    } else {
+      return 'Campo Obrigatório';
+    }
+  }
+
+  @readonly
+  String _current_hp = '';
+
+  @action
+  void setCurrentHp(String value) => _current_hp = value;
+
+  @computed
+  bool get currentHpValid => int.tryParse(_current_hp) != null && int.tryParse(_current_hp)! >= 0;
+
+  String? get currentHpError {
+    if (!showErrors || currentHpValid) {
+      return null;
+    } else if (!hpValid){
+      return 'HP Atual Inválido';
     } else {
       return 'Campo Obrigatório';
     }
@@ -391,7 +411,7 @@ abstract class _CreatePlayerStore with Store {
   }
 
   @computed
-  bool get spellsValid => _selectedSpells.isNotEmpty;
+  bool get spellsValid => true;
 
   @computed
   String? get spellsError {
@@ -438,18 +458,17 @@ abstract class _CreatePlayerStore with Store {
   @computed
   dynamic get createPressed => isFormValid ? _createPlayer : null;
 
-  dynamic get editPressed => isFormValid ? _editPlayer : null;
+  dynamic get editPressed => isFormValid ? editPlayer : null;
 
   Future<void> _createPlayer() async {
     setError(null);
     setLoading(true);
 
-    print(_sub_race);
-
     player = Player(
       name: _name,
       age: int.parse(_age),
       hp: int.parse(_hp),
+      current_hp: int.parse(_hp),
       level: int.parse(_level),
       cd: int.parse(_cd),
       ca: int.parse(_ca),
@@ -465,7 +484,6 @@ abstract class _CreatePlayerStore with Store {
       spells: _selectedSpells,
       itens: _selectedItens,
     );
-    print(_sub_race);
 
     try {
       await PlayerRepository().createPlayer(player!);
@@ -480,13 +498,14 @@ abstract class _CreatePlayerStore with Store {
 
 
   @action
-  Future<void> _editPlayer() async {
+  Future<void> editPlayer() async {
     setError(null);
     setLoading(true);
 
     player!.name = _name;
     player!.age = int.parse(_age);
     player!.hp = int.parse(_hp);
+    player!.current_hp = int.parse(_current_hp);
     player!.level = int.parse(_level);
     player!.cd = int.parse(_cd);
     player!.ca = int.parse(_ca);

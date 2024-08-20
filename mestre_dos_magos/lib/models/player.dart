@@ -11,6 +11,7 @@ class Player {
     this.name,
     this.age,
     this.hp,
+    this.current_hp,
     this.level,
     this.cd,
     this.ca,
@@ -31,6 +32,7 @@ class Player {
   String? name;
   int? age;
   int? hp;
+  int? current_hp;
   int? level;
   int? cd;
   int? ca;
@@ -49,7 +51,7 @@ class Player {
 
   @override
   String toString() {
-    return 'Player{id: $id, name: $name, age: $age, hp: $hp, level: $level, cd: $cd, ca: $ca, class: $classe, race: $race, sub_race: $sub_race, strength: $strength, constitution: $constitution, dexterity: $dexterity, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma, itens: $itens, spells: $spells}';
+    return 'Player{id: $id, name: $name, age: $age, hp: $hp, current_hp: $current_hp, level: $level, cd: $cd, ca: $ca, class: $classe, race: $race, sub_race: $sub_race, strength: $strength, constitution: $constitution, dexterity: $dexterity, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma, itens: $itens, spells: $spells}';
   }
 
   ParseObject toParseObject() {
@@ -58,6 +60,7 @@ class Player {
       ..set('name', name!)
       ..set('age', age)
       ..set('hp', hp!)
+      ..set('current_hp', current_hp!)
       ..set('level', level!)
       ..set('cd', cd!)
       ..set('ca', ca!)
@@ -75,12 +78,15 @@ class Player {
     return parseObject;
   }
 
+
+
   factory Player.fromParse(ParseObject parseObject) {
     return Player(
       id: parseObject.objectId,
       name: parseObject.get<String>('name'),
       age: parseObject.get<int>('age'),
       hp: parseObject.get<int>('hp'),
+      current_hp: parseObject.get<int>('current_hp'),
       level: parseObject.get<int>('level'),
       cd: parseObject.get<int>('cd'),
       ca: parseObject.get<int>('ca'),

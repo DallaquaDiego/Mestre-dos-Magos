@@ -25,6 +25,7 @@ abstract class _CreateMonsterStore with Store {
     _description = monster?.description ?? '';
     _ca = monster?.ca.toString() ?? '';
     _hp = monster?.hp.toString() ?? '';
+    _current_hp = monster?.current_hp.toString() ?? '';
     _endurance_tests = monster?.endurance_tests ?? '';
     _expertise = monster?.expertise ?? '';
     _challenge_level = monster?.challenge_level.toString() ?? '';
@@ -134,6 +135,25 @@ abstract class _CreateMonsterStore with Store {
       return null;
     } else if (!hpValid){
       return 'HP Inválido';
+    } else {
+      return 'Campo Obrigatório';
+    }
+  }
+
+  @readonly
+  String _current_hp = '';
+
+  @action
+  void setCurrentHp(String value) => _current_hp = value;
+
+  @computed
+  bool get currentHpValid => int.tryParse(_current_hp) != null && int.tryParse(_current_hp)! >= 0;
+
+  String? get currentHpError {
+    if (!showErrors || currentHpValid) {
+      return null;
+    } else if (!hpValid){
+      return 'HP Atual Inválido';
     } else {
       return 'Campo Obrigatório';
     }
@@ -433,7 +453,7 @@ abstract class _CreateMonsterStore with Store {
   @computed
   dynamic get createPressed => isFormValid ? _createMonster : null;
 
-  dynamic get editPressed => isFormValid ? _editMonster : null;
+  dynamic get editPressed => isFormValid ? editMonster : null;
 
   Future<void> _createMonster() async {
     setError(null);
@@ -444,6 +464,7 @@ abstract class _CreateMonsterStore with Store {
       description: _description,
       ca: int.parse(_ca),
       hp: int.parse(_hp),
+      current_hp: int.parse(_hp),
       endurance_tests: _endurance_tests,
       expertise: _expertise,
       challenge_level: int.parse(_challenge_level),
@@ -470,7 +491,7 @@ abstract class _CreateMonsterStore with Store {
   }
 
   @action
-  Future<void> _editMonster() async {
+  Future<void> editMonster() async {
     setError(null);
     setLoading(true);
 
@@ -478,6 +499,7 @@ abstract class _CreateMonsterStore with Store {
     monster!.description = _description;
     monster!.ca = int.parse(_ca);
     monster!.hp = int.parse(_hp);
+    monster!.current_hp = int.parse(_current_hp);
     monster!.endurance_tests = _endurance_tests;
     monster!.expertise = _expertise;
     monster!.challenge_level = int.parse(_challenge_level);

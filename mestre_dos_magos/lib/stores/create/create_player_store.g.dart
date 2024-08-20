@@ -29,6 +29,13 @@ mixin _$CreatePlayerStore on _CreatePlayerStore, Store {
   bool get hpValid => (_$hpValidComputed ??= Computed<bool>(() => super.hpValid,
           name: '_CreatePlayerStore.hpValid'))
       .value;
+  Computed<bool>? _$currentHpValidComputed;
+
+  @override
+  bool get currentHpValid =>
+      (_$currentHpValidComputed ??= Computed<bool>(() => super.currentHpValid,
+              name: '_CreatePlayerStore.currentHpValid'))
+          .value;
   Computed<bool>? _$levelValidComputed;
 
   @override
@@ -204,6 +211,24 @@ mixin _$CreatePlayerStore on _CreatePlayerStore, Store {
   set _hp(String value) {
     _$_hpAtom.reportWrite(value, super._hp, () {
       super._hp = value;
+    });
+  }
+
+  late final _$_current_hpAtom =
+      Atom(name: '_CreatePlayerStore._current_hp', context: context);
+
+  String get current_hp {
+    _$_current_hpAtom.reportRead();
+    return super._current_hp;
+  }
+
+  @override
+  String get _current_hp => current_hp;
+
+  @override
+  set _current_hp(String value) {
+    _$_current_hpAtom.reportWrite(value, super._current_hp, () {
+      super._current_hp = value;
     });
   }
 
@@ -562,12 +587,12 @@ mixin _$CreatePlayerStore on _CreatePlayerStore, Store {
     });
   }
 
-  late final _$_editPlayerAsyncAction =
-      AsyncAction('_CreatePlayerStore._editPlayer', context: context);
+  late final _$editPlayerAsyncAction =
+      AsyncAction('_CreatePlayerStore.editPlayer', context: context);
 
   @override
-  Future<void> _editPlayer() {
-    return _$_editPlayerAsyncAction.run(() => super._editPlayer());
+  Future<void> editPlayer() {
+    return _$editPlayerAsyncAction.run(() => super.editPlayer());
   }
 
   late final _$deletePlayerAsyncAction =
@@ -625,6 +650,17 @@ mixin _$CreatePlayerStore on _CreatePlayerStore, Store {
         name: '_CreatePlayerStore.setHp');
     try {
       return super.setHp(value);
+    } finally {
+      _$_CreatePlayerStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setCurrentHp(String value) {
+    final _$actionInfo = _$_CreatePlayerStoreActionController.startAction(
+        name: '_CreatePlayerStore.setCurrentHp');
+    try {
+      return super.setCurrentHp(value);
     } finally {
       _$_CreatePlayerStoreActionController.endAction(_$actionInfo);
     }
@@ -858,6 +894,7 @@ showErrors: ${showErrors},
 nameValid: ${nameValid},
 ageValid: ${ageValid},
 hpValid: ${hpValid},
+currentHpValid: ${currentHpValid},
 levelValid: ${levelValid},
 cdValid: ${cdValid},
 caValid: ${caValid},

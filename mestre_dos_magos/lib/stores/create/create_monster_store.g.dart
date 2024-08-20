@@ -35,6 +35,13 @@ mixin _$CreateMonsterStore on _CreateMonsterStore, Store {
   bool get hpValid => (_$hpValidComputed ??= Computed<bool>(() => super.hpValid,
           name: '_CreateMonsterStore.hpValid'))
       .value;
+  Computed<bool>? _$currentHpValidComputed;
+
+  @override
+  bool get currentHpValid =>
+      (_$currentHpValidComputed ??= Computed<bool>(() => super.currentHpValid,
+              name: '_CreateMonsterStore.currentHpValid'))
+          .value;
   Computed<bool>? _$enduranceTestsValidComputed;
 
   @override
@@ -224,6 +231,24 @@ mixin _$CreateMonsterStore on _CreateMonsterStore, Store {
   set _hp(String value) {
     _$_hpAtom.reportWrite(value, super._hp, () {
       super._hp = value;
+    });
+  }
+
+  late final _$_current_hpAtom =
+      Atom(name: '_CreateMonsterStore._current_hp', context: context);
+
+  String get current_hp {
+    _$_current_hpAtom.reportRead();
+    return super._current_hp;
+  }
+
+  @override
+  String get _current_hp => current_hp;
+
+  @override
+  set _current_hp(String value) {
+    _$_current_hpAtom.reportWrite(value, super._current_hp, () {
+      super._current_hp = value;
     });
   }
 
@@ -570,12 +595,12 @@ mixin _$CreateMonsterStore on _CreateMonsterStore, Store {
     });
   }
 
-  late final _$_editMonsterAsyncAction =
-      AsyncAction('_CreateMonsterStore._editMonster', context: context);
+  late final _$editMonsterAsyncAction =
+      AsyncAction('_CreateMonsterStore.editMonster', context: context);
 
   @override
-  Future<void> _editMonster() {
-    return _$_editMonsterAsyncAction.run(() => super._editMonster());
+  Future<void> editMonster() {
+    return _$editMonsterAsyncAction.run(() => super.editMonster());
   }
 
   late final _$deleteMonsterAsyncAction =
@@ -653,6 +678,17 @@ mixin _$CreateMonsterStore on _CreateMonsterStore, Store {
         name: '_CreateMonsterStore.setHp');
     try {
       return super.setHp(value);
+    } finally {
+      _$_CreateMonsterStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setCurrentHp(String value) {
+    final _$actionInfo = _$_CreateMonsterStoreActionController.startAction(
+        name: '_CreateMonsterStore.setCurrentHp');
+    try {
+      return super.setCurrentHp(value);
     } finally {
       _$_CreateMonsterStoreActionController.endAction(_$actionInfo);
     }
@@ -876,6 +912,7 @@ nameValid: ${nameValid},
 descriptionValid: ${descriptionValid},
 caValid: ${caValid},
 hpValid: ${hpValid},
+currentHpValid: ${currentHpValid},
 enduranceTestsValid: ${enduranceTestsValid},
 expertiseValid: ${expertiseValid},
 challengeLevelValid: ${challengeLevelValid},

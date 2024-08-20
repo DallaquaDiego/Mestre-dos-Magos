@@ -10,6 +10,7 @@ class Monster {
     this.description,
     this.ca,
     this.hp,
+    this.current_hp,
     this.endurance_tests,
     this.expertise,
     this.challenge_level,
@@ -29,6 +30,7 @@ class Monster {
   String? description;
   int? ca;
   int? hp;
+  int? current_hp;
   String? endurance_tests;
   String? expertise;
   int? challenge_level;
@@ -44,7 +46,7 @@ class Monster {
 
   @override
   String toString() {
-    return 'Monster{id: $id, name: $name, description: $description, ca: $ca, hp: $hp, endurance_tests: $endurance_tests, expertise: $expertise, challenge_level: $challenge_level, skills: $skills, actions: $actions, legendary_actions: $legendary_actions, strength: $strength, constitution: $constitution, dexterity: $dexterity, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma}';
+    return 'Monster{id: $id, name: $name, description: $description, ca: $ca, hp: $hp, current_hp: $current_hp, endurance_tests: $endurance_tests, expertise: $expertise, challenge_level: $challenge_level, skills: $skills, actions: $actions, legendary_actions: $legendary_actions, strength: $strength, constitution: $constitution, dexterity: $dexterity, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma}';
   }
 
   ParseObject toParseObject() {
@@ -54,6 +56,7 @@ class Monster {
       ..set('description', description!)
       ..set('ca', ca!)
       ..set('hp', hp!)
+      ..set('current_hp', current_hp!)
       ..set('endurance_tests', endurance_tests!)
       ..set('expertise', expertise!)
       ..set('challenge_level', challenge_level!)
@@ -76,6 +79,7 @@ class Monster {
       description: parseObject.get<String>('description'),
       ca: parseObject.get<int>('ca'),
       hp: parseObject.get<int>('hp'),
+      current_hp: parseObject.get<int>('current_hp'),
       endurance_tests: parseObject.get<String>('endurance_tests'),
       expertise: parseObject.get<String>('expertise'),
       challenge_level: parseObject.get<int>('challenge_level'),
