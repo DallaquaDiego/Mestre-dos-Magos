@@ -5,8 +5,7 @@ import 'package:get_it/get_it.dart';
 import '../../../../models/spell_category.dart';
 import '../../../../stores/list/spell_category_store.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
-
+import '../empty_result.dart';
 
 class DialogSpellCategory extends StatelessWidget {
   DialogSpellCategory({Key? key, this.selectedSpellCategory}) : super(key: key);
@@ -33,7 +32,7 @@ class DialogSpellCategory extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 ),
@@ -43,7 +42,7 @@ class DialogSpellCategory extends StatelessWidget {
                     icon: const Icon(
                       Icons.close,
                       size: 25,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -62,7 +61,7 @@ class DialogSpellCategory extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: CustomColors.grape_juice,
+                    color: CustomColors.dragon_blood,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -74,7 +73,7 @@ class DialogSpellCategory extends StatelessWidget {
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.search,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                       ),
                     ),
                   ),
@@ -88,16 +87,19 @@ class DialogSpellCategory extends StatelessWidget {
                 return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 );
               }
 
               if (spellCategoryStore.listSpellCategory.isEmpty) {
-                return const Expanded(
-                  child: ListEmpty(
-                    texto: "Nenhuma Categoria Cadastrada.",
+                return Expanded(
+                  child: Center(
+                    child: EmptyResult(
+                      text: 'Nenhuma Categoria Encontrada!',
+                      reload: spellCategoryStore.refreshData,
+                    ),
                   ),
                 );
               }
@@ -115,7 +117,7 @@ class DialogSpellCategory extends StatelessWidget {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
-                          color: spellCategory.id == selectedSpellCategory?.id ? CustomColors.grape_juice.withAlpha(50) : null,
+                          color: spellCategory.id == selectedSpellCategory?.id ? CustomColors.dragon_blood.withAlpha(50) : null,
                           border: spellCategoryStore.listSpellCategory.length - 1 == index
                               ? Border(
                             bottom: BorderSide(
@@ -127,6 +129,9 @@ class DialogSpellCategory extends StatelessWidget {
                         child: Text(
                           textAlign: TextAlign.center,
                           spellCategory.name!,
+                          style: const TextStyle(
+                            color: CustomColors.dirty_brown,
+                          ),
                         ),
                       ),
                     );

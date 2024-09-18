@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import '../../../../models/race.dart';
 import '../../../../stores/list/race_store.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
+import '../empty_result.dart';
 
 class DialogRace extends StatelessWidget {
   DialogRace({Key? key, this.selectedRace}) : super(key: key);
@@ -32,7 +32,7 @@ class DialogRace extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 ),
@@ -42,7 +42,7 @@ class DialogRace extends StatelessWidget {
                     icon: const Icon(
                       Icons.close,
                       size: 25,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -61,7 +61,7 @@ class DialogRace extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: CustomColors.grape_juice,
+                    color: CustomColors.dragon_blood,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -73,7 +73,7 @@ class DialogRace extends StatelessWidget {
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.search,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                       ),
                     ),
                   ),
@@ -87,16 +87,19 @@ class DialogRace extends StatelessWidget {
                 return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 );
               }
 
               if (raceStore.listRace.isEmpty) {
-                return const Expanded(
-                  child: ListEmpty(
-                    texto: "Nenhuma Raça Cadastrada.",
+                return Expanded(
+                  child: Center(
+                    child: EmptyResult(
+                      text: 'Nenhuma Raça Encontrada!',
+                      reload: raceStore.refreshData,
+                    ),
                   ),
                 );
               }
@@ -114,7 +117,7 @@ class DialogRace extends StatelessWidget {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
-                          color: race.id == selectedRace?.id ? CustomColors.grape_juice.withAlpha(50) : null,
+                          color: race.id == selectedRace?.id ? CustomColors.dragon_blood.withAlpha(50) : null,
                           border: raceStore.listRace.length - 1 == index
                               ? Border(
                             bottom: BorderSide(
@@ -126,6 +129,9 @@ class DialogRace extends StatelessWidget {
                         child: Text(
                           textAlign: TextAlign.center,
                           race.name!,
+                          style: const TextStyle(
+                            color: CustomColors.dirty_brown,
+                          ),
                         ),
                       ),
                     );

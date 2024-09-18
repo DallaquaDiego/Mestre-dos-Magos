@@ -16,8 +16,8 @@ class RacialTraitTile extends StatelessWidget {
       //padding: const EdgeInsets.symmetric(vertical: 4),
       title: Text(
         racialTrait.name!,
-        style: const TextStyle(
-          color: CustomColors.amethyst,
+        style: TextStyle(
+          color: CustomColors.just_regular_grey.withOpacity(0.8),
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -29,9 +29,9 @@ class RacialTraitTile extends StatelessWidget {
               )
           );
         },
-        icon: const Icon(
+        icon: Icon(
           Icons.edit,
-          color: CustomColors.amethyst,
+          color: CustomColors.just_regular_grey.withOpacity(0.8),
         ),
       ),
     );

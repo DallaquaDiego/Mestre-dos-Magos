@@ -37,7 +37,7 @@ class SubRaceDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: CustomColors.mystical_lilac,
+      backgroundColor: CustomColors.white_mist,
       body: BodyContainer(
         child: Row(
           children: [

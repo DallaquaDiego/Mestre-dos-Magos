@@ -35,7 +35,7 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       elevation: 0,
-      backgroundColor: CustomColors.mystical_lilac,
+      backgroundColor: CustomColors.white_mist,
       child: Column(
         children: [
           const Expanded(
@@ -46,7 +46,7 @@ class CustomDrawer extends StatelessWidget {
               behavior: const ScrollBehavior(),
               child: GlowingOverscrollIndicator(
                 axisDirection: AxisDirection.down,
-                color: CustomColors.grape_juice,
+                color: CustomColors.dragon_blood,
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: [

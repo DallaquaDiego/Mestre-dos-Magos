@@ -5,8 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../models/combat_type.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
-
+import '../empty_result.dart';
 
 class DialogCombatType extends StatelessWidget {
   DialogCombatType({Key? key, this.selectedCombatType}) : super(key: key);
@@ -33,7 +32,7 @@ class DialogCombatType extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 ),
@@ -43,7 +42,7 @@ class DialogCombatType extends StatelessWidget {
                     icon: const Icon(
                       Icons.close,
                       size: 25,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -62,7 +61,7 @@ class DialogCombatType extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: CustomColors.grape_juice,
+                    color: CustomColors.dragon_blood,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -74,7 +73,7 @@ class DialogCombatType extends StatelessWidget {
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.search,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                       ),
                     ),
                   ),
@@ -88,16 +87,19 @@ class DialogCombatType extends StatelessWidget {
                 return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 );
               }
 
               if (combatTypeStore.listCombatType.isEmpty) {
-                return const Expanded(
-                  child: ListEmpty(
-                    texto: "Nenhum Tipo de Combate Cadastrado.",
+                return Expanded(
+                  child: Center(
+                    child: EmptyResult(
+                      text: 'Nenhum Tipo de Combate Encontrado!',
+                      reload: combatTypeStore.refreshData,
+                    ),
                   ),
                 );
               }
@@ -115,7 +117,7 @@ class DialogCombatType extends StatelessWidget {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
-                          color: combatType.id == selectedCombatType?.id ? CustomColors.grape_juice.withAlpha(50) : null,
+                          color: combatType.id == selectedCombatType?.id ? CustomColors.dragon_blood.withAlpha(50) : null,
                           border: combatTypeStore.listCombatType.length - 1 == index ? Border(
                             bottom: BorderSide(
                               color: Colors.grey.shade200,
@@ -125,6 +127,9 @@ class DialogCombatType extends StatelessWidget {
                         child: Text(
                           textAlign: TextAlign.center,
                           combatType.name!,
+                          style: const TextStyle(
+                            color: CustomColors.dirty_brown,
+                          ),
                         ),
                       ),
                     );

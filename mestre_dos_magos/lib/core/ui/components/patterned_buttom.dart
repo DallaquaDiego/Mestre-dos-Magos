@@ -32,7 +32,7 @@ class PatternedButton extends StatelessWidget {
           backgroundColor: color,
           padding: const EdgeInsets.symmetric(horizontal: 8),
           elevation: 8,
-          shadowColor: CustomColors.midnight
+          shadowColor: CustomColors.dirty_brown
         ),
 
         onPressed: function,
@@ -40,7 +40,7 @@ class PatternedButton extends StatelessWidget {
           text,
           style: TextStyle(
             fontSize: 17,
-            color: textColor ?? CustomColors.alabaster),
+            color: textColor ?? CustomColors.white_mist),
         ),
       ),
     );

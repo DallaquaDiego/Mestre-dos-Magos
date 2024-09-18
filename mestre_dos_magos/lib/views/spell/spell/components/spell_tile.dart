@@ -29,24 +29,24 @@ class SpellTile extends StatelessWidget {
             children: [
               Text(
                 spell.name!,
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 2),
               Text(
                 'Categoria: ${spell.spell_category!.name}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(height: 1),
               Text(
                 spell.isTrick! || spell.spell_level == 0 ? 'Nível da Magia: Truque' : 'Nível da Magia: ${spell.spell_level}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -55,8 +55,8 @@ class SpellTile extends StatelessWidget {
                 const SizedBox(height: 1),
                 Text(
                   'Dano: ${spell.damage!}',
-                  style: const TextStyle(
-                    color: CustomColors.amethyst,
+                  style: TextStyle(
+                    color: CustomColors.just_regular_grey.withOpacity(0.8),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -72,9 +72,9 @@ class SpellTile extends StatelessWidget {
               )
             );
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.edit,
-            color: CustomColors.amethyst,
+            color: CustomColors.just_regular_grey.withOpacity(0.8),
           ),
         ),
       ),

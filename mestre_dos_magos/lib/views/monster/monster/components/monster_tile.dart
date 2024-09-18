@@ -29,24 +29,24 @@ class MonsterTile extends StatelessWidget {
             children: [
               Text(
                 monster.name!,
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 2),
               Text(
                 'Nível de Desafio: ${monster.challenge_level!}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(height: 1),
               Text(
                 'HP: ${monster.hp!}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -61,9 +61,9 @@ class MonsterTile extends StatelessWidget {
               )
             );
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.edit,
-            color: CustomColors.amethyst,
+            color: CustomColors.just_regular_grey.withOpacity(0.8),
           ),
         ),
       ),

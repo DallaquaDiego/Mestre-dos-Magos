@@ -6,7 +6,7 @@ import '../../../../models/monster_action.dart';
 import '../../../../stores/list/monster_action_store.dart';
 import '../../../global/custom_sizes.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
+import '../empty_result.dart';
 
 
 class DialogMonsterActions extends StatelessWidget {
@@ -51,7 +51,7 @@ class DialogMonsterActions extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                       ),
                     ),
@@ -61,7 +61,7 @@ class DialogMonsterActions extends StatelessWidget {
                         icon: const Icon(
                           Icons.close,
                           size: 25,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
@@ -80,7 +80,7 @@ class DialogMonsterActions extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: 1,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -92,7 +92,7 @@ class DialogMonsterActions extends StatelessWidget {
                             border: InputBorder.none,
                             suffixIcon: Icon(
                               Icons.search,
-                              color: CustomColors.grape_juice,
+                              color: CustomColors.dragon_blood,
                             ),
                           ),
                         ),
@@ -107,15 +107,18 @@ class DialogMonsterActions extends StatelessWidget {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                       ),
                     );
                   }
                   if (monsterActionStore.listMonsterAction.isEmpty) {
-                    return const Expanded(
-                      child: ListEmpty(
-                        texto: "Nenhuma Ação Encontrada!",
+                    return Expanded(
+                      child: Center(
+                        child: EmptyResult(
+                          text: 'Nenhuma Ação Encontrada!',
+                          reload: monsterActionStore.refreshData,
+                        ),
                       ),
                     );
                   }
@@ -137,7 +140,7 @@ class DialogMonsterActions extends StatelessWidget {
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         color: _selectedMonsterActions.any((selectedAction) => selectedAction.id == action.id)
-                                            ? CustomColors.grape_juice.withAlpha(50)
+                                            ? CustomColors.dragon_blood.withAlpha(50)
                                             : null,
                                         border: monsterActionStore.listSearch.length - 1 == index
                                             ? Border(
@@ -152,6 +155,9 @@ class DialogMonsterActions extends StatelessWidget {
                                         child: Text(
                                           '${action.name!.toUpperCase()}\n${action.description}',
                                           textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            color: CustomColors.dirty_brown,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -162,8 +168,8 @@ class DialogMonsterActions extends StatelessWidget {
                               monsterActionStore.loadNextPage();
                               return Center(
                                 child: LinearProgressIndicator(
-                                  color: CustomColors.grape_juice,
-                                  backgroundColor: CustomColors.grape_juice.withAlpha(100),
+                                  color: CustomColors.dragon_blood,
+                                  backgroundColor: CustomColors.dragon_blood.withAlpha(100),
                                 ),
                               );
                             },
@@ -176,7 +182,7 @@ class DialogMonsterActions extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: CustomColors.grape_juice,
+                              backgroundColor: CustomColors.dragon_blood,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
@@ -190,7 +196,7 @@ class DialogMonsterActions extends StatelessWidget {
                             child: const Text(
                               'Salvar',
                               style: TextStyle(
-                                color: CustomColors.alabaster,
+                                color: CustomColors.white_mist,
                               ),
                             ),
                           ),

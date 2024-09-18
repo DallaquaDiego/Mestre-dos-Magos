@@ -49,7 +49,7 @@ class _LoginFormFieldState extends State<LoginFormField> {
   final border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(16),
     borderSide: const BorderSide(
-      color: CustomColors.mystical_lilac,
+      color: CustomColors.white_mist,
     ),
   );
 
@@ -60,7 +60,7 @@ class _LoginFormFieldState extends State<LoginFormField> {
       child: TextFormField(
         textAlign: widget.textAlign ?? TextAlign.start,
         controller: widget.controller,
-        cursorColor: CustomColors.grape_juice,
+        cursorColor: CustomColors.dragon_blood,
         keyboardType: widget.typeKeyboard,
         key: widget.keyy,
         initialValue: widget.initialvalue,
@@ -73,9 +73,9 @@ class _LoginFormFieldState extends State<LoginFormField> {
           contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           labelText: widget.labelText,
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: CustomColors.grape_juice, fontSize: 16),
-          labelStyle: const TextStyle(color: CustomColors.grape_juice),
-          fillColor: CustomColors.amethyst.withOpacity(0.2),
+          hintStyle: const TextStyle(color: CustomColors.dragon_blood, fontSize: 16),
+          labelStyle: const TextStyle(color: CustomColors.dragon_blood),
+          fillColor: CustomColors.ancient_gold.withOpacity(0.2),
           filled: true,
           enabledBorder: border,
           focusedBorder: border,
@@ -87,7 +87,7 @@ class _LoginFormFieldState extends State<LoginFormField> {
             },
             icon: Icon(
               widget.visible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-              color: CustomColors.grape_juice.withOpacity(0.6),
+              color: CustomColors.dragon_blood.withOpacity(0.6),
             ),
           ) : null,
         ),

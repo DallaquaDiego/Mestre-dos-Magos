@@ -12,7 +12,7 @@ class BodyContainer extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
-        color: CustomColors.mystical_lilac,
+        color: CustomColors.white_mist,
         constraints: const BoxConstraints(
           maxWidth: 1300,
         ),

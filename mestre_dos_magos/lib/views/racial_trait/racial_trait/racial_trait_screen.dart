@@ -26,13 +26,13 @@ class RacialTraitScreen extends StatelessWidget {
     final smallerThanTablet = ResponsiveWrapper.of(context).isSmallerThan(TABLET);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColors.mystical_lilac,
-        iconTheme: const IconThemeData(color: CustomColors.grape_juice),
+        backgroundColor: CustomColors.white_mist,
+        iconTheme: const IconThemeData(color: CustomColors.dragon_blood),
         title: const Center(
           child: Text(
             'Traços Raciais',
             style: TextStyle(
-              color: CustomColors.grape_juice,
+              color: CustomColors.dragon_blood,
             ),
           ),
         ),
@@ -49,14 +49,14 @@ class RacialTraitScreen extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: CustomColors.mystical_lilac,
+      backgroundColor: CustomColors.white_mist,
       drawer: smallerThanTablet ? CustomDrawer() : null,
       floatingActionButton: FloatingActionButton.extended(
         tooltip: "Cadastrar Novo Traço Racial",
         label: const Text("Novo Traço Racial"),
         heroTag: 'Novo Traço Racial',
-        backgroundColor: CustomColors.grape_juice,
-        foregroundColor: CustomColors.alabaster,
+        backgroundColor: CustomColors.ancient_gold,
+        foregroundColor: CustomColors.white_mist,
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -69,7 +69,7 @@ class RacialTraitScreen extends StatelessWidget {
         ),
       ),
       body: RefreshIndicator(
-        color: CustomColors.grape_juice,
+        color: CustomColors.dragon_blood,
         onRefresh: () async {
           await racialTraitStore.refreshData();
         },
@@ -86,7 +86,7 @@ class RacialTraitScreen extends StatelessWidget {
             if (racialTraitStore.showProgress) {
               return const Center(
                 child: CircularProgressIndicator(
-                  color: CustomColors.grape_juice,
+                  color: CustomColors.dragon_blood,
                 ),
               );
             }
@@ -126,8 +126,8 @@ class RacialTraitScreen extends StatelessWidget {
                           racialTraitStore.loadNextPage();
                           return Center(
                             child: LinearProgressIndicator(
-                              color: CustomColors.grape_juice,
-                              backgroundColor: CustomColors.grape_juice.withAlpha(100),
+                              color: CustomColors.dragon_blood,
+                              backgroundColor: CustomColors.dragon_blood.withAlpha(100),
                             ),
                           );
                         },

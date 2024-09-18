@@ -13,7 +13,7 @@ class Utils {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color: isError ? CustomColors.midnight : CustomColors.amethyst,
+        color: isError ? CustomColors.dirty_brown : CustomColors.ancient_gold,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

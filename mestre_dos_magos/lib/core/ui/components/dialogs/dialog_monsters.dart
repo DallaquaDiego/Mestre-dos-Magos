@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mestre_dos_magos/models/monster_skill.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../stores/list/monster_skill_store.dart';
+import '../../../../models/monster.dart';
+import '../../../../stores/list/monster_store.dart';
 import '../../../global/custom_sizes.dart';
 import '../../theme/custom_colors.dart';
 import '../empty_result.dart';
 
-
-class DialogMonsterSkills extends StatelessWidget {
-  DialogMonsterSkills({Key? key, List<MonsterSkill>? selectedSkills})
-      : _selectedMonsterSkills = ObservableList<MonsterSkill>.of(selectedSkills ?? []),
+class MonstersDialog extends StatelessWidget {
+  MonstersDialog({Key? key, List<Monster>? selectedMonsters})
+      : _selectedMonsters = ObservableList<Monster>.of(selectedMonsters ?? []),
         super(key: key);
 
-  final monsterSkillStore = GetIt.I<MonsterSkillStore>();
-  final ObservableList<MonsterSkill> _selectedMonsterSkills;
+  final monsterStore = GetIt.I<MonsterStore>();
+  final ObservableList<Monster> _selectedMonsters;
   final divider = const Divider(height: 0);
 
-  void _toggleSelectedMonsterSkill(MonsterSkill newSkill) {
-    bool isAlreadySelected = _selectedMonsterSkills.any((skill) => skill.id == newSkill.id);
+  void _toggleSelectedMonster(BuildContext context, Monster newMonster) {
+    bool isAlreadySelected = _selectedMonsters.any((monster) => monster.id == newMonster.id);
     if (isAlreadySelected) {
-      _selectedMonsterSkills.removeWhere((skill) => skill.id == newSkill.id);
+      _selectedMonsters.removeWhere((monster) => monster.id == newMonster.id);
     } else {
-      _selectedMonsterSkills.add(newSkill);
+      if (_selectedMonsters.length <= 2) {
+        _selectedMonsters.add(newMonster);
+      }
     }
   }
 
@@ -48,7 +49,7 @@ class DialogMonsterSkills extends StatelessWidget {
                     const Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'Selecione as Habilidades do Monstro',
+                        'Selecione no Máximo 2 Monstros',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
@@ -88,7 +89,7 @@ class DialogMonsterSkills extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextField(
-                          onChanged: (value) => monsterSkillStore.runFilter(value),
+                          onChanged: (value) => monsterStore.runFilter(value),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             suffixIcon: Icon(
@@ -104,7 +105,7 @@ class DialogMonsterSkills extends StatelessWidget {
               ),
               Observer(
                 builder: (context) {
-                  if (monsterSkillStore.showProgress) {
+                  if (monsterStore.showProgress) {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(
@@ -113,12 +114,12 @@ class DialogMonsterSkills extends StatelessWidget {
                       ),
                     );
                   }
-                  if (monsterSkillStore.listMonsterSkill.isEmpty) {
+                  if (monsterStore.listMonster.isEmpty) {
                     return Expanded(
                       child: Center(
                         child: EmptyResult(
-                          text: 'Nenhuma Habilidade Encontrada!',
-                          reload: monsterSkillStore.refreshData,
+                          text: 'Nenhum Monstro Encontrado!',
+                          reload: monsterStore.refreshData,
                         ),
                       ),
                     );
@@ -130,38 +131,40 @@ class DialogMonsterSkills extends StatelessWidget {
                           child: ListView.separated(
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              if (index < monsterSkillStore.listMonsterSkill.length) {
-                                final skill = monsterSkillStore.listSearch[index];
+                              if (index < monsterStore.listSearch.length) {
+                                final monster = monsterStore.listSearch[index];
                                 return InkWell(
                                   onTap: () {
-                                    _toggleSelectedMonsterSkill(skill);
+                                    _toggleSelectedMonster(context, monster);
                                   },
                                   child: Observer(
                                     builder: (context) => Container(
+                                      height: 50,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        color: _selectedMonsterSkills.any((selectedSkill) => selectedSkill.id == skill.id) ? CustomColors.dragon_blood.withAlpha(50) : null,
-                                        border: monsterSkillStore.listMonsterSkill.length - 1 == index ? Border(
+                                        color: _selectedMonsters.any((selectedMonster) => selectedMonster.id == monster.id)
+                                            ? CustomColors.dragon_blood.withAlpha(50)
+                                            : null,
+                                        border: monsterStore.listMonster.length - 1 == index
+                                            ? Border(
                                           bottom: BorderSide(
                                             color: Colors.grey.shade200,
                                           ),
-                                        ) : null,
+                                        )
+                                            : null,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                                        child: Text(
-                                          '${skill.name!.toUpperCase()}\n${skill.description}',
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                            color: CustomColors.dirty_brown,
-                                          ),
+                                      child: Text(
+                                        monster.name!,
+                                        style: const TextStyle(
+                                          color: CustomColors.dirty_brown,
                                         ),
-                                      )
+                                      ),
                                     ),
                                   ),
                                 );
                               }
-                              monsterSkillStore.loadNextPage();
+
+                              monsterStore.loadNextPage();
                               return Center(
                                 child: LinearProgressIndicator(
                                   color: CustomColors.dragon_blood,
@@ -170,7 +173,7 @@ class DialogMonsterSkills extends StatelessWidget {
                               );
                             },
                             separatorBuilder: (context, index) => divider,
-                            itemCount: monsterSkillStore.listSearch.length,
+                            itemCount: monsterStore.itemCount,
                           ),
                         ),
                         SizedBox(
@@ -187,12 +190,12 @@ class DialogMonsterSkills extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              Navigator.of(context).pop(_selectedMonsterSkills);
+                              Navigator.of(context).pop(_selectedMonsters);
                             },
                             child: const Text(
                               'Salvar',
                               style: TextStyle(
-                                  color: CustomColors.white_mist
+                                color: CustomColors.white_mist,
                               ),
                             ),
                           ),

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 abstract class CustomColors {
 
-  static const Color mystical_lilac  = Color(0xFFfff8ff);
-  static const Color amethyst = Color(0xFFA47CC8);
-  static const Color grape_juice = Color(0xFF7F4CA5);
-  static const Color midnight = Color(0xFF00001A);
-  static const Color alabaster = Color(0xffFEFEFD);
+  static const Color white_mist  = Color(0xFFE5E5E5);
+  static const Color ancient_gold = Color(0xFFD4A017);
+  static const Color dragon_blood = Color(0xFF9D1B16);
+  static const Color dirty_brown = Color(0xFF5D4037);
+  static const Color just_regular_grey = Color(0xFF3A3A3A);
 }

@@ -37,7 +37,7 @@ class MonsterDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: CustomColors.mystical_lilac,
+      backgroundColor: CustomColors.white_mist,
       body: BodyContainer(
         child: Row(
           children: [
@@ -55,13 +55,11 @@ class MonsterDetailsScreen extends StatelessWidget {
                           Column(
                             children: [
                               MonsterImage(monster: monster),
-
                               const SizedBox(height: 24),
                               InformationField(
                                 title: 'Descrição',
                                 information: monster.description!,
                               ),
-
                               const SizedBox(height: 8),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

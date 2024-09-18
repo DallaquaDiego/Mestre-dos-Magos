@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import '../../../../models/item_category.dart';
 import '../../../../stores/list/item_category_store.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
+import '../empty_result.dart';
 
 class DialogItemCategory extends StatelessWidget {
   DialogItemCategory({Key? key, this.selectedItemCategory}) : super(key: key);
@@ -32,7 +32,7 @@ class DialogItemCategory extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 ),
@@ -42,7 +42,7 @@ class DialogItemCategory extends StatelessWidget {
                     icon: const Icon(
                       Icons.close,
                       size: 25,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -60,7 +60,7 @@ class DialogItemCategory extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: CustomColors.grape_juice,
+                    color: CustomColors.dragon_blood,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -72,7 +72,7 @@ class DialogItemCategory extends StatelessWidget {
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.search,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                       ),
                     ),
                   ),
@@ -86,16 +86,19 @@ class DialogItemCategory extends StatelessWidget {
                 return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 );
               }
 
               if (itemCategoryStore.listItemCategory.isEmpty) {
-                return const Expanded(
-                  child: ListEmpty(
-                    texto: "Nenhuma Categoria Cadastrada.",
+                return Expanded(
+                  child: Center(
+                    child: EmptyResult(
+                      text: 'Nenhuma Categoria Encontrada!',
+                      reload: itemCategoryStore.refreshData,
+                    ),
                   ),
                 );
               }
@@ -115,7 +118,7 @@ class DialogItemCategory extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           decoration: BoxDecoration(
                             color: itemCategory.id == selectedItemCategory?.id
-                                ? CustomColors.grape_juice.withAlpha(50)
+                                ? CustomColors.dragon_blood.withAlpha(50)
                                 : null,
                             border: itemCategoryStore.listItemCategory.length - 1 == index
                                 ? Border(
@@ -128,6 +131,9 @@ class DialogItemCategory extends StatelessWidget {
                           child: Text(
                             textAlign: TextAlign.center,
                             itemCategory.name!,
+                            style: const TextStyle(
+                              color: CustomColors.dirty_brown,
+                            ),
                           ),
                         ),
                       );
@@ -135,8 +141,8 @@ class DialogItemCategory extends StatelessWidget {
                     itemCategoryStore.loadNextPage();
                     return Center(
                       child: LinearProgressIndicator(
-                        color: CustomColors.grape_juice,
-                        backgroundColor: CustomColors.grape_juice.withAlpha(100),
+                        color: CustomColors.dragon_blood,
+                        backgroundColor: CustomColors.dragon_blood.withAlpha(100),
                       ),
                     );
                   },

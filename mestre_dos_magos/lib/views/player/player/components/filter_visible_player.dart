@@ -31,7 +31,7 @@ class _FilterVisiblePlayerState extends State<FilterVisiblePlayer> {
             const Text(
               'Pesquise pelo Nome do Jogador',
               style: TextStyle(
-                color: CustomColors.grape_juice,
+                color: CustomColors.dragon_blood,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -43,7 +43,7 @@ class _FilterVisiblePlayerState extends State<FilterVisiblePlayer> {
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Container(
                   child: TextFormField(
-                    cursorColor: CustomColors.grape_juice,
+                    cursorColor: CustomColors.dragon_blood,
                     keyboardType: TextInputType.text,
                     initialValue: widget.filterStore.search,
                     onChanged: widget.filterStore.setSearch,
@@ -51,22 +51,22 @@ class _FilterVisiblePlayerState extends State<FilterVisiblePlayer> {
                     decoration: InputDecoration(
                       focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: CustomColors.grape_juice,
+                            color: CustomColors.dragon_blood,
                             width: 1,
                           )),
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      focusColor: CustomColors.grape_juice,
+                      focusColor: CustomColors.dragon_blood,
                       errorText: null,
                       suffixIcon: IconButton(
                         onPressed: () {},
                         icon: Icon(
                           Icons.text_fields_rounded,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                       ),
                     ),
@@ -86,7 +86,7 @@ class _FilterVisiblePlayerState extends State<FilterVisiblePlayer> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        backgroundColor: CustomColors.mystical_lilac,
+                        backgroundColor: CustomColors.white_mist,
                       ),
                       onPressed: () async {
                         filterStoreGet.clearFilters();
@@ -101,7 +101,7 @@ class _FilterVisiblePlayerState extends State<FilterVisiblePlayer> {
                           //fontFamily: ,
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
 
                           shadows: [
                             Shadow(
@@ -132,7 +132,7 @@ class _FilterVisiblePlayerState extends State<FilterVisiblePlayer> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      backgroundColor: CustomColors.grape_juice,
+                      backgroundColor: CustomColors.dragon_blood,
                     ),
                     onPressed: widget.filterStore.isFormValid ? () async {
                       filterStoreGet.setVisibleSearchFalse();
@@ -143,7 +143,7 @@ class _FilterVisiblePlayerState extends State<FilterVisiblePlayer> {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
-                        color: CustomColors.alabaster,
+                        color: CustomColors.white_mist,
                         shadows: [
                           Shadow(
                             color: Colors.grey.withOpacity(0.5),

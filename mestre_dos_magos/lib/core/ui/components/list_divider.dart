@@ -7,7 +7,7 @@ class ListDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Divider(
-      color: CustomColors.amethyst.withOpacity(0.4),
+      color: CustomColors.dirty_brown.withOpacity(0.4),
       thickness: 1,
       height: 0,
     );

@@ -29,24 +29,16 @@ class PlayerTile extends StatelessWidget {
             children: [
               Text(
                 player.name!,
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 2),
               Text(
                 'Classe: ${player.classe!.name}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(height: 1),
-              Text(
-                'Raça: ${player.race!.name}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -54,8 +46,17 @@ class PlayerTile extends StatelessWidget {
               if(player.sub_race != null)...{
                 Text(
                   'Sub-Raça: ${player.sub_race!.name}',
-                  style: const TextStyle(
-                    color: CustomColors.amethyst,
+                  style: TextStyle(
+                    color: CustomColors.just_regular_grey.withOpacity(0.8),
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(height: 1),
+              } else...{
+                Text(
+                  'Raça: ${player.race!.name}',
+                  style: TextStyle(
+                    color: CustomColors.just_regular_grey.withOpacity(0.8),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -63,16 +64,16 @@ class PlayerTile extends StatelessWidget {
               },
               Text(
                 'Classe de Armadura: ${player.ca!.toString()}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(height: 1),
               Text(
                 'Nível: ${player.level!.toString()}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -87,9 +88,9 @@ class PlayerTile extends StatelessWidget {
               )
             );
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.edit,
-            color: CustomColors.amethyst,
+            color: CustomColors.just_regular_grey.withOpacity(0.8),
           ),
         ),
       ),

@@ -29,32 +29,32 @@ class ClassTile extends StatelessWidget {
             children: [
               Text(
                 classe.name!,
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 2),
               Text(
                 'Atributos Primários: ${classe.primary_attributes}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(height: 1),
               Text(
                 'Combate: ${classe.combat_type?.name}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(height: 1),
               Text(
                 'Dado de Vida: ${classe.hp_per_level}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -69,9 +69,9 @@ class ClassTile extends StatelessWidget {
               )
             );
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.edit,
-            color: CustomColors.amethyst,
+            color: CustomColors.just_regular_grey.withOpacity(0.8),
           ),
         ),
       ),

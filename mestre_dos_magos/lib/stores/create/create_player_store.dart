@@ -521,6 +521,8 @@ abstract class _CreatePlayerStore with Store {
     player!.spells = _selectedSpells;
     player!.itens = _selectedItens;
 
+    print(player);
+
     try {
       await PlayerRepository().updatePlayer(player!);
       setSavedOrUpdatedOrDeleted(true);

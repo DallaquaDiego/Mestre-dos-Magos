@@ -89,7 +89,7 @@ class _CreateRacialTraitScreenState extends State<CreateRacialTraitScreen> {
                       behavior: const ScrollBehavior(),
                       child: GlowingOverscrollIndicator(
                         axisDirection: AxisDirection.down,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                         child: SingleChildScrollView(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           child: Column(
@@ -129,8 +129,8 @@ class _CreateRacialTraitScreenState extends State<CreateRacialTraitScreen> {
                         Expanded(
                           flex: 3,
                           child: PatternedButton(
-                            color: CustomColors.mystical_lilac,
-                            textColor: CustomColors.grape_juice,
+                            color: CustomColors.dragon_blood,
+                            textColor: CustomColors.white_mist,
                             text: 'Excluir',
                             largura: screenSize.width * 0.3,
                             function: editing ? () async {
@@ -145,7 +145,7 @@ class _CreateRacialTraitScreenState extends State<CreateRacialTraitScreen> {
                             builder: (context) => GestureDetector(
                               onTap: () => createRacialTraitStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.grape_juice,
+                                color: CustomColors.ancient_gold,
                                 text: 'Salvar',
                                 largura: screenSize.width * 0.65,
                                 function: createRacialTraitStore.isFormValid ? () async {
@@ -168,7 +168,7 @@ class _CreateRacialTraitScreenState extends State<CreateRacialTraitScreen> {
                             builder: (context) => GestureDetector(
                               onTap: () => createRacialTraitStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.grape_juice,
+                                color: CustomColors.ancient_gold,
                                 text: 'Salvar',
                                 largura: screenSize.width * 0.95,
                                 function: createRacialTraitStore.isFormValid ? () async {

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mestre_dos_magos/core/ui/theme/custom_colors.dart';
-import 'package:mestre_dos_magos/models/monster.dart';
 import 'package:mestre_dos_magos/models/player.dart';
-
-import '../../../../stores/create/create_monster_store.dart';
 import '../../../../stores/create/create_player_store.dart';
 
 class PlayerDamageDialog extends StatefulWidget {
-  const PlayerDamageDialog({Key? key, required this.heal, this.player,}) : super(key: key);
+  const PlayerDamageDialog({
+    Key? key,
+    required this.heal,
+    this.player,
+    required this.onUpdate,
+  }) : super(key: key);
 
   final bool heal;
   final Player? player;
+  final VoidCallback onUpdate;
 
   @override
   _PlayerDamageDialogState createState() => _PlayerDamageDialogState();
@@ -25,31 +28,32 @@ class _PlayerDamageDialogState extends State<PlayerDamageDialog> {
     super.initState();
     createPlayerStore = CreatePlayerStore(widget.player);
   }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
       ),
-      backgroundColor: CustomColors.mystical_lilac,
+      backgroundColor: CustomColors.white_mist,
       title: Text(
         widget.heal ? 'Cura' : 'Dano',
-        style: const TextStyle(color: CustomColors.grape_juice),
+        style: const TextStyle(color: CustomColors.dragon_blood),
       ),
       content: SingleChildScrollView(
         child: TextField(
           controller: _controller,
           keyboardType: TextInputType.number,
-          style: const TextStyle(color: CustomColors.grape_juice),
+          style: const TextStyle(color: CustomColors.dragon_blood),
           decoration: InputDecoration(
             hintText: widget.heal ? 'Valor da cura: ' : 'Valor do dano: ',
-            fillColor: CustomColors.amethyst.withOpacity(0.1),
+            fillColor: CustomColors.ancient_gold.withOpacity(0.1),
             filled: true,
-            hintStyle: const TextStyle(color: CustomColors.grape_juice, fontSize: 14),
+            hintStyle: const TextStyle(color: CustomColors.dragon_blood, fontSize: 14),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: const BorderSide(
-                color: CustomColors.alabaster,
+                color: CustomColors.white_mist,
               ),
             ),
           ),
@@ -64,27 +68,27 @@ class _PlayerDamageDialogState extends State<PlayerDamageDialog> {
               ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: CustomColors.alabaster,
+                  backgroundColor: CustomColors.white_mist,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24),
                   ),
                 ),
                 child: const Text(
                   'Cancelar',
-                  style: TextStyle(color: CustomColors.grape_juice),
+                  style: TextStyle(color: CustomColors.dragon_blood),
                 ),
               ),
               ElevatedButton(
                 onPressed: () => _adjustHp(context, createPlayerStore),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: widget.heal ? CustomColors.amethyst : CustomColors.grape_juice,
+                  backgroundColor: widget.heal ? CustomColors.ancient_gold : CustomColors.dragon_blood,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24),
                   ),
                 ),
                 child: const Text(
                   'Confirmar',
-                  style: TextStyle(color: CustomColors.alabaster),
+                  style: TextStyle(color: CustomColors.white_mist),
                 ),
               ),
             ],
@@ -120,5 +124,6 @@ class _PlayerDamageDialogState extends State<PlayerDamageDialog> {
       createPlayerStore.editPlayer();
     }
     Navigator.of(context).pop();
+    widget.onUpdate();
   }
 }

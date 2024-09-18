@@ -93,7 +93,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                       behavior: const ScrollBehavior(),
                       child: GlowingOverscrollIndicator(
                         axisDirection: AxisDirection.down,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                         child: SingleChildScrollView(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           child: Column(
@@ -204,7 +204,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                   'Atributos',
                                   style: TextStyle(
                                     fontSize: 22,
-                                    color: CustomColors.grape_juice,
+                                    color: CustomColors.dragon_blood,
                                   ),
                                 ),
                               ),
@@ -217,7 +217,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -243,7 +243,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -269,7 +269,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -299,7 +299,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -325,7 +325,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -351,7 +351,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -380,7 +380,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                   'Habilidades e Ações',
                                   style: TextStyle(
                                     fontSize: 22,
-                                    color: CustomColors.grape_juice,
+                                    color: CustomColors.dragon_blood,
                                   ),
                                 ),
                               ),
@@ -427,9 +427,9 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                                   padding: const EdgeInsets.only(left: 10),
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                    color: CustomColors.grape_juice,
+                                                    color: CustomColors.dragon_blood,
                                                     borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(color: CustomColors.grape_juice),
+                                                    border: Border.all(color: CustomColors.dragon_blood),
                                                   ),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.min,
@@ -502,9 +502,9 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                                   padding: const EdgeInsets.only(left: 10),
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                    color: CustomColors.grape_juice,
+                                                    color: CustomColors.dragon_blood,
                                                     borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(color: CustomColors.grape_juice),
+                                                    border: Border.all(color: CustomColors.dragon_blood),
                                                   ),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.min,
@@ -577,9 +577,9 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                                                   padding: const EdgeInsets.only(left: 10),
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                    color: CustomColors.grape_juice,
+                                                    color: CustomColors.dragon_blood,
                                                     borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(color: CustomColors.grape_juice),
+                                                    border: Border.all(color: CustomColors.dragon_blood),
                                                   ),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.min,
@@ -624,8 +624,8 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                         Expanded(
                           flex: 3,
                           child: PatternedButton(
-                            color: CustomColors.mystical_lilac,
-                            textColor: CustomColors.grape_juice,
+                            color: CustomColors.dragon_blood,
+                            textColor: CustomColors.white_mist,
                             text: 'Excluir',
                             largura: screenSize.width * 0.3,
                             function: editing ? () async {
@@ -640,7 +640,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                             builder: (context) => GestureDetector(
                               onTap: () => createMonsterStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.grape_juice,
+                                color: CustomColors.ancient_gold,
                                 text: 'Salvar',
                                 largura: screenSize.width * 0.65,
                                 function: createMonsterStore.isFormValid ? () async {
@@ -663,7 +663,7 @@ class _CreateMonsterScreenState extends State<CreateMonsterScreen> {
                             builder: (context) => GestureDetector(
                               onTap: () => createMonsterStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.grape_juice,
+                                color: CustomColors.ancient_gold,
                                 text: 'Salvar',
                                 largura: screenSize.width * 0.95,
                                 function: createMonsterStore.isFormValid ? () async {

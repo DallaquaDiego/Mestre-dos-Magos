@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import '../../../../models/sub_race.dart';
 import '../../../../stores/list/sub_race_store.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
+import '../empty_result.dart';
 
 class DialogSubRace extends StatelessWidget {
   DialogSubRace({Key? key, this.selectedSubRace}) : super(key: key);
@@ -32,7 +32,7 @@ class DialogSubRace extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 ),
@@ -42,7 +42,7 @@ class DialogSubRace extends StatelessWidget {
                     icon: const Icon(
                       Icons.close,
                       size: 25,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -61,7 +61,7 @@ class DialogSubRace extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: CustomColors.grape_juice,
+                    color: CustomColors.dragon_blood,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -73,7 +73,7 @@ class DialogSubRace extends StatelessWidget {
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.search,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                       ),
                     ),
                   ),
@@ -87,16 +87,19 @@ class DialogSubRace extends StatelessWidget {
                 return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 );
               }
 
               if (subRaceStore.listSubRace.isEmpty) {
-                return const Expanded(
-                  child: ListEmpty(
-                    texto: "Nenhuma Sub-Raça Cadastrada.",
+                return Expanded(
+                  child: Center(
+                    child: EmptyResult(
+                      text: 'Nenhuma Sub-Raça Encontrada!',
+                      reload: subRaceStore.refreshData,
+                    ),
                   ),
                 );
               }
@@ -116,7 +119,7 @@ class DialogSubRace extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           decoration: BoxDecoration(
                             color: subRace.id == selectedSubRace?.id
-                                ? CustomColors.grape_juice.withAlpha(50)
+                                ? CustomColors.dragon_blood.withAlpha(50)
                                 : null,
                             border: subRaceStore.listSearch.length - 1 == index
                                 ? Border(
@@ -129,6 +132,9 @@ class DialogSubRace extends StatelessWidget {
                           child: Text(
                             textAlign: TextAlign.center,
                             subRace.name!,
+                            style: const TextStyle(
+                              color: CustomColors.dirty_brown,
+                            ),
                           ),
                         ),
                       );
@@ -136,8 +142,8 @@ class DialogSubRace extends StatelessWidget {
                     subRaceStore.loadNextPage();
                     return Center(
                       child: LinearProgressIndicator(
-                        color: CustomColors.grape_juice,
-                        backgroundColor: CustomColors.grape_juice.withAlpha(100),
+                        color: CustomColors.dragon_blood,
+                        backgroundColor: CustomColors.dragon_blood.withAlpha(100),
                       ),
                     );
                   },

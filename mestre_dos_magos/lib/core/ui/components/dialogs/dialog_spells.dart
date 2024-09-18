@@ -8,8 +8,7 @@ import '../../../../models/spell.dart';
 import '../../../../stores/list/spell_store.dart';
 import '../../../global/custom_sizes.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
-
+import '../empty_result.dart';
 
 class DialogSpells extends StatelessWidget {
   DialogSpells({Key? key, List<Spell>? selectedSpells})
@@ -53,7 +52,7 @@ class DialogSpells extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                       ),
                     ),
@@ -63,7 +62,7 @@ class DialogSpells extends StatelessWidget {
                         icon: const Icon(
                           Icons.close,
                           size: 25,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
@@ -82,7 +81,7 @@ class DialogSpells extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: 1,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -94,7 +93,7 @@ class DialogSpells extends StatelessWidget {
                             border: InputBorder.none,
                             suffixIcon: Icon(
                               Icons.search,
-                              color: CustomColors.grape_juice,
+                              color: CustomColors.dragon_blood,
                             ),
                           ),
                         ),
@@ -109,15 +108,18 @@ class DialogSpells extends StatelessWidget {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                       ),
                     );
                   }
                   if (spellStore.listSpell.isEmpty) {
-                    return const Expanded(
-                      child: ListEmpty(
-                        texto: "Nenhuma Magia Encontrada!",
+                    return Expanded(
+                      child: Center(
+                        child: EmptyResult(
+                          text: 'Nenhuma Magia Encontrada!',
+                          reload: spellStore.refreshData,
+                        ),
                       ),
                     );
                   }
@@ -140,7 +142,7 @@ class DialogSpells extends StatelessWidget {
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         color: _selectedSpells.any((selectedSpell) => selectedSpell.id == spell.id)
-                                            ? CustomColors.grape_juice.withAlpha(50)
+                                            ? CustomColors.dragon_blood.withAlpha(50)
                                             : null,
                                         border: spellStore.listSearch.length - 1 == index
                                             ? Border(
@@ -154,6 +156,9 @@ class DialogSpells extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                                         child: Text(
                                           spell.name!,
+                                          style: const TextStyle(
+                                            color: CustomColors.dirty_brown,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -165,8 +170,8 @@ class DialogSpells extends StatelessWidget {
                               spellStore.loadNextPage();
                               return Center(
                                 child: LinearProgressIndicator(
-                                  color: CustomColors.grape_juice,
-                                  backgroundColor: CustomColors.grape_juice.withAlpha(100),
+                                  color: CustomColors.dragon_blood,
+                                  backgroundColor: CustomColors.dragon_blood.withAlpha(100),
                                 ),
                               );
                             },
@@ -179,7 +184,7 @@ class DialogSpells extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: CustomColors.grape_juice,
+                              backgroundColor: CustomColors.dragon_blood,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
@@ -193,7 +198,7 @@ class DialogSpells extends StatelessWidget {
                             child: const Text(
                               'Salvar',
                               style: TextStyle(
-                                color: CustomColors.alabaster,
+                                color: CustomColors.white_mist,
                               ),
                             ),
                           ),

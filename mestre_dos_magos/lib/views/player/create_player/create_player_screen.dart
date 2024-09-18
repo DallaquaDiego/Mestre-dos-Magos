@@ -86,9 +86,9 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
           children: [
             TabBar(
               controller: _tabController,
-              labelColor: CustomColors.grape_juice,
-              indicatorColor: CustomColors.grape_juice,
-              unselectedLabelColor: CustomColors.amethyst.withOpacity(0.45),
+              labelColor: CustomColors.dragon_blood,
+              indicatorColor: CustomColors.dragon_blood,
+              unselectedLabelColor: CustomColors.dragon_blood.withOpacity(0.35),
               tabs: const [
                 Tab(text: 'Informações Básicas'),
                 Tab(text: 'Classe, Raça, Magias e Inventário'),
@@ -232,7 +232,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                   'Atributos',
                                   style: TextStyle(
                                     fontSize: 22,
-                                    color: CustomColors.grape_juice,
+                                    color: CustomColors.dragon_blood,
                                   ),
                                 ),
                               ),
@@ -244,7 +244,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -270,7 +270,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -296,7 +296,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -326,7 +326,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -352,7 +352,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -378,7 +378,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8.0),
                                       decoration: BoxDecoration(
-                                        color: CustomColors.grape_juice.withOpacity(0.1),
+                                        color: CustomColors.dragon_blood.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
                                       child: Column(
@@ -426,7 +426,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       }
                                     },
                                     title: createPlayerStore.classe?.name ?? "Selecione a Classe",
-                                    borderColor: createPlayerStore.classError != null ? Colors.red.shade700 : CustomColors.grape_juice.withAlpha(50),
+                                    borderColor: createPlayerStore.classError != null ? Colors.red.shade700 : CustomColors.dragon_blood.withAlpha(50),
                                     error: createPlayerStore.classError,
                                     clearOnPressed: null,
                                   ),
@@ -449,7 +449,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       }
                                     },
                                     title: createPlayerStore.race?.name ?? "Selecione a Raça",
-                                    borderColor: createPlayerStore.raceError != null ? Colors.red.shade700 : CustomColors.grape_juice.withAlpha(50),
+                                    borderColor: createPlayerStore.raceError != null ? Colors.red.shade700 : CustomColors.dragon_blood.withAlpha(50),
                                     error: createPlayerStore.raceError,
                                     clearOnPressed: null,
                                   ),
@@ -472,7 +472,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                       }
                                     },
                                     title: createPlayerStore.sub_race?.name ?? "Selecione a Sub-Raça",
-                                    borderColor: createPlayerStore.subRaceError != null ? Colors.red.shade700 : CustomColors.grape_juice.withAlpha(50),
+                                    borderColor: createPlayerStore.subRaceError != null ? Colors.red.shade700 : CustomColors.dragon_blood.withAlpha(50),
                                     error: createPlayerStore.subRaceError,
                                     clearOnPressed: null,
                                   ),
@@ -519,9 +519,9 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                                   padding: const EdgeInsets.only(left: 10),
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                    color: CustomColors.grape_juice,
+                                                    color: CustomColors.dragon_blood,
                                                     borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(color: CustomColors.grape_juice, width: 0.5),
+                                                    border: Border.all(color: CustomColors.dragon_blood, width: 0.5),
                                                   ),
                                                   child: Row(
                                                     children: [
@@ -592,9 +592,9 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
                                                   padding: const EdgeInsets.only(left: 10),
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                    color: CustomColors.grape_juice,
+                                                    color: CustomColors.dragon_blood,
                                                     borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(color: CustomColors.grape_juice),
+                                                    border: Border.all(color: CustomColors.dragon_blood),
                                                   ),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.min,
@@ -642,8 +642,8 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           FloatingActionButton.extended(
-            backgroundColor: CustomColors.mystical_lilac,
-            foregroundColor: CustomColors.grape_juice,
+            backgroundColor: CustomColors.dragon_blood,
+            foregroundColor: CustomColors.white_mist,
             label: const Text('Excluir'),
             heroTag: 'Excluir',
             tooltip: 'Excluir',
@@ -657,8 +657,8 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
           ),
           const SizedBox(width: 32),
           FloatingActionButton.extended(
-            backgroundColor: CustomColors.grape_juice,
-            foregroundColor: CustomColors.alabaster,
+            backgroundColor: CustomColors.ancient_gold,
+            foregroundColor: CustomColors.white_mist,
             label: const Text('Salvar'),
             heroTag: 'Salvar',
             tooltip: 'Salvar',
@@ -676,8 +676,8 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> with SingleTick
           ),
         ],
       ) : FloatingActionButton.extended(
-        backgroundColor: CustomColors.grape_juice,
-        foregroundColor: CustomColors.alabaster,
+        backgroundColor: CustomColors.ancient_gold,
+        foregroundColor: CustomColors.white_mist,
         label: const Text('Salvar'),
         heroTag: 'Salvar',
         tooltip: 'Salvar',

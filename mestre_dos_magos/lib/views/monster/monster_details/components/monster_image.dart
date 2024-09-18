@@ -14,6 +14,9 @@ class MonsterImage extends StatelessWidget {
       case 'dragão azul ancião':
         imagePath = 'images/monsters/ancient_blue_dragon.png';
         break;
+      case 'dragão negro ancião':
+        imagePath = 'images/monsters/ancient_black_dragon.png';
+        break;
       default:
         imagePath = null;
         break;

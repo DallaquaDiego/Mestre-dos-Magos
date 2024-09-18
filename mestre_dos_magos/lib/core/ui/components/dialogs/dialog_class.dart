@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import '../../../../models/class.dart';
 import '../../../../stores/list/class_store.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
+import '../empty_result.dart';
 
 class DialogClass extends StatelessWidget {
   DialogClass({Key? key, this.selectedClass}) : super(key: key);
@@ -32,7 +32,7 @@ class DialogClass extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 ),
@@ -42,7 +42,7 @@ class DialogClass extends StatelessWidget {
                     icon: const Icon(
                       Icons.close,
                       size: 25,
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -61,7 +61,7 @@ class DialogClass extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: CustomColors.grape_juice,
+                    color: CustomColors.dragon_blood,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -73,7 +73,7 @@ class DialogClass extends StatelessWidget {
                       border: InputBorder.none,
                       suffixIcon: Icon(
                         Icons.search,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                       ),
                     ),
                   ),
@@ -87,16 +87,19 @@ class DialogClass extends StatelessWidget {
                 return const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: CustomColors.grape_juice,
+                      color: CustomColors.dragon_blood,
                     ),
                   ),
                 );
               }
 
               if (classStore.listClass.isEmpty) {
-                return const Expanded(
-                  child: ListEmpty(
-                    texto: "Nenhuma Classe Cadastrada.",
+                return Expanded(
+                  child: Center(
+                    child: EmptyResult(
+                      text: 'Nenhuma Classe Encontrada!',
+                      reload: classStore.refreshData,
+                    ),
                   ),
                 );
               }
@@ -114,7 +117,7 @@ class DialogClass extends StatelessWidget {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
-                          color: classe.id == selectedClass?.id ? CustomColors.grape_juice.withAlpha(50) : null,
+                          color: classe.id == selectedClass?.id ? CustomColors.dragon_blood.withAlpha(50) : null,
                           border: classStore.listClass.length - 1 == index
                               ? Border(
                             bottom: BorderSide(
@@ -125,6 +128,9 @@ class DialogClass extends StatelessWidget {
                         child: Text(
                           textAlign: TextAlign.center,
                           classe.name!,
+                          style: const TextStyle(
+                            color: CustomColors.dirty_brown,
+                          ),
                         ),
                       ),
                     );

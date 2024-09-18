@@ -44,13 +44,13 @@ class ErrorListing extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  backgroundColor: CustomColors.grape_juice,
+                  backgroundColor: CustomColors.dragon_blood,
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                 ),
                 child: const Text(
                   'Tentar Novamente',
                   style: TextStyle(
-                    color: CustomColors.alabaster,
+                    color: CustomColors.white_mist,
                   ),
                 ),
               ),

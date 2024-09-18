@@ -23,7 +23,7 @@ class EmptyResult extends StatelessWidget {
           children: [
             const Icon(
               Icons.playlist_remove,
-              color: Colors.grey,
+              color: CustomColors.dragon_blood,
               size: 50,
             ),
             const SizedBox(height: 8),
@@ -31,7 +31,7 @@ class EmptyResult extends StatelessWidget {
               text,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                color: Colors.grey,
+                color: CustomColors.dragon_blood,
                 fontWeight: FontWeight.w600,
                 fontSize: 17,
               ),
@@ -46,13 +46,13 @@ class EmptyResult extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    backgroundColor: CustomColors.grape_juice,
+                    backgroundColor: CustomColors.ancient_gold,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                   ),
                   child: const Text(
                     'Buscar Novamente',
                     style: TextStyle(
-                      color: CustomColors.alabaster,
+                      color: CustomColors.white_mist,
                     ),
                   ),
                 ),

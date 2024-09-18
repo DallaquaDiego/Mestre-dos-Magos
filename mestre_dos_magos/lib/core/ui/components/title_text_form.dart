@@ -14,7 +14,7 @@ class TitleTextForm extends StatelessWidget {
       title,
       textAlign: textAlign,
       style: const TextStyle(
-        color: CustomColors.grape_juice,
+        color: CustomColors.dragon_blood,
         fontWeight: FontWeight.bold,
       ),
     );

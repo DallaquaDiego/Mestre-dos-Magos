@@ -7,14 +7,5 @@ class Back4App {
     const parseServerURL = 'https://parseapi.back4app.com';
 
     await Parse().initialize(applicationId, parseServerURL, clientKey: clientKey, autoSendSessionId: true);
-
-    // var attributes = ParseObject('Attributes')
-    //   ..set('strength', 10)
-    //   ..set('constitution', 14)
-    //   ..set('dexterity', 12)
-    //   ..set('intelligence', 17)
-    //   ..set('wisdom', 16)
-    //   ..set('charisma', 14);
-    // await attributes.save();
   }
 }

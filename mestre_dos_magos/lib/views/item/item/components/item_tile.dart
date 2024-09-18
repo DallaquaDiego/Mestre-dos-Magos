@@ -29,24 +29,24 @@ class ItemTile extends StatelessWidget {
             children: [
               Text(
                 item.name!,
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 2),
               Text(
                 'Categoria: ${item.item_category!.name}',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(height: 1),
               Text(
                 'Preço: ${item.price} po',
-                style: const TextStyle(
-                  color: CustomColors.amethyst,
+                style: TextStyle(
+                  color: CustomColors.just_regular_grey.withOpacity(0.8),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -54,8 +54,8 @@ class ItemTile extends StatelessWidget {
                 const SizedBox(height: 1),
                 Text(
                   'Efeitos: ${item.effect!}',
-                  style: const TextStyle(
-                    color: CustomColors.amethyst,
+                  style: TextStyle(
+                    color: CustomColors.just_regular_grey.withOpacity(0.8),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -64,8 +64,8 @@ class ItemTile extends StatelessWidget {
                 const SizedBox(height: 1),
                 Text(
                   'Dano: ${item.damage!}',
-                  style: const TextStyle(
-                    color: CustomColors.amethyst,
+                  style: TextStyle(
+                    color: CustomColors.just_regular_grey.withOpacity(0.8),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -81,9 +81,9 @@ class ItemTile extends StatelessWidget {
               )
             );
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.edit,
-            color: CustomColors.amethyst,
+            color: CustomColors.just_regular_grey.withOpacity(0.8),
           ),
         ),
       ),

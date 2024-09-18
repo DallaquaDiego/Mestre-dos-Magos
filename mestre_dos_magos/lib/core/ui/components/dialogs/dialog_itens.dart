@@ -7,7 +7,7 @@ import '../../../../models/item.dart';
 import '../../../../stores/list/item_store.dart';
 import '../../../global/custom_sizes.dart';
 import '../../theme/custom_colors.dart';
-import '../list_empty.dart';
+import '../empty_result.dart';
 
 class DialogItens extends StatelessWidget {
   DialogItens({Key? key, List<Item>? selectedItens})
@@ -51,7 +51,7 @@ class DialogItens extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                       ),
                     ),
@@ -61,7 +61,7 @@ class DialogItens extends StatelessWidget {
                         icon: const Icon(
                           Icons.close,
                           size: 25,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
@@ -80,7 +80,7 @@ class DialogItens extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: 1,
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -92,7 +92,7 @@ class DialogItens extends StatelessWidget {
                             border: InputBorder.none,
                             suffixIcon: Icon(
                               Icons.search,
-                              color: CustomColors.grape_juice,
+                              color: CustomColors.dragon_blood,
                             ),
                           ),
                         ),
@@ -107,15 +107,18 @@ class DialogItens extends StatelessWidget {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(
-                          color: CustomColors.grape_juice,
+                          color: CustomColors.dragon_blood,
                         ),
                       ),
                     );
                   }
                   if (itemStore.listItem.isEmpty) {
-                    return const Expanded(
-                      child: ListEmpty(
-                        texto: "Nenhum Item Encontrado!",
+                    return Expanded(
+                      child: Center(
+                        child: EmptyResult(
+                          text: 'Nenhum Item Encontrado!',
+                          reload: itemStore.refreshData,
+                        ),
                       ),
                     );
                   }
@@ -138,7 +141,7 @@ class DialogItens extends StatelessWidget {
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         color: _selectedItens.any((selectedItem) => selectedItem.id == item.id)
-                                            ? CustomColors.grape_juice.withAlpha(50)
+                                            ? CustomColors.dragon_blood.withAlpha(50)
                                             : null,
                                         border: itemStore.listItem.length - 1 == index
                                             ? Border(
@@ -150,6 +153,9 @@ class DialogItens extends StatelessWidget {
                                       ),
                                       child: Text(
                                         item.name!,
+                                        style: const TextStyle(
+                                          color: CustomColors.dirty_brown,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -160,8 +166,8 @@ class DialogItens extends StatelessWidget {
                               itemStore.loadNextPage();
                               return Center(
                                 child: LinearProgressIndicator(
-                                  color: CustomColors.grape_juice,
-                                  backgroundColor: CustomColors.grape_juice.withAlpha(100),
+                                  color: CustomColors.dragon_blood,
+                                  backgroundColor: CustomColors.dragon_blood.withAlpha(100),
                                 ),
                               );
                             },
@@ -174,7 +180,7 @@ class DialogItens extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: CustomColors.grape_juice,
+                              backgroundColor: CustomColors.dragon_blood,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
@@ -188,7 +194,7 @@ class DialogItens extends StatelessWidget {
                             child: const Text(
                               'Salvar',
                               style: TextStyle(
-                                color: CustomColors.alabaster,
+                                color: CustomColors.white_mist,
                               ),
                             ),
                           ),

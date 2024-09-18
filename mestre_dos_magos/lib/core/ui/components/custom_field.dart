@@ -31,7 +31,7 @@ class CustomField extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: CustomColors.grape_juice.withOpacity(0.5),
+                color: CustomColors.dragon_blood.withOpacity(0.5),
                 width: 1,
               ),
             ),
@@ -40,6 +40,9 @@ class CustomField extends StatelessWidget {
               //contentPadding: const EdgeInsets.symmetric(horizontal: 5),
               title: Text(
                 title,
+                style: const TextStyle(
+                  color: CustomColors.dirty_brown
+                ),
               ),
               trailing: const Icon(
                 Icons.arrow_drop_down,

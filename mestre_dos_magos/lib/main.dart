@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           minWidth: 400,
           defaultName: MOBILE,
           defaultScale: true,
-          background: Container(color: CustomColors.mystical_lilac),
+          background: Container(color: CustomColors.white_mist),
           breakpoints: [
             const ResponsiveBreakpoint.resize(450, name: MOBILE),
             const ResponsiveBreakpoint.resize(800, name: TABLET),

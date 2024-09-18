@@ -19,7 +19,7 @@ class FilterIconWithBadge extends StatelessWidget {
         curve: Curves.easeInCubic,
       ),
       badgeStyle: const badges.BadgeStyle(
-        badgeColor: CustomColors.grape_juice,
+        badgeColor: CustomColors.dragon_blood,
       ),
       badgeContent: Text(
         //pestStore.filterStore.numberFilters.toString(),
@@ -33,7 +33,7 @@ class FilterIconWithBadge extends StatelessWidget {
       child: IconButton(
         icon: const Icon(Icons.filter_alt),
         onPressed: ontap,
-        color: CustomColors.grape_juice,
+        color: CustomColors.dragon_blood,
       ),
     );
   }

@@ -31,7 +31,7 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
               children: [
                 Positioned.fill(
                   child: Image.asset(
-                    'images/logo/purple_octopus_minimalist.png',
+                    'images/logo/mago.png',
                     height: 350,
                   ),
                 ),
@@ -46,7 +46,7 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontFamily: 'Nunito',
-                            color: CustomColors.grape_juice,
+                            color: CustomColors.dragon_blood,
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
                           ),

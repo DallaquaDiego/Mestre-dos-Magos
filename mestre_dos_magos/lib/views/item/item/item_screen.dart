@@ -26,13 +26,13 @@ class ItemScreen extends StatelessWidget {
     final smallerThanTablet = ResponsiveWrapper.of(context).isSmallerThan(TABLET);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColors.mystical_lilac,
-        iconTheme: const IconThemeData(color: CustomColors.grape_juice),
+        backgroundColor: CustomColors.white_mist,
+        iconTheme: const IconThemeData(color: CustomColors.dragon_blood),
         title: const Center(
           child: Text(
             'Itens',
             style: TextStyle(
-              color: CustomColors.grape_juice,
+              color: CustomColors.dragon_blood,
             ),
           ),
         ),
@@ -49,14 +49,14 @@ class ItemScreen extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: CustomColors.mystical_lilac,
+      backgroundColor: CustomColors.white_mist,
       drawer: smallerThanTablet ? CustomDrawer() : null,
       floatingActionButton: FloatingActionButton.extended(
         tooltip: "Cadastrar Novo Item",
         label: const Text("Novo Item"),
         heroTag: 'Novo Item',
-        backgroundColor: CustomColors.grape_juice,
-        foregroundColor: CustomColors.alabaster,
+        backgroundColor: CustomColors.ancient_gold,
+        foregroundColor: CustomColors.white_mist,
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -69,7 +69,7 @@ class ItemScreen extends StatelessWidget {
         ),
       ),
       body: RefreshIndicator(
-        color: CustomColors.grape_juice,
+        color: CustomColors.dragon_blood,
         onRefresh: () async {
           await itemStore.refreshData();
         },
@@ -86,7 +86,7 @@ class ItemScreen extends StatelessWidget {
             if (itemStore.showProgress) {
               return const Center(
                 child: CircularProgressIndicator(
-                  color: CustomColors.grape_juice,
+                  color: CustomColors.dragon_blood,
                 ),
               );
             }
@@ -126,8 +126,8 @@ class ItemScreen extends StatelessWidget {
                           itemStore.loadNextPage();
                           return Center(
                             child: LinearProgressIndicator(
-                              color: CustomColors.grape_juice,
-                              backgroundColor: CustomColors.grape_juice.withAlpha(100),
+                              color: CustomColors.dragon_blood,
+                              backgroundColor: CustomColors.dragon_blood.withAlpha(100),
                             ),
                           );
                         },

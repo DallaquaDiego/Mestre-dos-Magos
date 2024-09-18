@@ -92,7 +92,7 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                       behavior: const ScrollBehavior(),
                       child: GlowingOverscrollIndicator(
                         axisDirection: AxisDirection.down,
-                        color: CustomColors.grape_juice,
+                        color: CustomColors.dragon_blood,
                         child: SingleChildScrollView(
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           child: Column(
@@ -198,7 +198,7 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                                   const Text(
                                     'Truque',
                                     style: TextStyle(
-                                      color: CustomColors.grape_juice,
+                                      color: CustomColors.dragon_blood,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -227,8 +227,8 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                         Expanded(
                           flex: 3,
                           child: PatternedButton(
-                            color: CustomColors.mystical_lilac,
-                            textColor: CustomColors.grape_juice,
+                            color: CustomColors.dragon_blood,
+                            textColor: CustomColors.white_mist,
                             text: 'Excluir',
                             largura: screenSize.width * 0.3,
                             function: editing ? () async {
@@ -243,7 +243,7 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                             builder: (context) => GestureDetector(
                               onTap: () => createSpellStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.grape_juice,
+                                color: CustomColors.ancient_gold,
                                 text: 'Salvar',
                                 largura: screenSize.width * 0.65,
                                 function: createSpellStore.isFormValid ? () async {
@@ -266,7 +266,7 @@ class _CreateSpellScreenState extends State<CreateSpellScreen> {
                             builder: (context) => GestureDetector(
                               onTap: () => createSpellStore.invalidSendPressed(),
                               child: PatternedButton(
-                                color: CustomColors.grape_juice,
+                                color: CustomColors.ancient_gold,
                                 text: 'Salvar',
                                 largura: screenSize.width * 0.95,
                                 function: createSpellStore.isFormValid ? () async {

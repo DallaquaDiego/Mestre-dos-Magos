@@ -21,10 +21,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final smallerThanTablet = ResponsiveWrapper.of(context).isSmallerThan(TABLET);
-    final iconColor = smallerThanTablet ? CustomColors.grape_juice : CustomColors.alabaster;
+    final iconColor = smallerThanTablet ? CustomColors.dragon_blood : CustomColors.white_mist;
 
     return AppBar(
-      backgroundColor: smallerThanTablet ? CustomColors.mystical_lilac : CustomColors.grape_juice,
+      backgroundColor: smallerThanTablet ? CustomColors.white_mist : CustomColors.dragon_blood,
       elevation: smallerThanTablet ? 0 : 1,
       automaticallyImplyLeading: false,
       iconTheme: IconThemeData(color: iconColor),
@@ -50,7 +50,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  color: smallerThanTablet ? CustomColors.grape_juice : CustomColors.alabaster,
+                  color: smallerThanTablet ? CustomColors.dragon_blood : CustomColors.white_mist,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

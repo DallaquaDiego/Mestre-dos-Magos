@@ -11,6 +11,7 @@ import 'package:mestre_dos_magos/stores/list/monster_store.dart';
 import 'package:mestre_dos_magos/stores/list/player_store.dart';
 import 'package:mestre_dos_magos/stores/list/spell_category_store.dart';
 import 'package:mestre_dos_magos/stores/list/sub_race_store.dart';
+import 'package:mestre_dos_magos/stores/list/table_store.dart';
 import 'package:mestre_dos_magos/stores/page_store.dart';
 import 'package:mestre_dos_magos/stores/list/race_store.dart';
 import 'package:mestre_dos_magos/stores/list/racial_trait_store.dart';
@@ -21,6 +22,7 @@ void configureDependencies() {
   GetIt.I.registerSingleton(PageStore());
   GetIt.I.registerSingleton(CustomDrawer());
   GetIt.I.registerSingleton(FilterSearchStore());
+  GetIt.I.registerSingleton(TableStore());
   GetIt.I.registerSingleton(ItemStore());
   GetIt.I.registerSingleton(ClassStore());
   GetIt.I.registerSingleton(SpellStore());

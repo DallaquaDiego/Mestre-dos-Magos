@@ -14,7 +14,7 @@ class InformationField extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: CustomColors.grape_juice.withOpacity(0.1),
+        color: CustomColors.dragon_blood.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Column(
@@ -24,7 +24,7 @@ class InformationField extends StatelessWidget {
             title,
             style: const TextStyle(
               fontWeight: FontWeight.w600,
-              color: CustomColors.grape_juice,
+              color: CustomColors.dragon_blood,
             ),
           ),
           const SizedBox(height: 8),
@@ -33,7 +33,7 @@ class InformationField extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontWeight: FontWeight.w400,
-              color: CustomColors.grape_juice,
+              color: CustomColors.dragon_blood,
             ),
           ),
         ],
