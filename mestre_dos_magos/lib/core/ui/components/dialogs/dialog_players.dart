@@ -23,7 +23,7 @@ class PlayersDialog extends StatelessWidget {
     if (isAlreadySelected) {
       _selectedPlayers.removeWhere((player) => player.id == newPlayer.id);
     } else {
-      if (_selectedPlayers.length <= 4) {
+      if (_selectedPlayers.length < 4) {
         _selectedPlayers.add(newPlayer);
       }
     }

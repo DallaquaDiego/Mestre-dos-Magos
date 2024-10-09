@@ -8,34 +8,48 @@ import '../../../core/ui/components/dialogs/dialog_monsters.dart';
 import '../../../core/ui/components/dialogs/dialog_players.dart';
 import '../../../models/monster.dart';
 import '../../../models/player.dart';
-import '../../../stores/list/monster_store.dart';
-import '../../../stores/list/player_store.dart';
+import '../../../stores/list/table_store.dart';
 import 'components/player_container.dart';
 import 'components/monster_container.dart';
 
 class TableScreen extends StatefulWidget {
-  TableScreen({super.key});
+  const TableScreen({super.key});
 
   @override
   _TableScreenState createState() => _TableScreenState();
 }
 
 class _TableScreenState extends State<TableScreen> {
-  final playerStore = GetIt.I<PlayerStore>();
-  final monsterStore = GetIt.I<MonsterStore>();
+  final tableStore = GetIt.I<TableStore>();
 
   List<Player> selectedPlayers = [];
   List<Monster> selectedMonsters = [];
 
-  void removeMonster(Monster monster) {
-    setState(() {
-      selectedMonsters.remove(monster);
-    });
+  void addSelectedPlayers(List<Player> players) {
+    if (selectedPlayers.length + players.length <= 4) {
+      setState(() {
+        selectedPlayers.addAll(players);
+      });
+    }
+  }
+
+  void addSelectedMonsters(List<Monster> monsters) {
+    if (selectedMonsters.length + monsters.length <= 2) {
+      setState(() {
+        selectedMonsters.addAll(monsters);
+      });
+    }
   }
 
   void removePlayer(Player player) {
     setState(() {
-      selectedPlayers.remove(player);
+      selectedPlayers.removeWhere((p) => p.id == player.id);
+    });
+  }
+
+  void removeMonster(Monster monster) {
+    setState(() {
+      selectedMonsters.removeWhere((m) => m.id == monster.id);
     });
   }
 
@@ -60,11 +74,11 @@ class _TableScreenState extends State<TableScreen> {
       body: RefreshIndicator(
         color: CustomColors.dragon_blood,
         onRefresh: () async {
-          await playerStore.refreshData();
+          await tableStore.refreshData();
         },
         child: Observer(
           builder: (context) {
-            if (playerStore.showProgress) {
+            if (tableStore.showProgress) {
               return const Center(
                 child: CircularProgressIndicator(
                   color: CustomColors.dragon_blood,
@@ -79,68 +93,118 @@ class _TableScreenState extends State<TableScreen> {
                 ? selectedPlayers.sublist(2)
                 : [];
 
+            final containerHeight = (MediaQuery.of(context).size.height * 0.30) - 16; // 30% of screen height minus padding
+
             return Padding(
               padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  final double containerHeight = constraints.maxHeight / 3 - 16;
-
                   return Column(
                     children: [
                       if (firstRowPlayers.isNotEmpty)
                         Row(
                           children: [
-                            for (var player in firstRowPlayers)
+                            if (firstRowPlayers.length == 1)
                               Expanded(
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: SizedBox(
                                     height: containerHeight,
                                     child: PlayerContainer(
-                                      player: player,
-                                      onRemove: () => removePlayer(player),
+                                      key: ValueKey(firstRowPlayers.first.id),
+                                      player: firstRowPlayers.first,
+                                      onRemove: () => removePlayer(firstRowPlayers.first),
                                     ),
                                   ),
                                 ),
-                              ),
+                              )
+                            else
+                              for (var player in firstRowPlayers)
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: SizedBox(
+                                      height: containerHeight,
+                                      child: PlayerContainer(
+                                        key: ValueKey(player.id),
+                                        player: player,
+                                        onRemove: () => removePlayer(player),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                           ],
                         ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 8),
+
                       if (selectedMonsters.isNotEmpty)
                         Row(
                           children: [
-                            for (var monster in selectedMonsters)
+                            if (selectedMonsters.length == 1)
                               Expanded(
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: SizedBox(
                                     height: containerHeight,
                                     child: MonsterContainer(
-                                      monster: monster,
-                                      onRemove: () => removeMonster(monster),
+                                      key: ValueKey(selectedMonsters.first.id),
+                                      monster: selectedMonsters.first,
+                                      onRemove: () => removeMonster(selectedMonsters.first),
                                     ),
                                   ),
                                 ),
-                              ),
+                              )
+                            else
+                              for (var monster in selectedMonsters)
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: SizedBox(
+                                      height: containerHeight,
+                                      child: MonsterContainer(
+                                        key: ValueKey(monster.id),
+                                        monster: monster,
+                                        onRemove: () => removeMonster(monster),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                           ],
                         ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 8),
+
                       if (thirdRowPlayers.isNotEmpty)
                         Row(
                           children: [
-                            for (var player in thirdRowPlayers)
+                            if (thirdRowPlayers.length == 1)
                               Expanded(
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: SizedBox(
                                     height: containerHeight,
                                     child: PlayerContainer(
-                                      player: player,
-                                      onRemove: () => removePlayer(player),
+                                      key: ValueKey(thirdRowPlayers.first.id),
+                                      player: thirdRowPlayers.first,
+                                      onRemove: () => removePlayer(thirdRowPlayers.first),
                                     ),
                                   ),
                                 ),
-                              ),
+                              )
+                            else
+                              for (var player in thirdRowPlayers)
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: SizedBox(
+                                      height: containerHeight,
+                                      child: PlayerContainer(
+                                        key: ValueKey(player.id),
+                                        player: player,
+                                        onRemove: () => removePlayer(player),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                           ],
                         ),
                     ],
@@ -161,15 +225,14 @@ class _TableScreenState extends State<TableScreen> {
                 builder: (context) => MonstersDialog(),
               );
               if (result != null) {
-                setState(() {
-                  selectedMonsters.addAll(result);
-                });
+                addSelectedMonsters(result);
               }
             },
             backgroundColor: CustomColors.dragon_blood,
             child: const Icon(Icons.adb),
           ),
           const SizedBox(height: 16),
+
           FloatingActionButton(
             onPressed: () async {
               final result = await showDialog(
@@ -177,9 +240,7 @@ class _TableScreenState extends State<TableScreen> {
                 builder: (context) => PlayersDialog(),
               );
               if (result != null) {
-                setState(() {
-                  selectedPlayers.addAll(result);
-                });
+                addSelectedPlayers(result);
               }
             },
             backgroundColor: CustomColors.dragon_blood,

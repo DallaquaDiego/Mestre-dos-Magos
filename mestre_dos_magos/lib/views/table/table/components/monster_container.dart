@@ -110,69 +110,64 @@ class _MonsterContainerState extends State<MonsterContainer> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  'Resistências: ${_monster.endurance_tests}',
-                  style: const TextStyle(
-                    color: CustomColors.white_mist,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
+                const Spacer(),
+                Positioned(
+                  bottom: 8,
+                  left: 0,
+                  right: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MonsterDamageDialog(
+                                heal: false,
+                                monster: _monster,
+                                onUpdate: _updateMonster,
+                              );
+                            },
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.white_mist,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: const Text(
+                          'Dano',
+                          style: TextStyle(color: CustomColors.dragon_blood),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MonsterDamageDialog(
+                                heal: true,
+                                monster: _monster,
+                                onUpdate: _updateMonster,
+                              );
+                            },
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.ancient_gold,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: const Text(
+                          'Cura',
+                          style: TextStyle(color: CustomColors.white_mist),
+                        ),
+                      ),
+                    ],
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return MonsterDamageDialog(
-                              heal: false,
-                              monster: _monster,
-                              onUpdate: _updateMonster,
-                            );
-                          },
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: CustomColors.white_mist,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: const Text(
-                        'Dano',
-                        style: TextStyle(color: CustomColors.dragon_blood),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return MonsterDamageDialog(
-                              heal: true,
-                              monster: _monster,
-                              onUpdate: _updateMonster,
-                            );
-                          },
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: CustomColors.ancient_gold,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: const Text(
-                        'Cura',
-                        style: TextStyle(color: CustomColors.white_mist),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

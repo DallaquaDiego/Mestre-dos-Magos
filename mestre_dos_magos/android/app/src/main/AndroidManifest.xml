@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="mestre_dos_magos"
+        android:label="Mestre dos Magos"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
